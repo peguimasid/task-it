@@ -3,10 +3,9 @@ import '../styles/globals.css';
 import { FunctionComponent, PropsWithChildren } from 'react';
 import { Metadata } from 'next';
 
-import { SessionProvider } from 'next-auth/react';
-
 import { Inter } from 'next/font/google';
 import { twMerge } from 'tailwind-merge';
+import { NextAuthProvider } from './contexts/next-auth-provider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -19,9 +18,9 @@ export const metadata: Metadata = {
 const Layout: FunctionComponent<PropsWithChildren> = ({ children }) => {
   return (
     <html lang="en">
-      <SessionProvider>
+      <NextAuthProvider>
         <body className={twMerge('bg-black text-slate-50', inter.className)}>{children}</body>
-      </SessionProvider>
+      </NextAuthProvider>
     </html>
   );
 };
