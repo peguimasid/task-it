@@ -7,6 +7,12 @@ const SignInPage = () => {
         <h1 className="text-3xl">Login to your account</h1>
         <div className="flex w-full flex-col space-y-3 rounded-lg border border-solid border-gray-600 p-5">
           <SignInButton
+            iconSrc="icons/google.svg"
+            providerName="Google"
+            provider="google"
+            className="bg-white text-black"
+          />
+          <SignInButton
             iconSrc="icons/discord.svg"
             providerName="Discord"
             provider="discord"
