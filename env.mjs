@@ -8,7 +8,11 @@ const envSchema = z.object({
   DISCORD_CLIENT_SECRET: z.string(),
   // Next Auth Github Provider
   GITHUB_CLIENT_ID: z.string(),
-  GITHUB_CLIENT_SECRET: z.string()
+  GITHUB_CLIENT_SECRET: z.string(),
+  // Next Auth Auth0 Provider
+  AUTH0_CLIENT_ID: z.string(),
+  AUTH0_CLIENT_SECRET: z.string(),
+  AUTH0_DOMAIN: z.string()
 });
 
 export const env = (() => {

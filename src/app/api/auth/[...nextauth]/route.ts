@@ -2,6 +2,7 @@ import NextAuth from 'next-auth';
 import type { AuthOptions } from 'next-auth';
 import DiscordProvider from 'next-auth/providers/discord';
 import GithubProvider from 'next-auth/providers/github';
+import Auth0Provider from 'next-auth/providers/auth0';
 
 import { env } from 'env.mjs';
 
@@ -14,6 +15,11 @@ export const authOptions: AuthOptions = {
     GithubProvider({
       clientId: env.GITHUB_CLIENT_ID,
       clientSecret: env.GITHUB_CLIENT_SECRET
+    }),
+    Auth0Provider({
+      clientId: env.AUTH0_CLIENT_ID,
+      clientSecret: env.AUTH0_CLIENT_SECRET,
+      issuer: env.AUTH0_DOMAIN
     })
   ],
   pages: {
