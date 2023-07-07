@@ -1,14 +1,13 @@
 import NextAuth, { type AuthOptions } from 'next-auth';
 import DiscordProvider from 'next-auth/providers/discord';
 
+import { env } from 'env.mjs';
+
 export const authOptions: AuthOptions = {
   providers: [
-    // TODO: Add type safety to environment variables
     DiscordProvider({
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      clientId: process.env.DISCORD_CLIENT_ID!,
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      clientSecret: process.env.DISCORD_CLIENT_SECRET!
+      clientId: env.DISCORD_CLIENT_ID,
+      clientSecret: env.DISCORD_CLIENT_SECRET
     })
   ]
 };
