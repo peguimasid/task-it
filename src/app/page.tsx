@@ -4,7 +4,7 @@ import { Ubuntu } from 'next/font/google';
 
 import { twMerge } from 'tailwind-merge';
 
-import { SignOutButton } from './components/sign-out-button';
+import { SignOutButton } from '@/app/components/auth/sign-out-button';
 import { getServerSession } from 'next-auth';
 
 const ubuntu = Ubuntu({
