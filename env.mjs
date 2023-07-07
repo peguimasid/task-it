@@ -18,7 +18,10 @@ const envSchema = z.object({
   // Next Auth Auth0 Provider
   AUTH0_CLIENT_ID: z.string(),
   AUTH0_CLIENT_SECRET: z.string(),
-  AUTH0_DOMAIN: z.string()
+  AUTH0_DOMAIN: z.string(),
+  // Next Auth 42 School Provider
+  FORTY_TWO_CLIENT_ID: z.string(),
+  FORTY_TWO_CLIENT_SECRET: z.string()
 });
 
 export const env = (() => {

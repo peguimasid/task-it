@@ -6,6 +6,7 @@ import GithubProvider from 'next-auth/providers/github';
 import Auth0Provider from 'next-auth/providers/auth0';
 import GoogleProvider from 'next-auth/providers/google';
 import FacebookProvider from 'next-auth/providers/facebook';
+import FortyTwoSchoolProvider from 'next-auth/providers/42-school';
 
 import { env } from 'env.mjs';
 
@@ -31,6 +32,10 @@ export const authOptions: AuthOptions = {
       clientId: env.AUTH0_CLIENT_ID,
       clientSecret: env.AUTH0_CLIENT_SECRET,
       issuer: env.AUTH0_DOMAIN
+    }),
+    FortyTwoSchoolProvider({
+      clientId: env.FORTY_TWO_CLIENT_ID,
+      clientSecret: env.FORTY_TWO_CLIENT_SECRET
     })
   ],
   pages: {

@@ -13,10 +13,10 @@ const SignInPage = () => {
             className="bg-white text-black"
           />
           <SignInButton
-            iconSrc="icons/facebook.svg"
-            providerName="Facebook"
-            provider="facebook"
-            className="bg-[#0668E1]"
+            iconSrc="icons/github.svg"
+            providerName="Github"
+            provider="github"
+            className="border border-gray-600 bg-black"
           />
           <SignInButton
             iconSrc="icons/discord.svg"
@@ -25,9 +25,15 @@ const SignInPage = () => {
             className="bg-[#5a66ea]"
           />
           <SignInButton
-            iconSrc="icons/github.svg"
-            providerName="Github"
-            provider="github"
+            iconSrc="icons/facebook.svg"
+            providerName="Facebook"
+            provider="facebook"
+            className="bg-[#0668E1]"
+          />
+          <SignInButton
+            iconSrc="icons/42-school.svg"
+            providerName="42"
+            provider="42-school"
             className="border border-gray-600 bg-black"
           />
           <SignInButton
