@@ -14,8 +14,8 @@ In this initial version, our primary focus is on configuring and deploying the T
 
 ### **Tasks:**
 
-- [ ]  Implement a public login page with authentication options including Auth0, Facebook, Github, Discord, and Google.
-- [ ]  Create a private home page that displays user information.
+- [x]  Implement a public login page with authentication options including Auth0, Facebook, Github, Discord, and Google.
+- [x]  Create a private home page that displays user information.
 
 ## Version 1:
 
