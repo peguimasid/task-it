@@ -13,6 +13,12 @@ const SignInPage = () => {
             className="bg-white text-black"
           />
           <SignInButton
+            iconSrc="icons/facebook.svg"
+            providerName="Facebook"
+            provider="facebook"
+            className="bg-[#0668E1]"
+          />
+          <SignInButton
             iconSrc="icons/discord.svg"
             providerName="Discord"
             provider="discord"

@@ -9,6 +9,9 @@ const envSchema = z.object({
   // Next Auth Discord Provider
   DISCORD_CLIENT_ID: z.string(),
   DISCORD_CLIENT_SECRET: z.string(),
+  // Next Auth Facebook Provider
+  FACEBOOK_CLIENT_ID: z.string(),
+  FACEBOOK_CLIENT_SECRET: z.string(),
   // Next Auth Github Provider
   GITHUB_CLIENT_ID: z.string(),
   GITHUB_CLIENT_SECRET: z.string(),
