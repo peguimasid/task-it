@@ -21,7 +21,16 @@ const Home = async () => {
         <Image className="w-40" width={100} height={100} src="favicon.svg" alt="Task-it logo" />
         <h1 className={twMerge('text-8xl', ubuntu.className)}>Task-it</h1>
       </div>
-      <div className="text-center">
+      <div className="flex flex-col items-center justify-center space-y-3">
+        {session?.user?.image && (
+          <Image
+            src={session?.user?.image}
+            alt="User profile image"
+            width={90}
+            height={90}
+            className="w-24 rounded-full"
+          />
+        )}
         <h1>Username: {session?.user?.name}</h1>
         <h1>Email: {session?.user?.email}</h1>
       </div>
