@@ -17,11 +17,11 @@ export const metadata: Metadata = {
 
 const Layout: FunctionComponent<PropsWithChildren> = ({ children }) => {
   return (
-    <html lang="en">
-      <NextAuthProvider>
+    <NextAuthProvider>
+      <html lang="en">
         <body className={twMerge('bg-black text-slate-50', inter.className)}>{children}</body>
-      </NextAuthProvider>
-    </html>
+      </html>
+    </NextAuthProvider>
   );
 };
 
