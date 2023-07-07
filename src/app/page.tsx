@@ -7,6 +7,7 @@ import { twMerge } from 'tailwind-merge';
 import { SignOutButton } from './components/sign-out-button';
 
 const ubuntu = Ubuntu({
+  subsets: ['latin'],
   weight: '500'
 });
 
