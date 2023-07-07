@@ -1,4 +1,4 @@
-import DiscordSignInButton from '@/app/components/auth/discord-sign-in-button';
+import SignInButton from '@/app/components/auth/sign-in-button';
 
 const SignInPage = () => {
   return (
@@ -6,7 +6,7 @@ const SignInPage = () => {
       <div className="flex w-full max-w-sm flex-col items-center justify-center space-y-3">
         <h1 className="text-4xl">Login to your account</h1>
         <div className="flex w-full flex-col space-y-3 rounded-lg bg-gray-900 p-5">
-          <DiscordSignInButton />
+          <SignInButton name="Discord" provider="discord" className="bg-purple-700" />
         </div>
       </div>
     </main>
