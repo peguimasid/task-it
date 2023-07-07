@@ -3,8 +3,12 @@ import { z } from 'zod';
 const envSchema = z.object({
   NEXTAUTH_SECRET: z.string(),
   NEXTAUTH_URL: z.string(),
+  // Next Auth Discord Provider
   DISCORD_CLIENT_ID: z.string(),
-  DISCORD_CLIENT_SECRET: z.string()
+  DISCORD_CLIENT_SECRET: z.string(),
+  // Next Auth Github Provider
+  GITHUB_CLIENT_ID: z.string(),
+  GITHUB_CLIENT_SECRET: z.string()
 });
 
 export const env = (() => {

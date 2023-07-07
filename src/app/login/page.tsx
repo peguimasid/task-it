@@ -12,6 +12,7 @@ const SignInPage = () => {
             provider="discord"
             className="bg-purple-700"
           />
+          <SignInButton iconSrc="icons/github.svg" providerName="Github" provider="github" className="bg-black" />
         </div>
       </div>
     </main>
