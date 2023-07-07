@@ -5,6 +5,5 @@ export { default } from 'next-auth/middleware';
  * @see https://next-auth.js.org/configuration/nextjs#basic-usage
  */
 export const config = {
-  // Any other routes unless that ones, will be protected
-  matcher: ['/((?!login).*)']
+  matcher: ['/']
 };
