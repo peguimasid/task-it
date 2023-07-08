@@ -19,30 +19,38 @@ export const authOptions: AuthOptions = {
   providers: [
     GoogleProvider({
       clientId: env.GOOGLE_CLIENT_ID,
-      clientSecret: env.GOOGLE_CLIENT_SECRET
+      clientSecret: env.GOOGLE_CLIENT_SECRET,
+      allowDangerousEmailAccountLinking: true
     }),
     FacebookProvider({
       clientId: env.FACEBOOK_CLIENT_ID,
-      clientSecret: env.FACEBOOK_CLIENT_SECRET
+      clientSecret: env.FACEBOOK_CLIENT_SECRET,
+      allowDangerousEmailAccountLinking: true
     }),
     DiscordProvider({
       clientId: env.DISCORD_CLIENT_ID,
-      clientSecret: env.DISCORD_CLIENT_SECRET
+      clientSecret: env.DISCORD_CLIENT_SECRET,
+      allowDangerousEmailAccountLinking: true
     }),
     GithubProvider({
       clientId: env.GITHUB_CLIENT_ID,
-      clientSecret: env.GITHUB_CLIENT_SECRET
+      clientSecret: env.GITHUB_CLIENT_SECRET,
+      allowDangerousEmailAccountLinking: true
     }),
     Auth0Provider({
       clientId: env.AUTH0_CLIENT_ID,
       clientSecret: env.AUTH0_CLIENT_SECRET,
-      issuer: env.AUTH0_DOMAIN
+      issuer: env.AUTH0_DOMAIN,
+      allowDangerousEmailAccountLinking: true
     }),
     FortyTwoSchoolProvider({
       clientId: env.FORTY_TWO_CLIENT_ID,
       clientSecret: env.FORTY_TWO_CLIENT_SECRET
     })
   ],
+  session: {
+    strategy: 'jwt'
+  },
   pages: {
     signIn: '/login'
   }
