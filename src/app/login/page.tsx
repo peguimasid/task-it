@@ -4,7 +4,7 @@ const SignInPage = () => {
   return (
     <main className="flex h-[100dvh] w-screen flex-col items-center justify-center space-x-8 space-y-5">
       <div className="flex w-full max-w-sm flex-col items-center justify-center space-y-3">
-        <h1 className="text-3xl">Login to your account</h1>
+        <h1 className="text-3xl">Sign in to continue</h1>
         <div className="flex w-full flex-col space-y-3 rounded-lg border border-solid border-gray-600 p-5">
           <SignInButton
             iconSrc="icons/google.svg"
@@ -40,7 +40,7 @@ const SignInPage = () => {
             iconSrc="icons/auth0.svg"
             providerName="Auth0"
             provider="auth0"
-            className="bg-white text-black"
+            className="bg-[#eb5424] text-white"
           />
         </div>
       </div>
