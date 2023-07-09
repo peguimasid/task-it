@@ -5,7 +5,8 @@ import { Ubuntu } from 'next/font/google';
 import { twMerge } from 'tailwind-merge';
 
 import { SignOutButton } from '@/app/components/auth/sign-out-button';
-import { getServerAuthSession } from '@/lib/auth';
+
+import { getServerAuthSession } from '@/server/auth';
 
 const ubuntu = Ubuntu({
   subsets: ['latin'],

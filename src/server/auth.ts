@@ -10,7 +10,7 @@ import FortyTwoSchoolProvider from 'next-auth/providers/42-school';
 import { Adapter } from 'next-auth/adapters';
 
 import { PrismaAdapter } from '@auth/prisma-adapter';
-import { prisma } from '@/lib/prisma';
+import { prisma } from '@/server/prisma';
 
 import { env } from '@/env.mjs';
 
