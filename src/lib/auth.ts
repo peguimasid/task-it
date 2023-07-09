@@ -12,7 +12,7 @@ import { Adapter } from 'next-auth/adapters';
 import { PrismaAdapter } from '@auth/prisma-adapter';
 import { prisma } from '@/lib/prisma';
 
-import { env } from 'env.mjs';
+import { env } from '@/env.mjs';
 
 declare module 'next-auth' {
   interface Session extends DefaultSession {

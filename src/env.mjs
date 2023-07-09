@@ -6,6 +6,8 @@ const validatePort = (value) => {
 };
 
 const envSchema = z.object({
+  NODE_ENV: z.enum(['development', 'test', 'production']),
+  // Next Auth Config
   NEXTAUTH_SECRET: z.string(),
   NEXTAUTH_URL: z.string(),
   // Next Auth Google Provider
