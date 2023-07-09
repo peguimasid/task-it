@@ -5,5 +5,5 @@ export { default } from 'next-auth/middleware';
  * @see https://next-auth.js.org/configuration/nextjs#basic-usage
  */
 export const config = {
-  matcher: ['/']
+  matcher: ['/projects']
 };
