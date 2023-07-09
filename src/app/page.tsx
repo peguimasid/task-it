@@ -5,7 +5,7 @@ import { Ubuntu } from 'next/font/google';
 import { twMerge } from 'tailwind-merge';
 
 import { SignOutButton } from '@/app/components/auth/sign-out-button';
-import { getServerSession } from 'next-auth';
+import { getServerAuthSession } from '@/lib/auth';
 
 const ubuntu = Ubuntu({
   subsets: ['latin'],
@@ -13,7 +13,7 @@ const ubuntu = Ubuntu({
 });
 
 const Home = async () => {
-  const session = await getServerSession();
+  const session = await getServerAuthSession();
 
   return (
     <main className="relative flex h-[100dvh] w-screen flex-col items-center justify-center space-x-8 space-y-5">
@@ -31,6 +31,7 @@ const Home = async () => {
             className="w-24 rounded-full"
           />
         )}
+        <h1>Username: {session?.user?.id}</h1>
         <h1>Username: {session?.user?.name}</h1>
         <h1>Email: {session?.user?.email}</h1>
       </div>
