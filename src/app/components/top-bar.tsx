@@ -20,14 +20,8 @@ export const TopBar: FunctionComponent<TopBarProps> = ({ showLoginButton = false
   return (
     <header className="sticky inset-0 z-10 flex w-full border-b border-gray-600 backdrop-blur-md">
       <div className="mx-auto flex w-full max-w-7xl flex-row items-center justify-between px-5 py-4">
-        <Link href="/" className="flex flex-row items-center justify-center space-x-3 py-2">
-          <Image
-            width={90}
-            height={90}
-            src="favicon.svg"
-            alt="Task-it logo"
-            className="h-auto w-8 opacity-80 transition-all duration-200 hover:scale-110"
-          />
+        <Link href="/" className="flex flex-row items-center justify-center space-x-2 py-2">
+          <Image width={90} height={90} src="favicon.svg" alt="Task-it logo" className="h-auto w-8" />
           <h1 className={twMerge('text-xl font-extrabold', ubuntu.className)}>Task-it</h1>
         </Link>
         {showLoginButton && (
