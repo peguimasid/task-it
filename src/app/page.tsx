@@ -12,7 +12,7 @@ const ubuntu = Ubuntu({
   weight: ['300', '400', '500', '700']
 });
 
-const Home: FunctionComponent = () => {
+const Page: FunctionComponent = () => {
   return (
     <main className="relative flex h-[100dvh] w-screen flex-col items-center justify-center space-y-12">
       <section className="flex flex-col items-center justify-center">
@@ -45,4 +45,4 @@ const Home: FunctionComponent = () => {
   );
 };
 
-export default Home;
+export default Page;

@@ -1,12 +1,13 @@
 import { Metadata } from 'next';
 
 import SignInButton from '@/app/components/auth/sign-in-button';
+import { FunctionComponent } from 'react';
 
 export const metadata: Metadata = {
   title: 'Task-it | SignIn'
 };
 
-const SignInPage = () => {
+const Page: FunctionComponent = () => {
   return (
     <main className="flex h-[100dvh] w-screen flex-col items-center justify-center space-x-8 space-y-5">
       <div className="flex w-full max-w-sm flex-col items-center justify-center space-y-3">
@@ -54,4 +55,4 @@ const SignInPage = () => {
   );
 };
 
-export default SignInPage;
+export default Page;
