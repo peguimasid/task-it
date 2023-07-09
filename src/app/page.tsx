@@ -31,7 +31,7 @@ const Home = async () => {
             className="w-24 rounded-full"
           />
         )}
-        <h1>Username: {session?.user?.id}</h1>
+        <h1>Id: {session?.user?.id}</h1>
         <h1>Username: {session?.user?.name}</h1>
         <h1>Email: {session?.user?.email}</h1>
       </div>
