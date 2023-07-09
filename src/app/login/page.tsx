@@ -1,4 +1,10 @@
+import { Metadata } from 'next';
+
 import SignInButton from '@/app/components/auth/sign-in-button';
+
+export const metadata: Metadata = {
+  title: 'Task-it | SignIn'
+};
 
 const SignInPage = () => {
   return (
