@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
 
-import SignInButton from '@/app/components/auth/sign-in-button';
+import SignInButton from '@/components/auth/sign-in-button';
 import { FunctionComponent } from 'react';
-import { TopBar } from '../components/top-bar';
+import { TopBar } from '../../components/top-bar';
 
 export const metadata: Metadata = {
   title: 'Task-it | SignIn'

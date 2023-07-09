@@ -1,6 +1,6 @@
 import { getServerAuthSession } from '@/server/auth';
 import { Metadata } from 'next';
-import { SignOutButton } from '../components/auth/sign-out-button';
+import { SignOutButton } from '../../components/auth/sign-out-button';
 
 export const metadata: Metadata = {
   title: 'Task-it | Projects'

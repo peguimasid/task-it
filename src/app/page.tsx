@@ -6,7 +6,7 @@ import { twMerge } from 'tailwind-merge';
 
 import { FunctionComponent } from 'react';
 import Link from 'next/link';
-import { TopBar } from './components/top-bar';
+import { TopBar } from '../components/top-bar';
 
 const ubuntu = Ubuntu({
   subsets: ['latin'],

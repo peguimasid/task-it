@@ -5,7 +5,7 @@ import { Metadata } from 'next';
 
 import { Inter } from 'next/font/google';
 import { twMerge } from 'tailwind-merge';
-import { NextAuthProvider } from './contexts/next-auth-provider';
+import { NextAuthProvider } from '@/contexts/next-auth-provider';
 
 const inter = Inter({ subsets: ['latin'] });
 
