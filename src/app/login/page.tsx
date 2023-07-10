@@ -12,7 +12,7 @@ const Page: FunctionComponent = () => {
   return (
     <main className="flex h-[100dvh] w-screen flex-col">
       <TopBar />
-      <section className="flex h-full items-center justify-center space-x-8 space-y-5">
+      <section className="flex h-full items-center justify-center space-x-8 space-y-5 px-5">
         <div className="flex w-full max-w-sm flex-col items-center justify-center space-y-3">
           <h1 className="text-3xl">Sign in to continue</h1>
           <div className="flex w-full flex-col space-y-3 rounded-lg border border-solid border-gray-600 p-5">
