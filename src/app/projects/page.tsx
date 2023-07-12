@@ -12,12 +12,13 @@ const getUserProjects = async () => {
 
   if (!session) return null;
 
-  const data = await prisma.user.findUnique({
-    where: { id: session.user.id },
-    include: { projects: true }
+  const projects = await prisma.project.findMany({
+    where: {
+      userId: session.user.id
+    }
   });
 
-  return data?.projects ?? [];
+  return projects;
 };
 
 const Page = async () => {
