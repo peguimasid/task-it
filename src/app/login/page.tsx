@@ -1,14 +1,20 @@
 import { Metadata } from 'next';
+import { redirect } from 'next/navigation';
 
+import { getServerAuthSession } from '@/server/auth';
+
+import { TopBar } from '@/components/top-bar';
 import SignInButton from '@/components/auth/sign-in-button';
-import { FunctionComponent } from 'react';
-import { TopBar } from '../../components/top-bar';
 
 export const metadata: Metadata = {
   title: 'Task-it | SignIn'
 };
 
-const Page: FunctionComponent = () => {
+const Page = async () => {
+  const session = await getServerAuthSession();
+
+  if (session) redirect('/projects');
+
   return (
     <main className="flex h-[100dvh] w-screen flex-col">
       <TopBar />
