@@ -5,6 +5,7 @@ import { prisma } from '@/server/prisma';
 
 import { SignOutButton } from '../../components/auth/sign-out-button';
 import { TopBar } from '@/components/top-bar';
+import { format } from 'date-fns';
 
 export const metadata: Metadata = {
   title: 'Task-it | Projects'
@@ -25,16 +26,27 @@ const getUserProjects = async () => {
 };
 
 const Page = async () => {
+  const session = await getServerAuthSession();
+
   const usersProjects = await getUserProjects();
 
-  console.log(usersProjects);
+  const currentDate = format(new Date(), 'MMMM dd, yyyy');
+
+  const projectsText = `project${usersProjects?.length !== 1 ? 's' : ''}`;
 
   return (
     <main className="flex h-[100dvh] w-screen flex-col">
-      <TopBar />
-      <div className="flex h-full w-full flex-col items-center justify-center space-y-3">
-        <h1>List user projects</h1>
-        <SignOutButton />
+      <TopBar userActions={SignOutButton} />
+      <div className="mx-auto flex h-full w-full max-w-4xl flex-col px-2">
+        <div className="mt-10 space-y-2">
+          <h1 className="text-4xl text-slate-50">Welcome back, {session?.user.name}</h1>
+          <div className="flex flex-row divide-x-2 divide-zinc-800">
+            <p className="pr-2 text-zinc-500">{currentDate}</p>
+            <p className="pl-2 text-zinc-500">
+              Recently viewed {usersProjects?.length} {projectsText}
+            </p>
+          </div>
+        </div>
       </div>
     </main>
   );
