@@ -6,7 +6,9 @@ import { twMerge } from 'tailwind-merge';
 
 import { FunctionComponent } from 'react';
 import Link from 'next/link';
-import { TopBar } from '../components/top-bar';
+
+import { TopBar } from '@/components/top-bar';
+import { LoginButton } from '@/components/home/login-button';
 
 const ubuntu = Ubuntu({
   subsets: ['latin'],
@@ -16,7 +18,7 @@ const ubuntu = Ubuntu({
 const Page: FunctionComponent = () => {
   return (
     <main className="flex h-[100dvh] w-screen flex-col">
-      <TopBar showLoginButton />
+      <TopBar userActions={LoginButton} />
       <section className="flex h-full flex-col items-center justify-center space-y-12">
         <div className="flex flex-col items-center justify-center space-y-3 px-5">
           <div className="flex items-center justify-center space-x-4">

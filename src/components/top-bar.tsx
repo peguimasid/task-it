@@ -13,10 +13,10 @@ const ubuntu = Ubuntu({
 });
 
 interface TopBarProps {
-  showLoginButton?: boolean;
+  userActions?: FunctionComponent;
 }
 
-export const TopBar: FunctionComponent<TopBarProps> = ({ showLoginButton = false }) => {
+export const TopBar: FunctionComponent<TopBarProps> = ({ userActions: UserActions = null }) => {
   return (
     <header className="sticky inset-0 z-10 flex w-full border-b border-gray-600 backdrop-blur-md">
       <div className="mx-auto flex w-full max-w-7xl flex-row items-center px-5 py-4">
@@ -24,16 +24,7 @@ export const TopBar: FunctionComponent<TopBarProps> = ({ showLoginButton = false
           <Image width={90} height={90} src="favicon.svg" alt="Task-it logo" className="h-auto w-8" />
           <h1 className={twMerge('text-xl font-extrabold', ubuntu.className)}>Task-it</h1>
         </Link>
-        <div className="ml-auto flex flex-row space-x-4">
-          {showLoginButton && (
-            <Link
-              className="rounded-lg border-2 border-secondary px-8 py-2 text-sm"
-              href="/login?callbackUrl=/projects"
-            >
-              Login
-            </Link>
-          )}
-        </div>
+        <div className="ml-auto flex flex-row space-x-4">{UserActions && <UserActions />}</div>
       </div>
     </header>
   );
