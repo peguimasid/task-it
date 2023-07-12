@@ -31,9 +31,7 @@ const Page: FunctionComponent = () => {
               alt="Task-it logo"
             />
           </div>
-          <p className="text-center text-gray-500 md:text-lg lg:text-xl">
-            Keeping project management simple as should be
-          </p>
+          <p className="text-center text-gray-500 md:text-lg lg:text-xl">Keep project management simple as should be</p>
         </div>
         <Link className="group relative" href="/login?callbackUrl=/projects">
           <div className="absolute inset-0 rounded-lg blur-md transition-all duration-300 group-hover:bg-primary" />
