@@ -1,7 +1,6 @@
 'use client';
 
 import { FunctionComponent, useCallback } from 'react';
-import { useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 
 import { signIn } from 'next-auth/react';
@@ -17,12 +16,9 @@ interface SignInButtonProps {
 }
 
 const SignInButton: FunctionComponent<SignInButtonProps> = ({ iconSrc, providerName, provider, className }) => {
-  const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get('callbackUrl') ?? '/';
-
   const handleSignIn = useCallback(() => {
-    signIn(provider, { callbackUrl });
-  }, [callbackUrl, provider]);
+    signIn(provider);
+  }, [provider]);
 
   return (
     <button

@@ -35,7 +35,7 @@ const Page: FunctionComponent = () => {
           </div>
           <p className="text-center text-gray-500 md:text-lg lg:text-xl">Keep project management simple as should be</p>
         </div>
-        <Link className="group relative" href="/login?callbackUrl=/projects">
+        <Link className="group relative" href="/login">
           <div className="absolute inset-0 rounded-lg blur-md transition-all duration-300 group-hover:bg-primary" />
           <div className="relative flex flex-row items-center justify-center space-x-2 rounded-lg bg-gradient-to-r from-primary to-secondary px-5 py-3 font-semibold sm:px-8 sm:py-4">
             <p>Sign up for free</p>

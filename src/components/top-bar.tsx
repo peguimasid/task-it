@@ -13,7 +13,7 @@ const ubuntu = Ubuntu({
 });
 
 interface TopBarProps {
-  userActions?: FunctionComponent;
+  userActions?: FunctionComponent | null;
 }
 
 export const TopBar: FunctionComponent<TopBarProps> = ({ userActions: UserActions = null }) => {

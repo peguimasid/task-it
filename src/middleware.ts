@@ -1,9 +1,35 @@
-export { default } from 'next-auth/middleware';
+import { withAuth } from 'next-auth/middleware';
+import { NextResponse } from 'next/server';
 
-/**
- * Specify which pages will be protected, whole app by default
- * @see https://next-auth.js.org/configuration/nextjs#basic-usage
- */
+const privateRoutes = ['/projects'];
+
+const isPrivateRoute = (pathname: string) => {
+  return privateRoutes.includes(pathname);
+};
+
+export default withAuth(
+  async function middleware(req) {
+    const { token } = req.nextauth;
+
+    const isPrivate = isPrivateRoute(req.nextUrl.pathname);
+
+    if (!token && isPrivate) {
+      return NextResponse.redirect(new URL('/login', req.url));
+    }
+
+    if (token && !isPrivate) {
+      return NextResponse.redirect(new URL('/projects', req.url));
+    }
+
+    return NextResponse.next();
+  },
+  {
+    callbacks: {
+      authorized: () => true
+    }
+  }
+);
+
 export const config = {
-  matcher: ['/projects', '/api(.*)']
+  matcher: ['/((?!.*\\..*|_next).*)', '/', '/(api|trpc)(.*)']
 };
