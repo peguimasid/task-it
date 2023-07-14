@@ -1,23 +1,23 @@
 import { withAuth } from 'next-auth/middleware';
 import { NextResponse } from 'next/server';
 
-const privateRoutes = ['/projects'];
+const publicRoutes = ['/', '/login'];
 
-const isPrivateRoute = (pathname: string) => {
-  return privateRoutes.includes(pathname);
+const isPublicRoute = (pathname: string) => {
+  return publicRoutes.includes(pathname);
 };
 
 export default withAuth(
   async function middleware(req) {
     const { token } = req.nextauth;
 
-    const isPrivate = isPrivateRoute(req.nextUrl.pathname);
+    const isPublic = isPublicRoute(req.nextUrl.pathname);
 
-    if (!token && isPrivate) {
+    if (!token && !isPublic) {
       return NextResponse.redirect(new URL('/login', req.url));
     }
 
-    if (token && !isPrivate) {
+    if (token && isPublic) {
       return NextResponse.redirect(new URL('/projects', req.url));
     }
 
