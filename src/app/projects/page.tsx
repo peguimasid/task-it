@@ -3,9 +3,10 @@ import { Metadata } from 'next';
 import { getServerAuthSession } from '@/server/auth';
 import { prisma } from '@/server/prisma';
 
-import { SignOutButton } from '../../components/auth/sign-out-button';
-import { TopBar } from '@/components/top-bar';
 import { format } from 'date-fns';
+
+import { TopBar } from '@/components/top-bar';
+import { UserMenu } from '@/components/projects/user-menu';
 
 export const metadata: Metadata = {
   title: 'Task-it | Projects'
@@ -36,7 +37,7 @@ const Page = async () => {
 
   return (
     <main className="flex h-[100dvh] w-screen flex-col">
-      <TopBar userActions={SignOutButton} />
+      <TopBar userActions={UserMenu} />
       <div className="mx-auto flex h-full w-full max-w-4xl flex-col px-2">
         <div className="mt-10 space-y-2">
           <h1 className="text-4xl text-slate-50">Welcome back, {session?.user.name}</h1>
