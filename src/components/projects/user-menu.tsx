@@ -17,7 +17,7 @@ export const UserMenu = () => {
     <div className="z-40">
       <DropdownMenu.Root open={isOpen} onOpenChange={setIsOpen}>
         <DropdownMenu.Trigger asChild>
-          <div className="flex cursor-pointer flex-row items-center justify-center space-x-2 rounded-lg p-1 transition-all sm:hover:bg-zinc-900">
+          <div className="flex cursor-pointer flex-row items-center justify-center space-x-2 rounded-lg p-1 pl-2 transition-all sm:hover:bg-zinc-900">
             <h1 className="hidden sm:flex">{data?.user.name}</h1>
             <div className="flex items-center justify-center">
               {data?.user.image ? (
