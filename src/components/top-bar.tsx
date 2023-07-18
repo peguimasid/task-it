@@ -21,7 +21,7 @@ export const TopBar: FunctionComponent<TopBarProps> = ({ userActions: UserAction
     <header className="sticky inset-0 z-10 flex w-full border-b border-gray-600 backdrop-blur-md">
       <div className="mx-auto flex w-full max-w-6xl flex-row items-center px-5 py-4">
         <Link href="/" className="flex flex-row items-center justify-center space-x-2 py-2">
-          <Image width={90} height={90} src="favicon.svg" alt="Task-it logo" className="h-auto w-8" />
+          <Image width={90} height={90} src="/favicon.svg" alt="Task-it logo" className="h-auto w-8" />
           <h1 className={twMerge('text-xl font-extrabold', ubuntu.className)}>Task-it</h1>
         </Link>
         <div className="ml-auto flex flex-row space-x-4">{UserActions && <UserActions />}</div>

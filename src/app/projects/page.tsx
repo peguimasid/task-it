@@ -7,6 +7,7 @@ import { format } from 'date-fns';
 
 import { TopBar } from '@/components/top-bar';
 import { UserMenu } from '@/components/projects/user-menu';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Task-it | Projects'
@@ -46,6 +47,9 @@ const Page = async () => {
             <p className="pl-2 text-zinc-500">
               Recently viewed {usersProjects?.length} {projectsText}
             </p>
+          </div>
+          <div className="flex w-full items-center justify-end">
+            <Link href="/projects/new">New project</Link>
           </div>
         </div>
       </div>
