@@ -42,11 +42,11 @@ const Page = () => {
   return (
     <main className="flex h-[100dvh] w-screen flex-col">
       <TopBar userActions={UserMenu} />
-      <section className="mx-auto flex h-full w-full max-w-sm flex-col items-center justify-center px-2">
+      <section className="mx-auto flex h-full w-full max-w-sm flex-col justify-center space-y-5 px-2">
         <form
           name="createProjectForm"
           noValidate
-          className="flex w-full flex-col justify-center space-y-4 px-2"
+          className="-mt-20 flex w-full flex-col justify-center space-y-4"
           onSubmit={handleSubmit(onSubmit)}
         >
           <Controller
