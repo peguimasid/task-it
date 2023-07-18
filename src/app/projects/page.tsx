@@ -1,5 +1,7 @@
 import { Metadata } from 'next';
 
+import { white } from 'tailwindcss/colors';
+
 import { getServerAuthSession } from '@/server/auth';
 import { prisma } from '@/server/prisma';
 
@@ -8,6 +10,7 @@ import { format } from 'date-fns';
 import { TopBar } from '@/components/top-bar';
 import { UserMenu } from '@/components/projects/user-menu';
 import Link from 'next/link';
+import { PlusCircledIcon, PlusIcon } from '@radix-ui/react-icons';
 
 export const metadata: Metadata = {
   title: 'Task-it | Projects'
@@ -49,7 +52,13 @@ const Page = async () => {
             </p>
           </div>
           <div className="flex w-full items-center justify-end">
-            <Link href="/projects/new">New project</Link>
+            <Link
+              href="/projects/new"
+              className="p flex items-center justify-center space-x-2 rounded-lg bg-gradient-to-r from-primary to-secondary px-3 py-2 pr-5"
+            >
+              <PlusIcon className="scale-110" />
+              <p>Create project</p>
+            </Link>
           </div>
         </div>
       </div>
