@@ -1,14 +1,31 @@
 'use client';
 
-import { FunctionComponent } from 'react';
+import { FunctionComponent, useCallback, useState } from 'react';
 
-import AddIcon from '@mui/icons-material/Add';
+import { Icon } from '@mui/material';
+import { CreateProjectDialog } from './create-project-dialog';
 
 export const CreateProjectButton: FunctionComponent = () => {
+  const [createProjectDialogOpen, setCreateProjectDialogOpen] = useState<boolean>(false);
+
+  const handleClickCreateProject = useCallback(() => {
+    setCreateProjectDialogOpen(true);
+  }, []);
+
+  const onCloseCreateProjectDialog = useCallback(() => {
+    setCreateProjectDialogOpen(false);
+  }, []);
+
   return (
-    <button className="flex items-center justify-center space-x-2 rounded-lg bg-gradient-to-r from-primary to-secondary px-3 py-2 pr-5">
-      <AddIcon />
-      <p>Create project</p>
-    </button>
+    <>
+      <CreateProjectDialog open={createProjectDialogOpen} onClose={onCloseCreateProjectDialog} />
+      <button
+        onClick={handleClickCreateProject}
+        className="flex items-center justify-center space-x-2 rounded-lg bg-gradient-to-r from-primary to-secondary px-3 py-2 pr-5"
+      >
+        <Icon>add</Icon>
+        <p>Create project</p>
+      </button>
+    </>
   );
 };
