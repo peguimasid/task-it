@@ -1,58 +1,62 @@
 'use client';
 
-import { useState } from 'react';
-import Image from 'next/image';
+import { useState, useCallback, MouseEvent } from 'react';
+
+import { Avatar, Button, Icon, ListItemIcon, ListItemText, MenuItem, Popover, Typography } from '@mui/material';
 
 import { signOut, useSession } from 'next-auth/react';
-
-import { ExitIcon } from '@radix-ui/react-icons';
-import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 
 export const UserMenu = () => {
   const { data } = useSession();
 
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [userMenu, setUserMenu] = useState<HTMLElement | null>(null);
+
+  const userMenuClick = useCallback((event: MouseEvent<HTMLButtonElement>) => {
+    setUserMenu(event.currentTarget);
+  }, []);
+
+  const userMenuClose = useCallback(() => {
+    setUserMenu(null);
+  }, []);
 
   return (
-    <div className="z-40">
-      <DropdownMenu.Root open={isOpen} onOpenChange={setIsOpen}>
-        <DropdownMenu.Trigger asChild>
-          <div className="flex cursor-pointer flex-row items-center justify-center space-x-2 rounded-lg p-1 pl-2 transition-all sm:hover:bg-zinc-900">
-            <h1 className="hidden sm:flex">{data?.user.name}</h1>
-            <div className="flex items-center justify-center">
-              {data?.user.image ? (
-                <Image
-                  width={80}
-                  height={80}
-                  src={data.user.image}
-                  alt="User profile image"
-                  className="h-10 w-10 rounded-full"
-                />
-              ) : (
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-zinc-800">
-                  <p>{data?.user.name?.[0]}</p>
-                </div>
-              )}
-            </div>
-          </div>
-        </DropdownMenu.Trigger>
+    <>
+      <Button onClick={userMenuClick} className="normal-case">
+        <div className="hidden flex-col items-end md:flex">
+          <Typography component="span" className="flex text-slate-50">
+            {data?.user.name}
+          </Typography>
+        </div>
 
-        <DropdownMenu.Portal>
-          <DropdownMenu.Content
-            align="end"
-            sideOffset={5}
-            className="z-10 flex w-44 flex-col items-start rounded-lg bg-zinc-900 p-1.5 shadow-md"
-          >
-            <button
-              className="flex w-full items-center justify-between rounded-md px-3 py-1.5 transition-all hover:bg-zinc-800"
-              onClick={() => signOut()}
-            >
-              <p>Sign Out</p>
-              <ExitIcon className="scale-110" />
-            </button>
-          </DropdownMenu.Content>
-        </DropdownMenu.Portal>
-      </DropdownMenu.Root>
-    </div>
+        <Avatar className="md:mx-4">{data?.user?.name?.[0]}</Avatar>
+        <Icon className="text-zinc-300">{userMenu ? 'keyboard_arrow_up' : 'keyboard_arrow_down'}</Icon>
+      </Button>
+
+      <Popover
+        open={Boolean(userMenu)}
+        anchorEl={userMenu}
+        onClose={userMenuClose}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'left'
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'left'
+        }}
+        classes={{
+          paper: 'py-2'
+        }}
+      >
+        <MenuItem onClick={() => signOut()}>
+          <ListItemIcon>
+            <Icon>exit_to_app</Icon>
+          </ListItemIcon>
+          <ListItemText primary="Sign out" />
+        </MenuItem>
+      </Popover>
+    </>
   );
 };
+
+export default UserMenu;
