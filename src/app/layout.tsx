@@ -1,26 +1,33 @@
+'use client';
+
 import '../styles/globals.css';
 
 import { FunctionComponent, PropsWithChildren } from 'react';
-import { Metadata } from 'next';
 
-import { Inter } from 'next/font/google';
-import { twMerge } from 'tailwind-merge';
 import { NextAuthProvider } from '@/contexts/next-auth-provider';
 
-const inter = Inter({ subsets: ['latin'] });
+import { ThemeProvider } from '@mui/material';
+import { darkTheme } from '@/theme';
 
-export const metadata: Metadata = {
-  title: 'Task-it | Home',
-  description: 'Simplify Project Management and Task Collaboration',
-  icons: [{ rel: 'icon', url: 'favicon.svg' }]
-};
+import { twMerge } from 'tailwind-merge';
+import { Inter } from 'next/font/google';
+
+const inter = Inter({ subsets: ['latin'] });
 
 const Layout: FunctionComponent<PropsWithChildren> = ({ children }) => {
   return (
     <NextAuthProvider>
-      <html lang="en">
-        <body className={twMerge('bg-black text-slate-50', inter.className)}>{children}</body>
-      </html>
+      <ThemeProvider theme={darkTheme}>
+        <html lang="en">
+          <head>
+            <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+            <title>Task-it | Home</title>
+            <meta name="description" content="Simplify Project Management and Task Collaboration" />
+            <link rel="shortcut icon" href="favicon.svg" />
+          </head>
+          <body className={twMerge('bg-black text-slate-50', inter.className)}>{children}</body>
+        </html>
+      </ThemeProvider>
     </NextAuthProvider>
   );
 };
