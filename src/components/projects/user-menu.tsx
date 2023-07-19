@@ -21,15 +21,20 @@ export const UserMenu = () => {
 
   return (
     <>
-      <Button onClick={userMenuClick} className="normal-case">
-        <div className="hidden flex-col items-end md:flex">
+      <Button onClick={userMenuClick} className="rounded-md normal-case">
+        <div className="hidden flex-col items-end pr-4 md:flex">
           <Typography component="span" className="flex text-slate-50">
             {data?.user.name}
           </Typography>
         </div>
 
-        <Avatar className="md:mx-4">{data?.user?.name?.[0]}</Avatar>
-        <Icon className="text-zinc-300">{userMenu ? 'keyboard_arrow_up' : 'keyboard_arrow_down'}</Icon>
+        {data?.user?.image ? (
+          <Avatar src={data.user.image} alt={data?.user?.name ?? ''} />
+        ) : (
+          <Avatar className="bg-zinc-700 text-zinc-300" />
+        )}
+
+        <Icon className="ml-2 text-zinc-300">{userMenu ? 'keyboard_arrow_up' : 'keyboard_arrow_down'}</Icon>
       </Button>
 
       <Popover
@@ -40,12 +45,8 @@ export const UserMenu = () => {
           vertical: 'bottom',
           horizontal: 'left'
         }}
-        transformOrigin={{
-          vertical: 'top',
-          horizontal: 'left'
-        }}
         classes={{
-          paper: 'py-2'
+          paper: 'py-2 min-w-[14rem] bg-zinc-950'
         }}
       >
         <MenuItem onClick={() => signOut()}>
