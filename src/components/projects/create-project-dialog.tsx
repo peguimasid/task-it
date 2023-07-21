@@ -2,7 +2,7 @@
 
 import { FunctionComponent } from 'react';
 
-import { Dialog } from '@mui/material';
+import { Dialog, DialogContent } from '@mui/material';
 import { DialogHeader } from '../dialog-header';
 
 interface CreateProjectDialogProps {
@@ -14,9 +14,9 @@ export const CreateProjectDialog: FunctionComponent<CreateProjectDialogProps> = 
   return (
     <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth>
       <DialogHeader onClose={onClose}>Create Project</DialogHeader>
-      <main className="p-5">
+      <DialogContent>
         <h1>Here we create the project</h1>
-      </main>
+      </DialogContent>
     </Dialog>
   );
 };
