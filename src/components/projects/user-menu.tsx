@@ -19,6 +19,8 @@ export const UserMenu = () => {
     setUserMenu(null);
   }, []);
 
+  if (!data) return null;
+
   return (
     <>
       <Button onClick={userMenuClick} className="rounded-md normal-case">
