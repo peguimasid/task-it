@@ -50,8 +50,8 @@ export const CreateProjectDialog: FunctionComponent<CreateProjectDialogProps> = 
       method: 'POST',
       body: JSON.stringify(data)
     });
-    const d = await response.json();
-    console.log(d);
+    const responseData = await response.json();
+    console.log(responseData);
   }, []);
 
   return (

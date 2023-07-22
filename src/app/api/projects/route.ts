@@ -1,6 +1,25 @@
+import { getServerAuthSession } from '@/server/auth';
+import { prisma } from '@/server/prisma';
 import { NextResponse } from 'next/server';
 
 export async function POST(request: Request) {
-  await new Promise((resolve) => setTimeout(resolve, 2000));
-  return NextResponse.json({ coming_from_api: await request.json() });
+  const session = await getServerAuthSession();
+
+  if (!session) return null;
+
+  const { name, description } = await request.json();
+
+  const newProject = await prisma.project.create({
+    data: {
+      name,
+      description,
+      user: {
+        connect: {
+          id: session.user.id
+        }
+      }
+    }
+  });
+
+  return NextResponse.json({ newProject });
 }
