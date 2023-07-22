@@ -2,7 +2,7 @@
 
 import { FunctionComponent, useCallback, useMemo } from 'react';
 
-import { Dialog, DialogContent, Icon, TextField } from '@mui/material';
+import { Dialog, DialogContent, TextField } from '@mui/material';
 import { DialogHeader } from '../dialog-header';
 
 import { z } from 'zod';
