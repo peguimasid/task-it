@@ -45,8 +45,13 @@ export const CreateProjectDialog: FunctionComponent<CreateProjectDialogProps> = 
     onClose?.();
   }, [onClose, reset]);
 
-  const onSubmit = useCallback((data: FormValues) => {
-    console.log(data);
+  const onSubmit = useCallback(async (data: FormValues) => {
+    const response = await fetch('/api/projects', {
+      method: 'POST',
+      body: JSON.stringify(data)
+    });
+    const d = await response.json();
+    console.log(d);
   }, []);
 
   return (
