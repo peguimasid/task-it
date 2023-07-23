@@ -27,7 +27,7 @@ const getUserProjects = async () => {
   return projects;
 };
 
-const Page = async () => {
+export default async function Page() {
   const session = await getServerAuthSession();
 
   const usersProjects = await getUserProjects();
@@ -55,6 +55,4 @@ const Page = async () => {
       </div>
     </main>
   );
-};
-
-export default Page;
+}

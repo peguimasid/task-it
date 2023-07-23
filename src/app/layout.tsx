@@ -2,7 +2,7 @@
 
 import '../styles/globals.css';
 
-import { FunctionComponent, PropsWithChildren } from 'react';
+import { ReactNode } from 'react';
 
 import { NextAuthProvider } from '@/contexts/next-auth-provider';
 
@@ -14,7 +14,7 @@ import { Inter } from 'next/font/google';
 
 const inter = Inter({ subsets: ['latin'] });
 
-const RootLayout: FunctionComponent<PropsWithChildren> = ({ children }) => {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <NextAuthProvider>
       <ThemeProvider theme={darkTheme}>
@@ -30,6 +30,4 @@ const RootLayout: FunctionComponent<PropsWithChildren> = ({ children }) => {
       </ThemeProvider>
     </NextAuthProvider>
   );
-};
-
-export default RootLayout;
+}

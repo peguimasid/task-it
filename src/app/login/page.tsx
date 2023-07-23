@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   title: 'Task-it | SignIn'
 };
 
-const Page = async () => {
+export default async function Page() {
   const session = await getServerAuthSession();
 
   if (session) redirect('/projects');
@@ -63,6 +63,4 @@ const Page = async () => {
       </section>
     </main>
   );
-};
-
-export default Page;
+}

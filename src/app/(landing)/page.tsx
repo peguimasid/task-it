@@ -4,7 +4,6 @@ import { Ubuntu } from 'next/font/google';
 
 import { twMerge } from 'tailwind-merge';
 
-import { FunctionComponent } from 'react';
 import Link from 'next/link';
 
 import { TopBar } from '@/components/top-bar';
@@ -15,7 +14,7 @@ const ubuntu = Ubuntu({
   weight: ['300', '400', '500', '700']
 });
 
-const Page: FunctionComponent = () => {
+export default function Page() {
   return (
     <main className="flex h-[100dvh] w-screen flex-col">
       <TopBar userActions={LoginButton} />
@@ -51,6 +50,4 @@ const Page: FunctionComponent = () => {
       </section>
     </main>
   );
-};
-
-export default Page;
+}
