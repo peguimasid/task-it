@@ -14,7 +14,7 @@ export const darkTheme = createTheme({
     MuiPaper: {
       styleOverrides: {
         root: {
-          background: zinc[800]
+          background: zinc[900]
         }
       }
     }

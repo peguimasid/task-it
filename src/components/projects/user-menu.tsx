@@ -48,7 +48,7 @@ export const UserMenu = () => {
           horizontal: 'left'
         }}
         classes={{
-          paper: 'py-2 min-w-[14rem] bg-zinc-950'
+          paper: 'py-2 min-w-[14rem]'
         }}
       >
         <MenuItem onClick={() => signOut()}>
