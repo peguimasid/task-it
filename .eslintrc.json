@@ -15,7 +15,7 @@
       "jsx": true
     }
   },
-  "plugins": ["react", "react-hooks", "prettier", "@typescript-eslint"],
+  "plugins": ["react", "react-hooks", "prettier", "@typescript-eslint", "@tanstack/query"],
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
@@ -23,7 +23,8 @@
     "plugin:react/recommended",
     "plugin:react/jsx-runtime",
     "plugin:react-hooks/recommended",
-    "plugin:@next/next/recommended"
+    "plugin:@next/next/recommended",
+    "plugin:@tanstack/eslint-plugin-query/recommended"
   ],
   "rules": {
     "prettier/prettier": ["warn", { "endOfLine": "auto" }]

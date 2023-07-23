@@ -4,11 +4,13 @@ import { FunctionComponent, useCallback, useMemo } from 'react';
 
 import { Dialog, DialogContent, TextField } from '@mui/material';
 import { DialogHeader } from '../dialog-header';
+import { Button } from '../button';
 
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Controller, useForm } from 'react-hook-form';
 import { isEmpty } from 'lodash';
+import { useMutation } from '@tanstack/react-query';
 
 const createProjectSchema = z.object({
   name: z.string().min(1, { message: 'Name is required' }).max(30, { message: 'Name can have at most 30 characters' }),
@@ -27,6 +29,15 @@ interface CreateProjectDialogProps {
   onClose?: () => void;
 }
 
+const createProject = async (data: FormValues) => {
+  const response = await fetch('/api/projects', {
+    method: 'POST',
+    body: JSON.stringify(data)
+  });
+  const responseData = await response.json();
+  return responseData;
+};
+
 export const CreateProjectDialog: FunctionComponent<CreateProjectDialogProps> = ({ open, onClose }) => {
   const { control, formState, handleSubmit, reset } = useForm<FormValues>({
     mode: 'onChange',
@@ -36,23 +47,27 @@ export const CreateProjectDialog: FunctionComponent<CreateProjectDialogProps> = 
 
   const { isValid, dirtyFields, errors } = formState;
 
-  const isSubmitButtonDisabled = useMemo(() => {
-    return isEmpty(dirtyFields) || !isValid;
-  }, [dirtyFields, isValid]);
-
   const handleCloseDialog = useCallback(() => {
     reset(defaultValues);
     onClose?.();
   }, [onClose, reset]);
 
-  const onSubmit = useCallback(async (data: FormValues) => {
-    const response = await fetch('/api/projects', {
-      method: 'POST',
-      body: JSON.stringify(data)
-    });
-    const responseData = await response.json();
-    console.log(responseData);
-  }, []);
+  const onSuccess = useCallback(() => {
+    handleCloseDialog();
+    // TODO: Create toast provider
+    alert('Created successfully');
+  }, [handleCloseDialog]);
+
+  const { isLoading, mutate } = useMutation({
+    mutationFn: createProject,
+    onSuccess
+  });
+
+  const isSubmitButtonDisabled = useMemo(() => {
+    return isEmpty(dirtyFields) || !isValid || isLoading;
+  }, [dirtyFields, isValid, isLoading]);
+
+  const onSubmit = useCallback((formData: FormValues) => mutate(formData), [mutate]);
 
   return (
     <Dialog open={open} onClose={handleCloseDialog} maxWidth="xs" fullWidth disableRestoreFocus>
@@ -97,13 +112,9 @@ export const CreateProjectDialog: FunctionComponent<CreateProjectDialogProps> = 
               />
             )}
           />
-          <button
-            type="submit"
-            disabled={isSubmitButtonDisabled}
-            className="flex items-center justify-center space-x-2 rounded-lg bg-gradient-to-r from-primary to-secondary px-3 py-3 pr-5 transition-all disabled:opacity-60"
-          >
-            <p>Send</p>
-          </button>
+          <Button type="submit" disabled={isSubmitButtonDisabled} loading={isLoading}>
+            Send
+          </Button>
         </form>
       </DialogContent>
     </Dialog>
