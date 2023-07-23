@@ -14,7 +14,7 @@ import { Inter } from 'next/font/google';
 
 const inter = Inter({ subsets: ['latin'] });
 
-const Layout: FunctionComponent<PropsWithChildren> = ({ children }) => {
+const RootLayout: FunctionComponent<PropsWithChildren> = ({ children }) => {
   return (
     <NextAuthProvider>
       <ThemeProvider theme={darkTheme}>
@@ -32,4 +32,4 @@ const Layout: FunctionComponent<PropsWithChildren> = ({ children }) => {
   );
 };
 
-export default Layout;
+export default RootLayout;
