@@ -1,11 +1,11 @@
 'use client';
 
-import { ButtonHTMLAttributes, FunctionComponent, PropsWithChildren } from 'react';
+import { ComponentProps, FunctionComponent } from 'react';
 
 import { CircularProgress } from '@mui/material';
 import { twMerge } from 'tailwind-merge';
 
-interface ButtonProps extends PropsWithChildren, ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps extends ComponentProps<'button'> {
   loading?: boolean;
 }
 
