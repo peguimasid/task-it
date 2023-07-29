@@ -6,8 +6,8 @@ import { prisma } from '@/server/prisma';
 import { format } from 'date-fns';
 
 import { TopBar } from '@/components/top-bar';
-import { UserMenu } from '@/components/projects/user-menu';
-import { CreateProjectButton } from '@/components/projects/create-project-button';
+import { UserMenu } from './_components/user-menu';
+import { CreateProjectButton } from './_components/create-project-button';
 
 export const metadata: Metadata = {
   title: 'Task-it | Projects'

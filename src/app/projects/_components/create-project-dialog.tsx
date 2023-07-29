@@ -3,8 +3,8 @@
 import { FunctionComponent, useCallback, useMemo } from 'react';
 
 import { Dialog, DialogContent, TextField } from '@mui/material';
-import { DialogHeader } from '../dialog-header';
-import { Button } from '../button';
+import { DialogHeader } from '@/components/dialog-header';
+import { Button } from '@/components/button';
 
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';

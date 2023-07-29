@@ -7,17 +7,24 @@ import { twMerge } from 'tailwind-merge';
 import Link from 'next/link';
 
 import { TopBar } from '@/components/top-bar';
-import { LoginButton } from '@/components/home/login-button';
 
 const ubuntu = Ubuntu({
   subsets: ['latin'],
   weight: ['300', '400', '500', '700']
 });
 
+const SignInButton = () => {
+  return (
+    <Link className="rounded-lg border-2 border-secondary px-8 py-2 text-sm" href="/signin">
+      Login
+    </Link>
+  );
+};
+
 export default function Page() {
   return (
     <main className="flex h-[100dvh] w-screen flex-col">
-      <TopBar userActions={LoginButton} />
+      <TopBar userActions={SignInButton} />
       <section className="flex h-full flex-col items-center justify-center space-y-12">
         <div className="flex flex-col items-center justify-center space-y-3 px-5">
           <div className="flex items-center justify-center space-x-4">
@@ -34,7 +41,7 @@ export default function Page() {
           </div>
           <p className="text-center text-gray-500 md:text-lg lg:text-xl">Keep project management simple as should be</p>
         </div>
-        <Link className="group relative" href="/login">
+        <Link className="group relative" href="/signin">
           <div className="absolute inset-0 rounded-lg blur-md transition-all duration-300 group-hover:bg-primary" />
           <div className="relative flex flex-row items-center justify-center space-x-2 rounded-lg bg-gradient-to-r from-primary to-secondary px-5 py-3 font-semibold sm:px-8 sm:py-4">
             <p>Sign up for free</p>

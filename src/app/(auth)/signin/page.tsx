@@ -4,7 +4,7 @@ import { redirect } from 'next/navigation';
 import { getServerAuthSession } from '@/server/auth';
 
 import { TopBar } from '@/components/top-bar';
-import SignInButton from '@/components/auth/sign-in-button';
+import SignInButton from '@/app/(auth)/signin/_components/sign-in-button';
 
 export const metadata: Metadata = {
   title: 'Task-it | SignIn'
