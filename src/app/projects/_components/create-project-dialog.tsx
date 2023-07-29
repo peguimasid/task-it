@@ -2,6 +2,8 @@
 
 import { FunctionComponent, useCallback, useMemo } from 'react';
 
+import { useRouter } from 'next/navigation';
+
 import { Dialog, DialogContent, TextField } from '@mui/material';
 import { DialogHeader } from '@/components/dialog-header';
 import { Button } from '@/components/button';
@@ -11,7 +13,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Controller, useForm } from 'react-hook-form';
 import { isEmpty } from 'lodash';
 import { useMutation } from '@tanstack/react-query';
-import { useRouter } from 'next/navigation';
 
 const createProjectSchema = z.object({
   name: z.string().min(1, { message: 'Name is required' }).max(30, { message: 'Name can have at most 30 characters' }),

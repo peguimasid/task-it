@@ -1,6 +1,8 @@
+import { revalidatePath } from 'next/cache';
+import { NextResponse } from 'next/server';
+
 import { getServerAuthSession } from '@/server/auth';
 import { prisma } from '@/server/prisma';
-import { NextResponse } from 'next/server';
 
 export async function POST(request: Request) {
   const session = await getServerAuthSession();
@@ -20,6 +22,8 @@ export async function POST(request: Request) {
       }
     }
   });
+
+  revalidatePath('/');
 
   return NextResponse.json({ newProject });
 }
