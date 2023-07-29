@@ -13,9 +13,7 @@ export const userCanAccessProject = async (projectId: string): Promise<void> => 
   const findProject = await prisma.project.findFirst({
     where: {
       id: projectId,
-      AND: {
-        userId: session.user.id
-      }
+      userId: session.user.id
     }
   });
 
