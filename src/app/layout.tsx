@@ -4,22 +4,23 @@ import '../styles/globals.css';
 
 import { ReactNode } from 'react';
 
-import { NextAuthProvider } from '@/contexts/next-auth-provider';
-
-import { ThemeProvider } from '@mui/material';
-import { darkTheme } from '@/theme';
-
-import { twMerge } from 'tailwind-merge';
-import { Inter } from 'next/font/google';
 import { QueryClientProvider } from '@tanstack/react-query';
+import { SessionProvider } from 'next-auth/react';
+import { ThemeProvider } from '@mui/material';
+
 import { queryClient } from '@/services/queryClient';
+
+import { darkTheme } from '@/theme';
+import { twMerge } from 'tailwind-merge';
+
+import { Inter } from 'next/font/google';
 
 const inter = Inter({ subsets: ['latin'] });
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <QueryClientProvider client={queryClient}>
-      <NextAuthProvider>
+      <SessionProvider>
         <ThemeProvider theme={darkTheme}>
           <html lang="en">
             <head>
@@ -31,7 +32,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             <body className={twMerge('bg-black text-slate-50', inter.className)}>{children}</body>
           </html>
         </ThemeProvider>
-      </NextAuthProvider>
+      </SessionProvider>
     </QueryClientProvider>
   );
 }
