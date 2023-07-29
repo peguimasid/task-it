@@ -24,7 +24,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <ThemeProvider theme={darkTheme}>
           <html lang="en">
             <head>
-              <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+              <link rel="stylesheet" as="font" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
               <title>Task-it | Home</title>
               <meta name="description" content="Simplify Project Management and Task Collaboration" />
               <link rel="shortcut icon" href="favicon.svg" />

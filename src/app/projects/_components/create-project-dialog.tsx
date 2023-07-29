@@ -11,6 +11,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Controller, useForm } from 'react-hook-form';
 import { isEmpty } from 'lodash';
 import { useMutation } from '@tanstack/react-query';
+import { useRouter } from 'next/navigation';
 
 const createProjectSchema = z.object({
   name: z.string().min(1, { message: 'Name is required' }).max(30, { message: 'Name can have at most 30 characters' }),
@@ -29,7 +30,17 @@ interface CreateProjectDialogProps {
   onClose?: () => void;
 }
 
-const createProject = async (data: FormValues) => {
+interface Project {
+  id: string;
+  name: string;
+  description?: string;
+}
+
+interface CreateProjectResponse {
+  newProject: Project;
+}
+
+const createProject = async (data: FormValues): Promise<CreateProjectResponse> => {
   const response = await fetch('/api/projects', {
     method: 'POST',
     body: JSON.stringify(data)
@@ -39,6 +50,8 @@ const createProject = async (data: FormValues) => {
 };
 
 export const CreateProjectDialog: FunctionComponent<CreateProjectDialogProps> = ({ open, onClose }) => {
+  const router = useRouter();
+
   const { control, formState, handleSubmit, reset } = useForm<FormValues>({
     mode: 'onChange',
     defaultValues,
@@ -52,11 +65,12 @@ export const CreateProjectDialog: FunctionComponent<CreateProjectDialogProps> = 
     onClose?.();
   }, [onClose, reset]);
 
-  const onSuccess = useCallback(() => {
-    handleCloseDialog();
-    // TODO: Create toast provider
-    alert('Created successfully');
-  }, [handleCloseDialog]);
+  const onSuccess = useCallback(
+    ({ newProject }: CreateProjectResponse) => {
+      router.push(`/projects/${newProject.id}`);
+    },
+    [router]
+  );
 
   const { isLoading, mutate } = useMutation({
     mutationFn: createProject,
