@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation';
 
 import { DialogHeader } from '@/components/dialog-header';
 import { Button } from '@/components/button';
+import { Input } from '@/components/input';
 
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -101,22 +102,42 @@ export const CreateProjectDialog: FunctionComponent<CreateProjectDialogProps> = 
             >
               <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-zinc-900 p-6 text-left align-middle shadow-xl transition-all">
                 <DialogHeader onClose={handleCloseDialog}>Dialog Title</DialogHeader>
-                <div className="mt-2">
-                  <p className="text-sm text-gray-500">
-                    Your payment has been successfully submitted. Sent you an email with all of the details of your
-                    order.
-                  </p>
-                </div>
-
-                <div className="mt-4">
-                  <button
-                    type="button"
-                    className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                    onClick={handleCloseDialog}
-                  >
-                    Got it, thanks!
-                  </button>
-                </div>
+                <form
+                  name="createProjectForm"
+                  noValidate
+                  onSubmit={handleSubmit(onSubmit)}
+                  className="flex flex-col space-y-4 pt-4"
+                >
+                  <Controller
+                    name="name"
+                    control={control}
+                    render={({ field }) => (
+                      <Input
+                        {...field}
+                        type="text"
+                        label="Name"
+                        error={!!errors.name}
+                        helperText={errors?.name?.message}
+                      />
+                    )}
+                  />
+                  <Controller
+                    name="description"
+                    control={control}
+                    render={({ field }) => (
+                      <Input
+                        {...field}
+                        type="text"
+                        label="Description"
+                        error={!!errors.description}
+                        helperText={errors?.description?.message ?? "This is optional, but it's nice to have :)"}
+                      />
+                    )}
+                  />
+                  <Button type="submit" disabled={isSubmitButtonDisabled} loading={isLoading}>
+                    Send
+                  </Button>
+                </form>
               </Dialog.Panel>
             </Transition.Child>
           </div>

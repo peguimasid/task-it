@@ -27,7 +27,8 @@
     "plugin:@tanstack/eslint-plugin-query/recommended"
   ],
   "rules": {
-    "prettier/prettier": ["warn", { "endOfLine": "auto" }]
+    "prettier/prettier": ["warn", { "endOfLine": "auto" }],
+    "react/display-name": "off"
   },
   "globals": {
     "Edit": "writable",
