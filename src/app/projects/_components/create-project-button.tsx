@@ -2,7 +2,6 @@
 
 import { FunctionComponent, useCallback, useState } from 'react';
 
-import { Icon } from '@mui/material';
 import { CreateProjectDialog } from './create-project-dialog';
 
 export const CreateProjectButton: FunctionComponent = () => {
@@ -23,7 +22,6 @@ export const CreateProjectButton: FunctionComponent = () => {
         onClick={handleClickCreateProject}
         className="flex items-center justify-center space-x-2 rounded-lg bg-gradient-to-r from-primary to-secondary px-3 py-2 pr-5"
       >
-        <Icon>add</Icon>
         <p>Create project</p>
       </button>
     </>

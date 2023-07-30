@@ -4,7 +4,6 @@ import { FunctionComponent, useCallback, useMemo } from 'react';
 
 import { useRouter } from 'next/navigation';
 
-import { Dialog, DialogContent, TextField } from '@mui/material';
 import { DialogHeader } from '@/components/dialog-header';
 import { Button } from '@/components/button';
 
@@ -85,53 +84,20 @@ export const CreateProjectDialog: FunctionComponent<CreateProjectDialogProps> = 
   const onSubmit = useCallback((formData: FormValues) => mutate(formData), [mutate]);
 
   return (
-    <Dialog open={open} onClose={handleCloseDialog} maxWidth="xs" fullWidth disableRestoreFocus>
+    <dialog open={open} onClose={handleCloseDialog}>
       <DialogHeader onClose={handleCloseDialog}>Create Project</DialogHeader>
-      <DialogContent>
-        <form
-          name="createProjectForm"
-          noValidate
-          onSubmit={handleSubmit(onSubmit)}
-          className="flex flex-col space-y-3 py-2"
-        >
-          <Controller
-            name="name"
-            control={control}
-            render={({ field }) => (
-              <TextField
-                {...field}
-                variant="outlined"
-                autoFocus
-                type="text"
-                fullWidth
-                label="Name"
-                required
-                error={!!errors.name}
-                helperText={errors?.name?.message}
-              />
-            )}
-          />
-          <Controller
-            name="description"
-            control={control}
-            render={({ field }) => (
-              <TextField
-                {...field}
-                variant="outlined"
-                multiline
-                type="text"
-                fullWidth
-                label="Description"
-                error={!!errors.description}
-                helperText={errors?.description?.message ?? "This is optional, but it's nice to have :)"}
-              />
-            )}
-          />
-          <Button type="submit" disabled={isSubmitButtonDisabled} loading={isLoading}>
-            Send
-          </Button>
-        </form>
-      </DialogContent>
-    </Dialog>
+      <form
+        name="createProjectForm"
+        noValidate
+        onSubmit={handleSubmit(onSubmit)}
+        className="flex flex-col space-y-3 py-2"
+      >
+        <Controller name="name" control={control} render={({ field }) => <input {...field} type="text" />} />
+        <Controller name="description" control={control} render={({ field }) => <input {...field} type="text" />} />
+        <Button type="submit" disabled={isSubmitButtonDisabled} loading={isLoading}>
+          Send
+        </Button>
+      </form>
+    </dialog>
   );
 };

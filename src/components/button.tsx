@@ -2,7 +2,6 @@
 
 import { ComponentProps, FunctionComponent } from 'react';
 
-import { CircularProgress } from '@mui/material';
 import { twMerge } from 'tailwind-merge';
 
 interface ButtonProps extends ComponentProps<'button'> {
@@ -18,7 +17,6 @@ export const Button: FunctionComponent<ButtonProps> = ({ children, loading = fal
       )}
       {...rest}
     >
-      {loading && <CircularProgress color="inherit" size={20} className="mr-2" />}
       {children}
     </button>
   );
