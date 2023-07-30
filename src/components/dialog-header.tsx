@@ -1,6 +1,6 @@
+import { Dialog } from '@headlessui/react';
+import { XMarkIcon } from '@heroicons/react/20/solid';
 import { FunctionComponent, PropsWithChildren } from 'react';
-
-import { DialogTitle, Icon, IconButton } from '@mui/material';
 
 interface DialogHeaderProps extends PropsWithChildren {
   onClose?: () => void;
@@ -8,13 +8,13 @@ interface DialogHeaderProps extends PropsWithChildren {
 
 export const DialogHeader: FunctionComponent<DialogHeaderProps> = ({ children, onClose }) => {
   return (
-    <DialogTitle textOverflow="ellipsis">
-      {children}
+    <Dialog.Title as="h3" className="-mt-2 flex items-center justify-between text-ellipsis whitespace-nowrap">
+      <p className="flex-grow-1 text-lg">{children}</p>
       {!!onClose && (
-        <IconButton aria-label="close" className="absolute right-2 top-2" onClick={onClose}>
-          <Icon>close</Icon>
-        </IconButton>
+        <button aria-label="close" className="flex-shrink-0 rounded-full p-1 hover:bg-zinc-800" onClick={onClose}>
+          <XMarkIcon className="h-7 w-7" />
+        </button>
       )}
-    </DialogTitle>
+    </Dialog.Title>
   );
 };

@@ -2,8 +2,9 @@
 
 import { FunctionComponent, useCallback, useState } from 'react';
 
-import { Icon } from '@mui/material';
 import { CreateProjectDialog } from './create-project-dialog';
+
+import { PlusIcon } from '@heroicons/react/20/solid';
 
 export const CreateProjectButton: FunctionComponent = () => {
   const [createProjectDialogOpen, setCreateProjectDialogOpen] = useState<boolean>(false);
@@ -23,7 +24,7 @@ export const CreateProjectButton: FunctionComponent = () => {
         onClick={handleClickCreateProject}
         className="flex items-center justify-center space-x-2 rounded-lg bg-gradient-to-r from-primary to-secondary px-3 py-2 pr-5"
       >
-        <Icon>add</Icon>
+        <PlusIcon className="h-5 w-5" />
         <p>Create project</p>
       </button>
     </>

@@ -1,64 +1,64 @@
 'use client';
 
-import { useState, useCallback, MouseEvent } from 'react';
+import { Fragment } from 'react';
 
-import { Avatar, Button, Icon, ListItemIcon, ListItemText, MenuItem, Popover, Typography } from '@mui/material';
+import Image from 'next/image';
 
 import { signOut, useSession } from 'next-auth/react';
+
+import { Menu, Transition } from '@headlessui/react';
+import { ChevronDownIcon, ArrowRightOnRectangleIcon } from '@heroicons/react/20/solid';
 
 export const UserMenu = () => {
   const { data } = useSession();
 
-  const [userMenu, setUserMenu] = useState<HTMLElement | null>(null);
-
-  const userMenuClick = useCallback((event: MouseEvent<HTMLButtonElement>) => {
-    setUserMenu(event.currentTarget);
-  }, []);
-
-  const userMenuClose = useCallback(() => {
-    setUserMenu(null);
-  }, []);
-
   if (!data) return null;
 
   return (
-    <>
-      <Button onClick={userMenuClick} className="rounded-md normal-case">
-        <div className="hidden flex-col items-end pr-4 md:flex">
-          <Typography component="span" className="flex text-slate-50">
-            {data?.user.name}
-          </Typography>
-        </div>
+    <Menu as="div" className="relative inline-block text-left">
+      <div>
+        <Menu.Button className="inline-flex w-full items-center justify-center space-x-3 rounded-md px-3 py-2 text-sm font-semibold shadow-sm ring-inset transition-all hover:bg-zinc-900">
+          {data.user.image ? (
+            <Image
+              width={90}
+              height={90}
+              src={data.user.image}
+              alt={data.user.name ?? ''}
+              className="h-auto w-8 rounded-full"
+            />
+          ) : (
+            <h1 className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-zinc-900">
+              {data.user.name?.[0] ?? ''}
+            </h1>
+          )}
+          <p>{data.user.name}</p>
+          <ChevronDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+        </Menu.Button>
+      </div>
 
-        {data?.user?.image ? (
-          <Avatar src={data.user.image} alt={data?.user?.name ?? ''} />
-        ) : (
-          <Avatar className="bg-zinc-700 text-zinc-300" />
-        )}
-
-        <Icon className="ml-2 text-zinc-300">{userMenu ? 'keyboard_arrow_up' : 'keyboard_arrow_down'}</Icon>
-      </Button>
-
-      <Popover
-        open={Boolean(userMenu)}
-        anchorEl={userMenu}
-        onClose={userMenuClose}
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'left'
-        }}
-        classes={{
-          paper: 'py-2 min-w-[14rem]'
-        }}
+      <Transition
+        as={Fragment}
+        enter="transition ease-out duration-100"
+        enterFrom="transform opacity-0 scale-95"
+        enterTo="transform opacity-100 scale-100"
+        leave="transition ease-in duration-75"
+        leaveFrom="transform opacity-100 scale-100"
+        leaveTo="transform opacity-0 scale-95"
       >
-        <MenuItem onClick={() => signOut()}>
-          <ListItemIcon>
-            <Icon>exit_to_app</Icon>
-          </ListItemIcon>
-          <ListItemText primary="Sign out" />
-        </MenuItem>
-      </Popover>
-    </>
+        <Menu.Items className="absolute right-0 z-10 mt-2 w-52 origin-top-right rounded-md bg-zinc-800 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+          <div className="py-1">
+            <Menu.Item
+              as="button"
+              onClick={() => signOut()}
+              className="inline-flex w-full items-center space-x-2 px-4 py-2 text-left text-sm hover:bg-zinc-900 hover:text-zinc-200"
+            >
+              <ArrowRightOnRectangleIcon className="h-5 w-5" />
+              <p>Sign out</p>
+            </Menu.Item>
+          </div>
+        </Menu.Items>
+      </Transition>
+    </Menu>
   );
 };
 
