@@ -27,7 +27,9 @@ export const UserMenu = () => {
               className="h-auto w-8 rounded-full"
             />
           ) : (
-            <h1>G</h1>
+            <h1 className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-zinc-900">
+              {data.user.name?.[0] ?? ''}
+            </h1>
           )}
           <p>{data.user.name}</p>
           <ChevronDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
