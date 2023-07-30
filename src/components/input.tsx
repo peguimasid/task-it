@@ -16,9 +16,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(({ label, error = 
           className="block w-full rounded-md border-0 bg-transparent px-3 py-2 outline-none ring-2 ring-inset ring-zinc-500 placeholder:text-zinc-600 focus:ring-primary group-data-[invalid=true]:ring-red-500 sm:text-sm sm:leading-6"
           {...rest}
         />
-        <p className="mt-1 text-sm text-zinc-400 group-data-[invalid=true]:block group-data-[invalid=true]:text-red-500">
-          {helperText}
-        </p>
+        <p className="mt-1 text-sm text-zinc-400 group-data-[invalid=true]:text-red-500">{helperText}</p>
       </div>
     </div>
   );
