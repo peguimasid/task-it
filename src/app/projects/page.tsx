@@ -37,10 +37,10 @@ export default async function Page() {
   return (
     <main className="mx-auto flex h-full w-full max-w-4xl flex-col px-2">
       <div className="mt-10 space-y-2">
-        <h1 className="text-4xl text-slate-50">Welcome back, {session?.user.name}</h1>
+        <h1 className="text-4xl">Welcome back, {session?.user.name}</h1>
         <div className="flex flex-row divide-x-2 divide-zinc-800">
-          <p className="pr-2 text-zinc-500">{currentDate}</p>
-          <p className="pl-2 text-zinc-500">
+          <p className="pr-2 font-light">{currentDate}</p>
+          <p className="pl-2 font-light">
             Recently viewed {usersProjects?.length} {projectsText}
           </p>
         </div>

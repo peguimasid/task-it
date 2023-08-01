@@ -4,7 +4,7 @@ import { FunctionComponent, useCallback, useMemo } from 'react';
 
 import { useRouter } from 'next/navigation';
 
-import { Button } from '@/components/button';
+import { Button } from '@/components/ui/button';
 
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -118,7 +118,7 @@ export const CreateProjectDialog: FunctionComponent<CreateProjectDialogProps> = 
                 />
               )}
             />
-            <Button type="submit" disabled={isSubmitButtonDisabled} loading={isLoading}>
+            <Button type="submit" disabled={isSubmitButtonDisabled}>
               Send
             </Button>
           </form>

@@ -5,6 +5,7 @@ import { FunctionComponent, useCallback, useState } from 'react';
 import { CreateProjectDialog } from './create-project-dialog';
 
 import { PlusIcon } from '@heroicons/react/20/solid';
+import { Button } from '@/components/ui/button';
 
 export const CreateProjectButton: FunctionComponent = () => {
   const [createProjectDialogOpen, setCreateProjectDialogOpen] = useState<boolean>(false);
@@ -20,13 +21,10 @@ export const CreateProjectButton: FunctionComponent = () => {
   return (
     <>
       <CreateProjectDialog open={createProjectDialogOpen} onClose={onCloseCreateProjectDialog} />
-      <button
-        onClick={handleClickCreateProject}
-        className="flex items-center justify-center space-x-2 rounded-lg bg-gradient-to-r from-primary to-secondary px-3 py-2 pr-5"
-      >
+      <Button variant="outline" onClick={handleClickCreateProject} className="gap-2">
         <PlusIcon className="h-5 w-5" />
         <p>Create project</p>
-      </button>
+      </Button>
     </>
   );
 };
