@@ -18,7 +18,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <QueryClientProvider client={queryClient}>
       <SessionProvider>
-        <html lang="en">
+        <html lang="en" suppressHydrationWarning>
           <head>
             <title>Task-it | Home</title>
             <meta name="description" content="Simplify Project Management and Task Collaboration" />
