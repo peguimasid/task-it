@@ -1,14 +1,10 @@
 'use client';
 
-import { FunctionComponent, useCallback, useMemo, Fragment } from 'react';
-
-import { Dialog, Transition } from '@headlessui/react';
+import { FunctionComponent, useCallback, useMemo } from 'react';
 
 import { useRouter } from 'next/navigation';
 
-import { DialogHeader } from '@/components/dialog-header';
 import { Button } from '@/components/button';
-import { Input } from '@/components/input';
 
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -87,62 +83,47 @@ export const CreateProjectDialog: FunctionComponent<CreateProjectDialogProps> = 
   const onSubmit = useCallback((formData: FormValues) => mutate(formData), [mutate]);
 
   return (
-    <Transition appear show={open} as={Fragment}>
-      <Dialog as="div" className="relative z-10" onClose={handleCloseDialog}>
-        <div className="fixed inset-0 overflow-y-auto">
-          <div className="flex min-h-full items-center justify-center p-4 text-center">
-            <Transition.Child
-              as={Fragment}
-              enter="ease-out duration-200"
-              enterFrom="opacity-0 scale-95"
-              enterTo="opacity-100 scale-100"
-              leave="ease-in duration-200"
-              leaveFrom="opacity-100 scale-100"
-              leaveTo="opacity-0 scale-95"
-            >
-              <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-zinc-900 p-6 text-left align-middle shadow-xl transition-all">
-                <DialogHeader onClose={handleCloseDialog}>Dialog Title</DialogHeader>
-                <form
-                  name="createProjectForm"
-                  noValidate
-                  onSubmit={handleSubmit(onSubmit)}
-                  className="flex flex-col space-y-4 pt-4"
-                >
-                  <Controller
-                    name="name"
-                    control={control}
-                    render={({ field }) => (
-                      <Input
-                        {...field}
-                        type="text"
-                        label="Name"
-                        error={!!errors.name}
-                        helperText={errors?.name?.message}
-                      />
-                    )}
-                  />
-                  <Controller
-                    name="description"
-                    control={control}
-                    render={({ field }) => (
-                      <Input
-                        {...field}
-                        type="text"
-                        label="Description"
-                        error={!!errors.description}
-                        helperText={errors?.description?.message ?? "This is optional, but it's nice to have :)"}
-                      />
-                    )}
-                  />
-                  <Button type="submit" disabled={isSubmitButtonDisabled} loading={isLoading}>
-                    Send
-                  </Button>
-                </form>
-              </Dialog.Panel>
-            </Transition.Child>
-          </div>
+    <dialog className="relative z-10" onClose={handleCloseDialog}>
+      <div className="fixed inset-0 overflow-y-auto">
+        <div className="flex min-h-full items-center justify-center p-4 text-center">
+          <form
+            name="createProjectForm"
+            noValidate
+            onSubmit={handleSubmit(onSubmit)}
+            className="flex flex-col space-y-4 pt-4"
+          >
+            <Controller
+              name="name"
+              control={control}
+              render={({ field }) => (
+                <input
+                  {...field}
+                  type="text"
+                  // label="Name"
+                  //  error={!!errors.name}
+                  //   helperText={errors?.name?.message}
+                />
+              )}
+            />
+            <Controller
+              name="description"
+              control={control}
+              render={({ field }) => (
+                <input
+                  {...field}
+                  type="text"
+                  // label="Description"
+                  // error={!!errors.description}
+                  // helperText={errors?.description?.message ?? "This is optional, but it's nice to have :)"}
+                />
+              )}
+            />
+            <Button type="submit" disabled={isSubmitButtonDisabled} loading={isLoading}>
+              Send
+            </Button>
+          </form>
         </div>
-      </Dialog>
-    </Transition>
+      </div>
+    </dialog>
   );
 };
