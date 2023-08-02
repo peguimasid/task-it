@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 
 import { TopBar } from '@/components/top-bar';
-import UserMenu from './_components/user-menu';
+import { UserMenu } from './components/user-menu';
 
 export default function ProjectsLayout({ children }: { children: ReactNode }) {
   return (
