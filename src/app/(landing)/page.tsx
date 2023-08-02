@@ -31,7 +31,7 @@ export default function Page() {
             <h1 className={twMerge('text-3xl font-extrabold sm:text-5xl md:text-6xl', ubuntu.className)}>
               Welcome to Task-it
             </h1>
-            <CheckSquare className="h-14 w-14" />
+            <CheckSquare className="h-10 w-10 md:h-14 md:w-14" />
           </div>
           <p className="text-center text-muted-foreground md:text-lg">Keep project management simple as should be</p>
         </div>
