@@ -14,12 +14,10 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuGroup,
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu';
 
 import { Github, LogOut } from 'lucide-react';
-import Link from 'next/link';
 
 export const UserMenu = () => {
   const session = useSession();
