@@ -1,5 +1,3 @@
-import Image from 'next/image';
-
 import { Ubuntu } from 'next/font/google';
 
 import { twMerge } from 'tailwind-merge';
@@ -8,6 +6,7 @@ import Link from 'next/link';
 
 import { TopBar } from '@/components/top-bar';
 import { Button } from '@/components/ui/button';
+import { ArrowRight, CheckSquare } from 'lucide-react';
 
 const ubuntu = Ubuntu({
   subsets: ['latin'],
@@ -29,32 +28,19 @@ export default function Page() {
       <section className="flex h-full flex-col items-center justify-center space-y-12">
         <div className="flex flex-col items-center justify-center space-y-3 px-5">
           <div className="flex items-center justify-center space-x-4">
-            <h1 className={twMerge('text-3xl font-extrabold sm:text-5xl md:text-6xl lg:text-7xl', ubuntu.className)}>
+            <h1 className={twMerge('text-3xl font-extrabold sm:text-5xl md:text-6xl', ubuntu.className)}>
               Welcome to Task-it
             </h1>
-            <Image
-              className="pointer-events-none w-8 select-none sm:w-10 md:w-14 lg:w-20"
-              width={100}
-              height={100}
-              src="favicon.svg"
-              alt="Task-it logo"
-            />
+            <CheckSquare className="h-14 w-14" />
           </div>
-          <p className="text-center text-gray-500 md:text-lg lg:text-xl">Keep project management simple as should be</p>
+          <p className="text-center text-muted-foreground md:text-lg">Keep project management simple as should be</p>
         </div>
-        <Link className="group relative" href="/signin">
-          <div className="absolute inset-0 rounded-lg blur-md transition-all duration-300 group-hover:bg-primary" />
-          <div className="relative flex flex-row items-center justify-center space-x-2 rounded-lg bg-gradient-to-r from-primary to-secondary px-5 py-3 font-semibold sm:px-8 sm:py-4">
+        <Button asChild size="lg">
+          <Link href="/signin" className="gap-2">
             <p>Sign up for free</p>
-            <Image
-              className="pointer-events-none w-4 select-none"
-              width={100}
-              height={100}
-              src="icons/arrow-right.svg"
-              alt="arrow-right-icon"
-            />
-          </div>
-        </Link>
+            <ArrowRight className="h-5 w-5" />
+          </Link>
+        </Button>
       </section>
     </main>
   );
