@@ -30,7 +30,7 @@ export const UserMenu = () => {
     return name
       .split(' ')
       .slice(0, 2)
-      .reduce((acc, curr) => acc.concat(curr[0]), '');
+      .reduce((acc, curr) => acc.concat(curr?.[0]), '');
   }, [session]);
 
   if (!session) return null;
