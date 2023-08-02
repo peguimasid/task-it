@@ -128,7 +128,7 @@ export const CreateProjectDialog = () => {
                   <FormControl>
                     <Input {...field} />
                   </FormControl>
-                  <FormDescription>This is optional but is very useful</FormDescription>
+                  <FormDescription>This is optional but very useful</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
