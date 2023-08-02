@@ -7,6 +7,7 @@ import { twMerge } from 'tailwind-merge';
 import Link from 'next/link';
 
 import { TopBar } from '@/components/top-bar';
+import { Button } from '@/components/ui/button';
 
 const ubuntu = Ubuntu({
   subsets: ['latin'],
@@ -15,9 +16,9 @@ const ubuntu = Ubuntu({
 
 const SignInButton = () => {
   return (
-    <Link className="rounded-lg border-2 border-secondary px-8 py-2 text-sm" href="/signin">
-      Login
-    </Link>
+    <Button asChild variant="outline" className="px-10">
+      <Link href="/signin">Login</Link>
+    </Button>
   );
 };
 
