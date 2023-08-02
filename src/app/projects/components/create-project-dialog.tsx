@@ -84,10 +84,18 @@ export const CreateProjectDialog = () => {
     return isEmpty(dirtyFields) || !isValid || isLoading;
   }, [dirtyFields, isValid, isLoading]);
 
+  const onOpenChange = useCallback(
+    (open: boolean) => {
+      if (!open) form.reset(defaultValues);
+      setOpen(open);
+    },
+    [form]
+  );
+
   const onSubmit = useCallback((formData: FormValues) => mutate(formData), [mutate]);
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogTrigger asChild>
         <Button variant="outline" className="gap-2" aria-controls="">
           <Plus className="h-5 w-5" />
