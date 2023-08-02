@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
 import { TopBar } from '@/components/top-bar';
-import SignInButton from '@/app/(auth)/signin/_components/sign-in-button';
+import SignInButton from './components/sign-in-button';
 
 export const metadata: Metadata = {
   title: 'Task-it | SignIn'
