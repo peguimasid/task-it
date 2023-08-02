@@ -1,14 +1,26 @@
 'use client';
 
-import { FunctionComponent, useCallback, useMemo } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
 import { useRouter } from 'next/navigation';
 
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger
+} from '@/components/ui/dialog';
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+
+import { Loader2, Plus } from 'lucide-react';
 
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Controller, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { isEmpty } from 'lodash';
 import { useMutation } from '@tanstack/react-query';
 
@@ -23,11 +35,6 @@ const defaultValues = {
 };
 
 type FormValues = z.infer<typeof createProjectSchema>;
-
-interface CreateProjectDialogProps {
-  open: boolean;
-  onClose?: () => void;
-}
 
 interface Project {
   id: string;
@@ -48,21 +55,18 @@ const createProject = async (data: FormValues): Promise<CreateProjectResponse> =
   return responseData;
 };
 
-export const CreateProjectDialog: FunctionComponent<CreateProjectDialogProps> = ({ open, onClose }) => {
+export const CreateProjectDialog = () => {
   const router = useRouter();
 
-  const { control, formState, handleSubmit, reset } = useForm<FormValues>({
+  const [open, setOpen] = useState<boolean>(false);
+
+  const form = useForm<FormValues>({
     mode: 'onChange',
     defaultValues,
     resolver: zodResolver(createProjectSchema)
   });
 
-  const { isValid, dirtyFields, errors } = formState;
-
-  const handleCloseDialog = useCallback(() => {
-    reset(defaultValues);
-    onClose?.();
-  }, [onClose, reset]);
+  const { isValid, dirtyFields } = form.formState;
 
   const onSuccess = useCallback(
     ({ newProject }: CreateProjectResponse) => {
@@ -83,47 +87,62 @@ export const CreateProjectDialog: FunctionComponent<CreateProjectDialogProps> = 
   const onSubmit = useCallback((formData: FormValues) => mutate(formData), [mutate]);
 
   return (
-    <dialog className="relative z-10" onClose={handleCloseDialog}>
-      <div className="fixed inset-0 overflow-y-auto">
-        <div className="flex min-h-full items-center justify-center p-4 text-center">
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger asChild>
+        <Button variant="outline" className="gap-2" aria-controls="">
+          <Plus className="h-5 w-5" />
+          <p>Create project</p>
+        </Button>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-[425px]">
+        <DialogHeader>
+          <DialogTitle>Create Project</DialogTitle>
+          <DialogDescription>Add name and description to create your project</DialogDescription>
+        </DialogHeader>
+        <Form {...form}>
           <form
             name="createProjectForm"
             noValidate
-            onSubmit={handleSubmit(onSubmit)}
-            className="flex flex-col space-y-4 pt-4"
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="flex flex-col space-y-4"
           >
-            <Controller
+            <FormField
+              control={form.control}
               name="name"
-              control={control}
               render={({ field }) => (
-                <input
-                  {...field}
-                  type="text"
-                  // label="Name"
-                  //  error={!!errors.name}
-                  //   helperText={errors?.name?.message}
-                />
+                <FormItem>
+                  <FormLabel>Name</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
               )}
             />
-            <Controller
+            <FormField
+              control={form.control}
               name="description"
-              control={control}
               render={({ field }) => (
-                <input
-                  {...field}
-                  type="text"
-                  // label="Description"
-                  // error={!!errors.description}
-                  // helperText={errors?.description?.message ?? "This is optional, but it's nice to have :)"}
-                />
+                <FormItem>
+                  <FormLabel>Description</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                  <FormDescription>This is optional but is very useful</FormDescription>
+                  <FormMessage />
+                </FormItem>
               )}
             />
             <Button type="submit" disabled={isSubmitButtonDisabled}>
+              <Loader2
+                data-loading={isLoading}
+                className="mr-2 hidden h-4 w-4 animate-spin data-[loading=true]:block"
+              />
               Send
             </Button>
           </form>
-        </div>
-      </div>
-    </dialog>
+        </Form>
+      </DialogContent>
+    </Dialog>
   );
 };

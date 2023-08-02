@@ -5,7 +5,7 @@ import { prisma } from '@/server/prisma';
 
 import { format } from 'date-fns';
 
-import { CreateProjectButton } from './components/create-project-button';
+import { CreateProjectDialog } from './components/create-project-dialog';
 
 export const metadata: Metadata = {
   title: 'Task-it | Projects'
@@ -45,7 +45,7 @@ export default async function Page() {
           </p>
         </div>
         <div className="flex w-full items-center justify-end">
-          <CreateProjectButton />
+          <CreateProjectDialog />
         </div>
       </div>
     </main>
