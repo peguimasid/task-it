@@ -28,8 +28,10 @@ By combining these essential features, Task-it simplifies project management, em
 ### Tasks:
 
 1. Projects
-    - [ ]  Allow users to view the list of their projects on the home page.
-    - [ ]  Implement functionalities for users to create, update, and delete projects.
+    - [x]  Allow users to view the list of their projects on the home page.
+    - [x]  Create projects
+    - [ ]  Update projects
+    - [ ]  Delete projects
     
     **Project Fields:**
     
