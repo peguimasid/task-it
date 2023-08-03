@@ -16,7 +16,7 @@ export const ProjectCard: FunctionComponent<ProjectCardProps> = ({ project }) =>
   const projectPageLink = `/projects/${project.id}`;
 
   return (
-    <Card>
+    <Card className="flex h-full flex-col">
       <CardHeader className="flex flex-row items-center justify-between gap-2 space-y-0 pb-2">
         <CardTitle className="overflow-hidden text-ellipsis whitespace-nowrap text-base font-medium">
           {project.name}
@@ -24,9 +24,9 @@ export const ProjectCard: FunctionComponent<ProjectCardProps> = ({ project }) =>
         <Kanban className="h-5 w-5 text-muted-foreground" />
       </CardHeader>
       <CardContent>
-        <div className="line-clamp-4 text-muted-foreground">{project.description}</div>
+        <div className="line-clamp-2 text-muted-foreground">{project.description}</div>
       </CardContent>
-      <CardFooter>
+      <CardFooter className="mt-auto">
         <Button asChild variant="secondary" className="flex w-full justify-between">
           <Link href={projectPageLink}>
             <p>Go to project</p>
