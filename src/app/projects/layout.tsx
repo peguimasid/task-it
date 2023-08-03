@@ -5,7 +5,7 @@ import { UserMenu } from './components/user-menu';
 
 export default function ProjectsLayout({ children }: { children: ReactNode }) {
   return (
-    <main className="flex h-[100dvh] w-screen flex-col">
+    <main className="flex h-[100dvh] w-full flex-col">
       <TopBar userActions={UserMenu} />
       {children}
     </main>
