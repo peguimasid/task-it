@@ -98,7 +98,7 @@ export const CreateProjectDialog = () => {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogTrigger asChild>
-        <Button size="sm" variant="outline" className="gap-2 md:h-10" aria-controls="">
+        <Button size="sm" className="gap-2" aria-controls="">
           <Plus className="h-5 w-5" />
           <p>Create project</p>
         </Button>

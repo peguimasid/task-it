@@ -36,8 +36,8 @@ export default async function Page() {
   const projectsText = `project${usersProjects?.length !== 1 ? 's' : ''}`;
 
   return (
-    <main className="mx-auto flex h-full w-full max-w-4xl flex-col px-5">
-      <div className="mt-10 space-y-4">
+    <main className="mx-auto flex h-full w-full max-w-4xl flex-col px-5 py-10">
+      <div className="space-y-4">
         <section className="mt-10 space-y-2">
           <h1 className="overflow-hidden text-ellipsis whitespace-nowrap text-2xl md:text-4xl">
             Welcome back, {session?.user.name}
