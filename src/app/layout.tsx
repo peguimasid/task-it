@@ -8,6 +8,8 @@ import { QueryClientProvider } from '@tanstack/react-query';
 import { SessionProvider } from 'next-auth/react';
 import { ThemeProvider } from 'next-themes';
 
+import { Toaster } from '@/components/ui/toaster';
+
 import { queryClient } from '@/services/queryClient';
 
 import { Inter } from 'next/font/google';
@@ -27,6 +29,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <body className={inter.className}>
             <ThemeProvider attribute="class" defaultTheme="dark">
               {children}
+              <Toaster />
             </ThemeProvider>
           </body>
         </html>
