@@ -6,6 +6,7 @@ import { prisma } from '@/server/prisma';
 import { format } from 'date-fns';
 
 import { CreateProjectDialog } from './components/create-project-dialog';
+import { ProjectCard } from './components/project-card';
 
 export const metadata: Metadata = {
   title: 'Task-it | Projects'
@@ -35,18 +36,27 @@ export default async function Page() {
   const projectsText = `project${usersProjects?.length !== 1 ? 's' : ''}`;
 
   return (
-    <main className="mx-auto flex h-full w-full max-w-4xl flex-col px-2">
-      <div className="mt-10 space-y-2">
-        <h1 className="text-4xl">Welcome back, {session?.user.name}</h1>
-        <div className="flex flex-row divide-x divide-muted-foreground text-muted-foreground">
-          <p className="pr-2 font-light">{currentDate}</p>
-          <p className="pl-2 font-light">
-            Recently viewed {usersProjects?.length} {projectsText}
-          </p>
-        </div>
-        <div className="flex w-full items-center justify-end">
+    <main className="mx-auto flex h-full w-full max-w-4xl flex-col px-5">
+      <div className="mt-10 space-y-4">
+        <section className="mt-10 space-y-2">
+          <h1 className="overflow-hidden text-ellipsis whitespace-nowrap text-2xl md:text-4xl">
+            Welcome back, {session?.user.name}
+          </h1>
+          <div className="flex flex-row divide-x-2 divide-muted text-sm font-light text-muted-foreground md:text-base">
+            <p className="pr-2">{currentDate}</p>
+            <p className="pl-2">
+              Recently viewed {usersProjects?.length} {projectsText}
+            </p>
+          </div>
+        </section>
+        <section className="flex w-full items-center justify-end">
           <CreateProjectDialog />
-        </div>
+        </section>
+        <section className="grid auto-rows-fr grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
+          {usersProjects?.map((project) => (
+            <ProjectCard key={project.id} project={project} />
+          ))}
+        </section>
       </div>
     </main>
   );
