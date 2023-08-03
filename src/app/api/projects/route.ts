@@ -1,4 +1,3 @@
-import { revalidatePath } from 'next/cache';
 import { NextResponse } from 'next/server';
 
 import { getServerAuthSession } from '@/server/auth';
@@ -22,8 +21,6 @@ export async function POST(request: Request) {
       }
     }
   });
-
-  revalidatePath('/');
 
   return NextResponse.json({ newProject });
 }

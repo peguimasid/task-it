@@ -70,6 +70,7 @@ export const CreateProjectDialog = () => {
 
   const onSuccess = useCallback(
     ({ newProject }: CreateProjectResponse) => {
+      router.refresh();
       router.push(`/projects/${newProject.id}`);
     },
     [router]
