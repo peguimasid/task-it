@@ -37,8 +37,8 @@ export default async function Page() {
 
   return (
     <main className="mx-auto flex h-full w-full max-w-4xl flex-col px-5 py-10">
-      <div className="space-y-4">
-        <section className="mt-10 space-y-2">
+      <div className="space-y-4 py-4">
+        <section className="space-y-2">
           <h1 className="overflow-hidden text-ellipsis whitespace-nowrap text-2xl md:text-4xl">
             Welcome back, {session?.user.name}
           </h1>
@@ -49,7 +49,7 @@ export default async function Page() {
             </p>
           </div>
         </section>
-        <section className="flex w-full items-center justify-end">
+        <section className="flex w-full items-center justify-end py-5 md:py-0">
           <CreateProjectDialog />
         </section>
         <section className="grid auto-rows-fr grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
