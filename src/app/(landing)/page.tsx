@@ -6,6 +6,8 @@ import Link from 'next/link';
 
 import { TopBar } from '@/components/top-bar';
 import { Button } from '@/components/ui/button';
+import { UserActions } from './components/user-actions';
+
 import { ArrowRight, CheckSquare } from 'lucide-react';
 
 const ubuntu = Ubuntu({
@@ -13,18 +15,10 @@ const ubuntu = Ubuntu({
   weight: ['300', '400', '500', '700']
 });
 
-const SignInButton = () => {
-  return (
-    <Button asChild variant="outline" className="px-10">
-      <Link href="/signin">Login</Link>
-    </Button>
-  );
-};
-
 export default function Page() {
   return (
     <main className="flex h-[100dvh] w-screen flex-col">
-      <TopBar userActions={SignInButton} />
+      <TopBar userActions={UserActions} />
       <section className="flex h-full flex-col items-center justify-center space-y-12">
         <div className="flex flex-col items-center justify-center space-y-3 px-5">
           <div className="flex items-center justify-center space-x-4">

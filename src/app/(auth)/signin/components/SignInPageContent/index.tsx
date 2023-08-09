@@ -3,14 +3,14 @@
 import { TopBar } from '@/components/top-bar';
 import { Icons } from '@/components/icons';
 import { Button } from '@/components/ui/button';
+import { ModeToggle } from '@/components/mode-toggle';
 
 import { signIn } from 'next-auth/react';
-import { ThemeToggle } from '../ThemeToggle';
 
 export const SignInPageContent = () => {
   return (
     <main className="flex h-[100dvh] w-screen flex-col">
-      <TopBar userActions={ThemeToggle} />
+      <TopBar userActions={ModeToggle} />
       <section className="flex h-full items-center justify-center space-x-8 space-y-5 px-5">
         <div className="flex w-full max-w-sm flex-col items-center justify-center space-y-3">
           <h1 className="text-2xl">Continue with:</h1>
