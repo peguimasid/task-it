@@ -3,6 +3,7 @@
 import { TopBar } from '@/components/top-bar';
 import { Icons } from '@/components/icons';
 import { Button } from '@/components/ui/button';
+
 import { signIn } from 'next-auth/react';
 
 export const SignInPageContent = () => {
