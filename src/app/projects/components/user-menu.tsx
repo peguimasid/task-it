@@ -13,13 +13,20 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
+  DropdownMenuPortal,
   DropdownMenuSeparator,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu';
 
-import { Github, LogOut } from 'lucide-react';
+import { useTheme } from 'next-themes';
+
+import { Github, LogOut, Moon, Sun } from 'lucide-react';
 
 export const UserMenu = () => {
+  const { setTheme } = useTheme();
   const session = useSession();
 
   const userNameFirstLetters = useMemo<string>(() => {
@@ -52,6 +59,27 @@ export const UserMenu = () => {
             <p className="text-xs leading-none text-muted-foreground">{session.data?.user.email}</p>
           </div>
         </DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        <DropdownMenuSub>
+          <DropdownMenuSubTrigger>
+            <Sun className="mr-2 h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+            <Moon className="absolute mr-2 h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+            <span>Theme</span>
+          </DropdownMenuSubTrigger>
+          <DropdownMenuPortal>
+            <DropdownMenuSubContent>
+              <DropdownMenuItem className="cursor-pointer" onClick={() => setTheme('light')}>
+                Light
+              </DropdownMenuItem>
+              <DropdownMenuItem className="cursor-pointer" onClick={() => setTheme('dark')}>
+                Dark
+              </DropdownMenuItem>
+              <DropdownMenuItem className="cursor-pointer" onClick={() => setTheme('system')}>
+                System
+              </DropdownMenuItem>
+            </DropdownMenuSubContent>
+          </DropdownMenuPortal>
+        </DropdownMenuSub>
         <DropdownMenuSeparator />
         <DropdownMenuItem className="cursor-pointer" asChild>
           <a href="https://github.com/peguimasid/task-it" target="_blank" rel="noreferrer">

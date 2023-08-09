@@ -27,7 +27,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             <link rel="shortcut icon" href="favicon.svg" />
           </head>
           <body className={inter.className}>
-            <ThemeProvider attribute="class" defaultTheme="dark">
+            <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
               {children}
             </ThemeProvider>
             <Toaster />
