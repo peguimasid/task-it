@@ -23,7 +23,7 @@ import {
 
 import { useTheme } from 'next-themes';
 
-import { Github, LogOut, Moon, Sun } from 'lucide-react';
+import { Github, Laptop, LogOut, Moon, Sun } from 'lucide-react';
 
 export const UserMenu = () => {
   const { setTheme } = useTheme();
@@ -69,12 +69,15 @@ export const UserMenu = () => {
           <DropdownMenuPortal>
             <DropdownMenuSubContent>
               <DropdownMenuItem className="cursor-pointer" onClick={() => setTheme('light')}>
+                <Sun className="mr-2 h-4 w-4" />
                 Light
               </DropdownMenuItem>
               <DropdownMenuItem className="cursor-pointer" onClick={() => setTheme('dark')}>
+                <Moon className="mr-2 h-4 w-4" />
                 Dark
               </DropdownMenuItem>
               <DropdownMenuItem className="cursor-pointer" onClick={() => setTheme('system')}>
+                <Laptop className="mr-2 h-4 w-4" />
                 System
               </DropdownMenuItem>
             </DropdownMenuSubContent>
