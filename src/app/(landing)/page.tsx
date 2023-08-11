@@ -8,27 +8,29 @@ import { TopBar } from '@/components/top-bar';
 import { Button } from '@/components/ui/button';
 import { UserActions } from './components/user-actions';
 
-import { ArrowRight, CheckSquare } from 'lucide-react';
-
-const ubuntu = Ubuntu({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '700']
-});
+import { ArrowRight } from 'lucide-react';
+import { siteConfig } from '@/config/site';
 
 export default function Page() {
   return (
     <main className="flex h-[100dvh] w-screen flex-col">
       <TopBar userActions={UserActions} />
-      <section className="flex h-full flex-col items-center justify-center space-y-12">
-        <div className="flex flex-col items-center justify-center space-y-3 px-5">
-          <div className="flex items-center justify-center space-x-4">
-            <h1 className={twMerge('text-3xl font-extrabold sm:text-5xl md:text-6xl', ubuntu.className)}>
-              Welcome to Task-it
-            </h1>
-            <CheckSquare className="h-10 w-10 md:h-14 md:w-14" />
-          </div>
-          <p className="text-center text-muted-foreground md:text-lg">Keep project management simple as should be</p>
-        </div>
+      <section className="container flex h-full max-w-[64rem] flex-col items-center gap-4 pt-6 text-center md:pb-12 md:pt-10 lg:py-32">
+        <Link
+          href={siteConfig.links.github}
+          className="rounded-2xl bg-muted px-4 py-1.5 text-sm font-medium"
+          target="_blank"
+        >
+          Follow along on Github
+        </Link>
+        <h1 className="font-heading text-3xl sm:text-5xl md:text-6xl lg:text-7xl">
+          Keep project management simple as should be.
+        </h1>
+        <p className="max-w-[42rem] leading-normal text-muted-foreground sm:text-xl sm:leading-8">
+          Building the Ultimate Task Management App with Next.js 13.
+          <br />
+          Open Source, Every Step of the Way.
+        </p>
         <Button asChild size="lg">
           <Link href="/signin" className="gap-2">
             <p>Sign up for free</p>
