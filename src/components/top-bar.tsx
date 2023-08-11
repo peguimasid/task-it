@@ -19,7 +19,7 @@ interface TopBarProps {
 export const TopBar: FunctionComponent<TopBarProps> = ({ userActions: UserActions = null }) => {
   return (
     <header className="sticky inset-0 z-10 flex h-24 w-full border-b border-muted backdrop-blur-md">
-      <div className="mx-auto flex w-full max-w-6xl flex-row items-center px-5 py-4">
+      <div className="container mx-auto flex w-full flex-row items-center px-5 py-4">
         <Link as="/" href="/" className="flex flex-row items-center justify-center gap-1 py-2">
           <CheckSquare className="h-6 w-6" />
           <h1 className={twMerge('text-xl font-extrabold', ubuntu.className)}>Task-it</h1>

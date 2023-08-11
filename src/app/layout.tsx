@@ -37,7 +37,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             <link rel="shortcut icon" href="favicon.svg" />
           </head>
           <body
-            className={cn('min-h-screen bg-background font-sans antialiased', fontSans.variable, fontHeading.variable)}
+            className={cn(
+              'min-h-[100dvh] bg-background font-sans antialiased',
+              fontSans.variable,
+              fontHeading.variable
+            )}
           >
             <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
               {children}

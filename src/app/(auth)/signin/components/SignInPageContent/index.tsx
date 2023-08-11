@@ -9,12 +9,12 @@ import { signIn } from 'next-auth/react';
 
 export const SignInPageContent = () => {
   return (
-    <main className="flex h-[100dvh] w-screen flex-col">
+    <main className="flex min-h-[100dvh] w-screen flex-col">
       <TopBar userActions={ModeToggle} />
-      <section className="flex h-full items-center justify-center space-x-8 space-y-5 px-5">
-        <div className="flex w-full max-w-sm flex-col items-center justify-center space-y-3">
+      <section className="container mx-auto flex flex-1 items-center justify-center px-5">
+        <div className="flex h-full w-full max-w-sm flex-col items-center justify-center space-y-3">
           <h1 className="text-2xl">Continue with:</h1>
-          <div className="flex w-full flex-col space-y-3 rounded-lg border border-solid border-muted p-5">
+          <div className="flex h-full w-full flex-col space-y-3 rounded-lg border border-solid border-muted p-5">
             <Button className="gap-2" variant="outline" size="lg" onClick={() => signIn('google')}>
               <Icons.google className="h-5 w-5" />
               <p className="text-md">Google</p>

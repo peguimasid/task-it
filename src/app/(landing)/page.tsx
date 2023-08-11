@@ -8,12 +8,11 @@ import { TopBar } from '@/components/top-bar';
 import { Button } from '@/components/ui/button';
 import { UserActions } from './components/user-actions';
 
-import { ArrowRight } from 'lucide-react';
 import { siteConfig } from '@/config/site';
 
 export default function Page() {
   return (
-    <main className="flex h-[100dvh] w-screen flex-col">
+    <main className="flex min-h-[100dvh] w-screen flex-col">
       <TopBar userActions={UserActions} />
       <section className="container flex h-full max-w-[64rem] flex-col items-center gap-4 pt-6 text-center md:pb-12 md:pt-10 lg:py-32">
         <Link

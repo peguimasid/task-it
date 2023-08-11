@@ -9,6 +9,8 @@ import { userCanAccessProject } from '@/lib/project-guard';
 import { SidebarNavItem } from '@/types';
 
 import { DashboardNav } from '@/components/nav';
+import { TopBar } from '@/components/top-bar';
+import { UserMenu } from '../components/user-menu';
 
 interface PageProps {
   children: ReactNode;
@@ -55,11 +57,14 @@ export default async function ProjectLayout({ children, params: { projectId } }:
   ];
 
   return (
-    <div className="grid flex-1 gap-10 p-3 md:grid-cols-[250px_1fr]">
-      <aside className="hidden w-[250px] flex-col md:flex">
-        <DashboardNav items={sidebarItems} />
-      </aside>
-      <main className="flex w-full flex-1 flex-col overflow-hidden">{children}</main>
-    </div>
+    <main className="flex min-h-[100dvh] w-full flex-col">
+      <TopBar userActions={UserMenu} />
+      <div className="grid flex-1 gap-10 p-3 md:grid-cols-[250px_1fr]">
+        <aside className="hidden w-[250px] flex-col md:flex">
+          <DashboardNav items={sidebarItems} />
+        </aside>
+        <main className="flex w-full flex-1 flex-col overflow-hidden">{children}</main>
+      </div>
+    </main>
   );
 }
