@@ -26,11 +26,9 @@ export const DashboardNav = ({ items }: DashboardNavProps) => {
           item.href && (
             <Link key={item.title} href={item.disabled ? '/' : item.href}>
               <span
-                className={cn(
-                  'group flex items-center rounded-md px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground',
-                  path === item.href ? 'bg-accent' : 'transparent',
-                  item.disabled && 'cursor-not-allowed opacity-80'
-                )}
+                data-active={path === item.href}
+                data-disabled={item.disabled}
+                className="group flex items-center rounded-md bg-transparent px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground data-[disabled=true]:cursor-not-allowed data-[active=true]:bg-accent data-[disabled=true]:opacity-80"
               >
                 <Icon className="mr-2 h-4 w-4" />
                 <span>{item.title}</span>
