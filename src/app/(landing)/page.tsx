@@ -1,7 +1,3 @@
-import { Ubuntu } from 'next/font/google';
-
-import { twMerge } from 'tailwind-merge';
-
 import Link from 'next/link';
 
 import { TopBar } from '@/components/top-bar';
