@@ -8,9 +8,9 @@ import { userCanAccessProject } from '@/lib/project-guard';
 
 import { SidebarNavItem } from '@/types';
 
-import { DashboardNav } from '@/components/nav';
-import { TopBar } from '@/components/top-bar';
+import { ProjectTopBar } from './components/project-top-bar';
 import { UserMenu } from '../components/user-menu';
+import { DashboardNav } from '@/components/nav';
 
 interface PageProps {
   children: ReactNode;
@@ -43,6 +43,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function ProjectLayout({ children, params: { projectId } }: PageProps) {
   await userCanAccessProject(projectId);
 
+  const project = await prisma.project.findFirst({ where: { id: projectId } });
+
+  if (!project) return null;
+
   const sidebarItems: SidebarNavItem[] = [
     {
       title: 'Tasks',
@@ -58,9 +62,9 @@ export default async function ProjectLayout({ children, params: { projectId } }:
 
   return (
     <main className="flex min-h-[100dvh] w-full flex-col">
-      <TopBar userActions={UserMenu} />
-      <div className="grid flex-1 gap-10 p-3 md:grid-cols-[250px_1fr]">
-        <aside className="hidden w-[250px] flex-col md:flex">
+      <ProjectTopBar project={project} userActions={UserMenu} />
+      <div className="grid flex-1 gap-10 pt-5 md:grid-cols-[300px_1fr]">
+        <aside className="hidden w-[300px] flex-col pl-10 md:flex">
           <DashboardNav items={sidebarItems} />
         </aside>
         <main className="flex w-full flex-1 flex-col overflow-hidden">{children}</main>

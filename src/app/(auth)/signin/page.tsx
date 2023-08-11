@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 
-import { SignInPageContent } from './components/SignInPageContent';
+import { SignInPageContent } from './components/sign-in-page-content';
 
 export const metadata: Metadata = {
   title: 'Task-it | SignIn'
