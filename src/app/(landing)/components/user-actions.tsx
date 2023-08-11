@@ -9,7 +9,7 @@ export const UserActions = () => {
   return (
     <div className="flex gap-2">
       <ModeToggle />
-      <Button asChild variant="outline" className="px-8">
+      <Button asChild variant="outline">
         <Link href="/signin">Login</Link>
       </Button>
     </div>
