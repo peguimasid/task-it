@@ -31,12 +31,16 @@ export default function Page() {
           <br />
           Open Source, Every Step of the Way.
         </p>
-        <Button asChild size="lg">
-          <Link href="/signin" className="gap-2">
-            <p>Sign up for free</p>
-            <ArrowRight className="h-5 w-5" />
-          </Link>
-        </Button>
+        <div className="space-x-4">
+          <Button asChild size="lg">
+            <Link href="/signin">Get Started</Link>
+          </Button>
+          <Button asChild size="lg" variant="outline">
+            <Link href={siteConfig.links.github} target="_blank" rel="noreferrer">
+              GitHub
+            </Link>
+          </Button>
+        </div>
       </section>
     </main>
   );
