@@ -14,7 +14,7 @@ interface ProjectTopBarProps {
 
 export const ProjectTopBar: FunctionComponent<ProjectTopBarProps> = ({ project, userActions: UserActions = null }) => {
   return (
-    <header className="sticky inset-0 z-10 flex h-24 w-full border-b border-muted backdrop-blur-md">
+    <header className="sticky inset-0 z-10 flex h-20 w-full border-b border-muted backdrop-blur-md">
       <div className="mx-auto flex w-full flex-row items-center justify-between px-5">
         <div className="flex items-center">
           <Icons.kanbanSquare className="h-6 w-6" />
