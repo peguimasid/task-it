@@ -27,7 +27,7 @@ export const ProjectTopBar: FunctionComponent<ProjectTopBarProps> = ({ project, 
           <Icons.chevronRight className="mx-2 h-4 w-4 text-zinc-400" />
           <h1 className="font-semibold">{project.name}</h1>
         </div>
-        {UserActions && <UserActions />}
+        <div className="mr-5">{UserActions && <UserActions />}</div>
       </div>
     </header>
   );
