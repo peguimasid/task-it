@@ -1,40 +1,38 @@
 {
-  "env": {
-    "node": true,
-    "browser": true,
-    "es2021": true
-  },
-  "settings": {
-    "react": {
-      "version": "detect"
-    }
-  },
-  "parser": "@typescript-eslint/parser",
-  "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
-    }
-  },
-  "plugins": ["react", "react-hooks", "prettier", "@typescript-eslint", "@tanstack/query"],
+  "$schema": "https://json.schemastore.org/eslintrc",
+  "root": true,
   "extends": [
+    "next/core-web-vitals",
+    "plugin:@next/next/recommended",
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended",
     "plugin:react/recommended",
     "plugin:react/jsx-runtime",
     "plugin:react-hooks/recommended",
-    "plugin:@next/next/recommended",
-    "plugin:@tanstack/eslint-plugin-query/recommended"
+    "plugin:@tanstack/eslint-plugin-query/recommended",
+    "plugin:tailwindcss/recommended"
   ],
+  "plugins": ["react", "react-hooks", "prettier", "@typescript-eslint", "@tanstack/query", "tailwindcss"],
   "rules": {
-    "prettier/prettier": ["warn", { "endOfLine": "auto" }],
-    "react/display-name": "off",
-    "react/prop-types": "off"
+    "@next/next/no-html-link-for-pages": "off",
+    "react/jsx-key": "off",
+    "tailwindcss/no-custom-classname": "off",
+    "tailwindcss/classnames-order": "error"
   },
-  "globals": {
-    "Edit": "writable",
-    "console": "writable",
-    "_": "writable",
-    "$": "writable"
-  }
+  "settings": {
+    "tailwindcss": {
+      "callees": ["cn"],
+      "config": "tailwind.config.ts"
+    },
+    "next": {
+      "rootDir": true
+    }
+  },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "parser": "@typescript-eslint/parser"
+    }
+  ]
 }
