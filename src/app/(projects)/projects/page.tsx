@@ -3,6 +3,7 @@ import { getServerAuthSession } from '@/server/auth';
 import { prisma } from '@/server/prisma';
 import { format } from 'date-fns';
 
+import { Separator } from '@/components/ui/separator';
 import { TopBar } from '@/components/top-bar';
 
 import { CreateProjectDialog } from './components/create-project-dialog';
@@ -34,22 +35,19 @@ export default async function Page() {
 
   const currentDate = format(new Date(), 'MMMM dd, yyyy');
 
-  const projectsText = `project${usersProjects?.length !== 1 ? 's' : ''}`;
-
   return (
     <main className="flex min-h-[100dvh] w-full flex-col">
       <TopBar userActions={UserMenu} />
       <div className="mx-auto flex h-full w-full max-w-4xl flex-col px-5 py-10">
         <div className="space-y-4 py-4">
           <section className="space-y-2">
-            <h1 className="overflow-hidden text-ellipsis whitespace-nowrap text-2xl md:text-4xl">
-              Welcome back, {session?.user.name}
-            </h1>
-            <div className="flex flex-row divide-x-2 divide-muted text-sm font-light text-muted-foreground md:text-base">
-              <p className="pr-2">{currentDate}</p>
-              <p className="pl-2">
-                Recently viewed {usersProjects?.length} {projectsText}
-              </p>
+            <h1 className="truncate text-2xl md:text-4xl">Welcome back, {session?.user.name}</h1>
+            <div className="flex h-5 items-center space-x-2 text-sm md:text-base">
+              <div>{currentDate}</div>
+              <Separator orientation="vertical" />
+              <div>
+                Recently viewed {usersProjects?.length} project{usersProjects?.length !== 1 ? 's' : ''}
+              </div>
             </div>
           </section>
           <section className="flex w-full items-center justify-end py-5 md:py-0">
