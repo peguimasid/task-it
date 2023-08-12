@@ -20,7 +20,7 @@ export default function Page() {
             Keep project management simple as should be.
           </h1>
           <p className="max-w-[42rem] leading-normal text-muted-foreground sm:text-xl sm:leading-8">
-            Building the Ultimate Task Management App with Next.js 13.
+            Building the Ultimate Task Management App with Next.js 13. Add text to test
             <br />
             Open Source, Every Step of the Way.
           </p>
