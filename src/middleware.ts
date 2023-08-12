@@ -1,3 +1,4 @@
+import { getToken } from 'next-auth/jwt';
 import { withAuth } from 'next-auth/middleware';
 import { NextResponse } from 'next/server';
 
@@ -9,15 +10,17 @@ const isPublicRoute = (pathname: string) => {
 
 export default withAuth(
   async function middleware(req) {
-    const { token } = req.nextauth;
+    const token = await getToken({ req });
+
+    const isAuth = !!token;
 
     const isPublic = isPublicRoute(req.nextUrl.pathname);
 
-    if (!token && !isPublic) {
+    if (!isAuth && !isPublic) {
       return NextResponse.redirect(new URL('/signin', req.url));
     }
 
-    if (token && isPublic) {
+    if (isAuth && isPublic) {
       return NextResponse.redirect(new URL('/projects', req.url));
     }
 
@@ -25,6 +28,7 @@ export default withAuth(
   },
   {
     callbacks: {
+      // This is a workaround so the middleware function above is always called
       authorized: () => true
     }
   }
