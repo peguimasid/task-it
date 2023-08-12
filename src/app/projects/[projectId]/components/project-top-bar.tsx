@@ -20,7 +20,7 @@ export const ProjectTopBar: FunctionComponent<ProjectTopBarProps> = ({ project, 
           <Icons.kanbanSquare className="h-6 w-6" />
           <Icons.chevronRight className="mx-2 h-4 w-4 text-zinc-400" />
           <Button asChild variant="link">
-            <Link href="/" className="!p-0 font-semibold">
+            <Link href="/" className="pl-0 pr-0 font-semibold">
               projects
             </Link>
           </Button>
