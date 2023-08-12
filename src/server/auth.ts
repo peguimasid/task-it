@@ -1,16 +1,13 @@
-import { DefaultSession, NextAuthOptions, getServerSession } from 'next-auth';
-
-import DiscordProvider from 'next-auth/providers/discord';
-import GithubProvider from 'next-auth/providers/github';
-import Auth0Provider from 'next-auth/providers/auth0';
-import GoogleProvider from 'next-auth/providers/google';
-import FacebookProvider from 'next-auth/providers/facebook';
-import FortyTwoSchoolProvider from 'next-auth/providers/42-school';
-
-import { Adapter } from 'next-auth/adapters';
-
-import { PrismaAdapter } from '@auth/prisma-adapter';
 import { prisma } from '@/server/prisma';
+import { PrismaAdapter } from '@auth/prisma-adapter';
+import { DefaultSession, getServerSession, NextAuthOptions } from 'next-auth';
+import { Adapter } from 'next-auth/adapters';
+import FortyTwoSchoolProvider from 'next-auth/providers/42-school';
+import Auth0Provider from 'next-auth/providers/auth0';
+import DiscordProvider from 'next-auth/providers/discord';
+import FacebookProvider from 'next-auth/providers/facebook';
+import GithubProvider from 'next-auth/providers/github';
+import GoogleProvider from 'next-auth/providers/google';
 
 import { env } from '@/env.mjs';
 

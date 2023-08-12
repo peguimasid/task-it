@@ -1,8 +1,7 @@
 import Link from 'next/link';
 
-import { Button } from '@/components/ui/button';
-
 import { siteConfig } from '@/config/site';
+import { Button } from '@/components/ui/button';
 
 export default function Page() {
   return (

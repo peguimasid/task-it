@@ -1,13 +1,12 @@
 import { Metadata } from 'next';
-
 import { getServerAuthSession } from '@/server/auth';
 import { prisma } from '@/server/prisma';
-
 import { format } from 'date-fns';
+
+import { TopBar } from '@/components/top-bar';
 
 import { CreateProjectDialog } from './components/create-project-dialog';
 import { ProjectCard } from './components/project-card';
-import { TopBar } from '@/components/top-bar';
 import { UserMenu } from './components/user-menu';
 
 export const metadata: Metadata = {

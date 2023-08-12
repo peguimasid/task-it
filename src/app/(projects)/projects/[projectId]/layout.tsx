@@ -1,16 +1,14 @@
 import { ReactNode } from 'react';
 import { Metadata } from 'next';
-
-import { prisma } from '@/server/prisma';
-
 import { getServerAuthSession } from '@/server/auth';
-import { userCanAccessProject } from '@/lib/project-guard';
-
+import { prisma } from '@/server/prisma';
 import { SidebarNavItem } from '@/types';
 
-import { ProjectTopBar } from './components/project-top-bar';
-import { UserMenu } from '../components/user-menu';
+import { userCanAccessProject } from '@/lib/project-guard';
 import { DashboardNav } from '@/components/nav';
+
+import { UserMenu } from '../components/user-menu';
+import { ProjectTopBar } from './components/project-top-bar';
 
 interface PageProps {
   children: ReactNode;

@@ -1,8 +1,6 @@
 import { FunctionComponent } from 'react';
-
-import { Project } from '@prisma/client';
-
 import Link from 'next/link';
+import { Project } from '@prisma/client';
 
 import { Button } from '@/components/ui/button';
 import { Icons } from '@/components/icons';

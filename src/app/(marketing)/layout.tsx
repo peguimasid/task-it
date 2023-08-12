@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 
 import { TopBar } from '@/components/top-bar';
+
 import { UserActions } from './components/user-actions';
 
 export default function MarketingLayout({ children }: { children: ReactNode }) {

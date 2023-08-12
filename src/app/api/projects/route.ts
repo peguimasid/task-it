@@ -1,5 +1,4 @@
 import { NextResponse } from 'next/server';
-
 import { getServerAuthSession } from '@/server/auth';
 import { prisma } from '@/server/prisma';
 

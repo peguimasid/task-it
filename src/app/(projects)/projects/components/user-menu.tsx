@@ -1,13 +1,12 @@
 'use client';
 
 import { useMemo } from 'react';
-
+import { Github, Laptop, LogOut, Moon, Sun } from 'lucide-react';
 import { signOut, useSession } from 'next-auth/react';
+import { useTheme } from 'next-themes';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-
 import { Button } from '@/components/ui/button';
-
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -20,10 +19,6 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu';
-
-import { useTheme } from 'next-themes';
-
-import { Github, Laptop, LogOut, Moon, Sun } from 'lucide-react';
 
 export const UserMenu = () => {
   const { setTheme } = useTheme();

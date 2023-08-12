@@ -3,18 +3,15 @@
 import '../styles/globals.css';
 
 import { ReactNode } from 'react';
-
+import { Inter as FontSans } from 'next/font/google';
+import localFont from 'next/font/local';
+import { queryClient } from '@/services/queryClient';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { SessionProvider } from 'next-auth/react';
 import { ThemeProvider } from 'next-themes';
 
-import { Toaster } from '@/components/ui/toaster';
-
-import { queryClient } from '@/services/queryClient';
-
-import localFont from 'next/font/local';
-import { Inter as FontSans } from 'next/font/google';
 import { cn } from '@/lib/utils';
+import { Toaster } from '@/components/ui/toaster';
 
 const fontSans = FontSans({
   subsets: ['latin'],

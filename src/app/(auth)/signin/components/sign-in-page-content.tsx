@@ -1,11 +1,11 @@
 'use client';
 
-import { TopBar } from '@/components/top-bar';
-import { Icons } from '@/components/icons';
-import { Button } from '@/components/ui/button';
-import { ModeToggle } from '@/components/mode-toggle';
-
 import { signIn } from 'next-auth/react';
+
+import { Button } from '@/components/ui/button';
+import { Icons } from '@/components/icons';
+import { ModeToggle } from '@/components/mode-toggle';
+import { TopBar } from '@/components/top-bar';
 
 export const SignInPageContent = () => {
   return (

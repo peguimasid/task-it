@@ -1,11 +1,8 @@
 import { FunctionComponent } from 'react';
-
-import Link from 'next/link';
-
 import { Ubuntu } from 'next/font/google';
-
-import { twMerge } from 'tailwind-merge';
+import Link from 'next/link';
 import { CheckSquare } from 'lucide-react';
+import { twMerge } from 'tailwind-merge';
 
 const ubuntu = Ubuntu({
   subsets: ['latin'],

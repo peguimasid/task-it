@@ -1,12 +1,10 @@
 import { FunctionComponent } from 'react';
-
-import { Project } from '@prisma/client';
-
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-
-import { ChevronRight, Kanban } from 'lucide-react';
 import Link from 'next/link';
+import { Project } from '@prisma/client';
+import { ChevronRight, Kanban } from 'lucide-react';
+
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 
 interface ProjectCardProps {
   project: Project;

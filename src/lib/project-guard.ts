@@ -1,7 +1,6 @@
+import { notFound } from 'next/navigation';
 import { getServerAuthSession } from '@/server/auth';
 import { prisma } from '@/server/prisma';
-
-import { notFound } from 'next/navigation';
 
 export const userCanAccessProject = async (projectId: string): Promise<void> => {
   const session = await getServerAuthSession();
