@@ -8,6 +8,7 @@ import {
   FileText,
   HelpCircle,
   Image,
+  Kanban,
   KanbanSquare,
   Laptop,
   Loader2,
@@ -45,6 +46,7 @@ export const Icons = {
   sun: SunMedium,
   moon: Moon,
   laptop: Laptop,
+  kanban: Kanban,
   kanbanSquare: KanbanSquare,
   logo: (props: IconProps) => (
     <svg

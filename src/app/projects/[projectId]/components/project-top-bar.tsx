@@ -4,7 +4,6 @@ import { Project } from '@prisma/client';
 
 import Link from 'next/link';
 
-import { CheckSquare } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Icons } from '@/components/icons';
 
@@ -18,7 +17,7 @@ export const ProjectTopBar: FunctionComponent<ProjectTopBarProps> = ({ project, 
     <header className="sticky inset-0 z-10 flex h-24 w-full border-b border-muted backdrop-blur-md">
       <div className="mx-auto flex w-full flex-row items-center px-10 py-4">
         <div className="flex items-center">
-          <CheckSquare className="h-6 w-6" />
+          <Icons.kanbanSquare className="h-6 w-6" />
           <Icons.chevronRight className="mx-2 h-4 w-4 text-zinc-400" />
           <Button asChild variant="link">
             <Link href="/" className="!p-0 font-semibold">
