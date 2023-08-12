@@ -64,7 +64,7 @@ export default async function ProjectLayout({ children, params: { projectId } }:
     <main className="flex min-h-[100dvh] w-full flex-col">
       <ProjectTopBar project={project} userActions={UserMenu} />
       <div className="grid flex-1 gap-10 pt-5 md:grid-cols-[300px_1fr]">
-        <aside className="hidden w-[300px] flex-col pl-10 md:flex">
+        <aside className="hidden w-[300px] flex-col pl-5 md:flex">
           <DashboardNav items={sidebarItems} />
         </aside>
         <main className="flex w-full flex-1 flex-col overflow-hidden">{children}</main>
