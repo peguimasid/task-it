@@ -1,10 +1,11 @@
 import { ReactNode } from 'react';
 import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 import { getServerAuthSession } from '@/server/auth';
 import { prisma } from '@/server/prisma';
 import { SidebarNavItem } from '@/types';
+import { Project } from '@prisma/client';
 
-import { userCanAccessProject } from '@/lib/project-guard';
 import { DashboardNav } from '@/components/nav';
 
 import { UserMenu } from '../components/user-menu';
@@ -15,35 +16,39 @@ interface PageProps {
   params: { projectId: string };
 }
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+const findProjectById = async (projectId: string): Promise<Project | null> => {
   const session = await getServerAuthSession();
 
-  if (!session) {
-    return {
-      title: '404 | Not Found'
-    };
-  }
+  if (!session) return null;
 
-  const { projectId } = params;
-
-  const findProject = await prisma.project.findFirst({
+  const project = await prisma.project.findFirst({
     where: {
       id: projectId,
-      userId: session.user.id
+      userId: session?.user?.id
     }
   });
 
+  return project;
+};
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const project = await findProjectById(params.projectId);
+
+  if (!project) {
+    return {};
+  }
+
   return {
-    title: `Task-it | ${findProject?.name}`
+    title: `Task-it | ${project?.name}`
   };
 }
 
 export default async function ProjectLayout({ children, params: { projectId } }: PageProps) {
-  await userCanAccessProject(projectId);
+  const project = await findProjectById(projectId);
 
-  const project = await prisma.project.findFirst({ where: { id: projectId } });
-
-  if (!project) return null;
+  if (!project) {
+    return notFound();
+  }
 
   const sidebarItems: SidebarNavItem[] = [
     {
