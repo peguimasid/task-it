@@ -2,7 +2,6 @@ import { FunctionComponent } from 'react';
 import { Ubuntu } from 'next/font/google';
 import Link from 'next/link';
 import { CheckSquare } from 'lucide-react';
-import { twMerge } from 'tailwind-merge';
 
 import { cn } from '@/lib/utils';
 
