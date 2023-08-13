@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { signIn } from 'next-auth/react';
 
 import { Button } from '@/components/ui/button';
@@ -8,7 +9,13 @@ import { Icons } from '@/components/icons';
 export default function Page() {
   return (
     <>
-      <section className="h-full w-full">
+      <div className="relative h-full w-full">
+        <Button asChild variant="ghost" className="absolute left-4 top-4 md:left-8 md:top-8">
+          <Link href="/">
+            <Icons.chevronLeft className="mr-2 h-4 w-4" />
+            Back
+          </Link>
+        </Button>
         <div className="container flex h-full max-w-md flex-col items-center justify-center space-y-6">
           <div className="flex w-full flex-col items-center space-y-2">
             <Icons.logo className="h-6 w-6" />
@@ -48,7 +55,7 @@ export default function Page() {
             </div>
           </div>
         </div>
-      </section>
+      </div>
     </>
   );
 }
