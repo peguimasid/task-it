@@ -1,3 +1,5 @@
+'use client';
+
 import { Laptop, Moon, Sun } from 'lucide-react';
 import { useTheme } from 'next-themes';
 
