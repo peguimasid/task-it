@@ -40,7 +40,7 @@ export default function Page() {
               </div>
             </div>
             <div className="flex w-full flex-row justify-center space-x-3">
-              <Button className="gap-2" variant="secondary" size="icon" onClick={() => signIn('github')}>
+              <Button className="gap-2" variant="secondary" size="icon" onClick={() => signIn('discord')}>
                 <Icons.discord className="h-5 w-5" />
               </Button>
               <Button className="gap-2" variant="secondary" size="icon" onClick={() => signIn('facebook')}>
