@@ -1,4 +1,3 @@
-import { prisma } from '@/server/prisma';
 import { PrismaAdapter } from '@auth/prisma-adapter';
 import { DefaultSession, getServerSession, NextAuthOptions } from 'next-auth';
 import { Adapter } from 'next-auth/adapters';
@@ -10,6 +9,7 @@ import GithubProvider from 'next-auth/providers/github';
 import GoogleProvider from 'next-auth/providers/google';
 
 import { env } from '@/env.mjs';
+import { prisma } from '@/lib/prisma';
 
 declare module 'next-auth' {
   interface Session extends DefaultSession {

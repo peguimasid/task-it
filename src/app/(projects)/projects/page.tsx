@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
-import { getServerAuthSession } from '@/server/auth';
-import { prisma } from '@/server/prisma';
 import { format } from 'date-fns';
 
+import { getServerAuthSession } from '@/lib/auth';
+import { prisma } from '@/lib/prisma';
 import { Separator } from '@/components/ui/separator';
 import { TopBar } from '@/components/top-bar';
 

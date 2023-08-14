@@ -1,11 +1,11 @@
 import { ReactNode } from 'react';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { getServerAuthSession } from '@/server/auth';
-import { prisma } from '@/server/prisma';
 import { SidebarNavItem } from '@/types';
 import { Project } from '@prisma/client';
 
+import { getServerAuthSession } from '@/lib/auth';
+import { prisma } from '@/lib/prisma';
 import { DashboardNav } from '@/components/nav';
 
 import { UserMenu } from '../components/user-menu';
