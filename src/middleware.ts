@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { getToken } from 'next-auth/jwt';
 import { withAuth } from 'next-auth/middleware';
 
-const publicRoutes = ['/', '/signin'];
+const publicRoutes = ['/', '/login'];
 
 const isPublicRoute = (pathname: string) => {
   return publicRoutes.includes(pathname);
@@ -17,7 +17,7 @@ export default withAuth(
     const isPublic = isPublicRoute(req.nextUrl.pathname);
 
     if (!isAuth && !isPublic) {
-      return NextResponse.redirect(new URL('/signin', req.url));
+      return NextResponse.redirect(new URL('/login', req.url));
     }
 
     if (isAuth && isPublic) {

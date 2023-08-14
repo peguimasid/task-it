@@ -10,7 +10,7 @@ export const UserActions = () => {
     <div className="flex gap-2">
       <ModeToggle />
       <Button asChild variant="secondary">
-        <Link href="/signin">Login</Link>
+        <Link href="/login">Login</Link>
       </Button>
     </div>
   );

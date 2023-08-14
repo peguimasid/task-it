@@ -25,7 +25,7 @@ export default function Page() {
           </p>
           <div className="space-x-4">
             <Button asChild size="lg">
-              <Link href="/signin">Get Started</Link>
+              <Link href="/login">Get Started</Link>
             </Button>
             <Button asChild size="lg" variant="outline">
               <Link href={siteConfig.links.github} target="_blank" rel="noreferrer">
