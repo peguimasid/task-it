@@ -5,6 +5,7 @@ import { Github, Laptop, LogOut, Moon, Sun } from 'lucide-react';
 import { signOut, useSession } from 'next-auth/react';
 import { useTheme } from 'next-themes';
 
+import { siteConfig } from '@/config/site';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import {
@@ -80,7 +81,7 @@ export const UserMenu = () => {
         </DropdownMenuSub>
         <DropdownMenuSeparator />
         <DropdownMenuItem className="cursor-pointer" asChild>
-          <a href="https://github.com/peguimasid/task-it" target="_blank" rel="noreferrer">
+          <a href={siteConfig.links.github} target="_blank" rel="noreferrer">
             <Github className="mr-2 h-4 w-4" />
             <span>GitHub</span>
           </a>
