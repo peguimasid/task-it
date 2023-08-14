@@ -4,11 +4,10 @@ import { format } from 'date-fns';
 import { getServerAuthSession } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import { Separator } from '@/components/ui/separator';
+import { CreateProjectDialog } from '@/components/create-project-dialog';
+import { ProjectCard } from '@/components/project-card';
 import { TopBar } from '@/components/top-bar';
-
-import { CreateProjectDialog } from './components/create-project-dialog';
-import { ProjectCard } from './components/project-card';
-import { UserMenu } from './components/user-menu';
+import { UserMenu } from '@/components/user-menu';
 
 export const metadata: Metadata = {
   title: 'Task-it | Projects'
@@ -37,7 +36,9 @@ export default async function Page() {
 
   return (
     <main className="flex min-h-[100dvh] w-full flex-col">
-      <TopBar userActions={UserMenu} />
+      <TopBar>
+        <UserMenu />
+      </TopBar>
       <div className="mx-auto flex h-full w-full max-w-4xl flex-col px-5 py-10">
         <div className="space-y-4 py-4">
           <section className="space-y-2">

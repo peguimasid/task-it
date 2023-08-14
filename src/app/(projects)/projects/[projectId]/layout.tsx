@@ -1,15 +1,16 @@
 import { ReactNode } from 'react';
 import { Metadata } from 'next';
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { SidebarNavItem } from '@/types';
 import { Project } from '@prisma/client';
 
 import { getServerAuthSession } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
+import { Button } from '@/components/ui/button';
+import { Icons } from '@/components/icons';
 import { DashboardNav } from '@/components/nav';
-
-import { UserMenu } from '../components/user-menu';
-import { ProjectTopBar } from './components/project-top-bar';
+import { UserMenu } from '@/components/user-menu';
 
 interface PageProps {
   children: ReactNode;
@@ -65,7 +66,24 @@ export default async function ProjectLayout({ children, params: { projectId } }:
 
   return (
     <main className="flex min-h-[100dvh] w-full flex-col">
-      <ProjectTopBar project={project} userActions={UserMenu} />
+      <header className="sticky inset-0 z-10 flex h-20 w-full border-b border-muted backdrop-blur-md">
+        <div className="mx-auto flex w-full flex-row items-center justify-between px-5">
+          <div className="flex items-center">
+            <Icons.kanbanSquare className="h-6 w-6" />
+            <Icons.chevronRight className="mx-2 h-4 w-4 text-zinc-400" />
+            <Button asChild variant="link">
+              <Link href="/" className="!px-0 font-semibold">
+                projects
+              </Link>
+            </Button>
+            <Icons.chevronRight className="mx-2 h-4 w-4 text-zinc-400" />
+            <h1 className="font-semibold">{project.name}</h1>
+          </div>
+          <div className="mr-5">
+            <UserMenu />
+          </div>
+        </div>
+      </header>
       <div className="grid flex-1 gap-10 pt-5 md:grid-cols-[300px_1fr]">
         <aside className="hidden w-[300px] flex-col pl-5 md:flex">
           <DashboardNav items={sidebarItems} />

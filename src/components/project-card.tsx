@@ -16,9 +16,7 @@ export const ProjectCard: FunctionComponent<ProjectCardProps> = ({ project }) =>
   return (
     <Card className="flex h-full flex-col">
       <CardHeader className="flex flex-row items-center justify-between gap-2 space-y-0 pb-2">
-        <CardTitle className="overflow-hidden text-ellipsis whitespace-nowrap text-base font-medium">
-          {project.name}
-        </CardTitle>
+        <CardTitle className="truncate text-base font-medium">{project.name}</CardTitle>
         <Kanban className="h-5 w-5 text-muted-foreground" />
       </CardHeader>
       <CardContent>

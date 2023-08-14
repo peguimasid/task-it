@@ -2,9 +2,8 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 
 import { Button } from '@/components/ui/button';
+import { AuthProviderButtons } from '@/components/auth-provider-buttons';
 import { Icons } from '@/components/icons';
-
-import { AuthProviderButtons } from './components/auth-provider-buttons';
 
 export const metadata: Metadata = {
   title: 'Task-it | Login'
