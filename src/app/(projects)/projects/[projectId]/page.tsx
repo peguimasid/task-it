@@ -35,7 +35,7 @@ export default async function Page({ params }: PageProps) {
 
   return (
     <div className="flex h-full">
-      <h1>{params.projectId}</h1>
+      <h1>{project.id}</h1>
     </div>
   );
 }
