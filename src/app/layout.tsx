@@ -25,28 +25,24 @@ const fontHeading = localFont({
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <QueryClientProvider client={queryClient}>
-      <SessionProvider>
-        <html lang="en" suppressHydrationWarning>
-          <head>
-            <title>Task-it | Home</title>
-            <meta name="description" content="Simplify Project Management and Task Collaboration" />
-            <link rel="shortcut icon" href="favicon.svg" />
-          </head>
-          <body
-            className={cn(
-              'min-h-[100dvh] bg-background font-sans antialiased',
-              fontSans.variable,
-              fontHeading.variable
-            )}
-          >
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <title>Task-it | Home</title>
+        <meta name="description" content="Simplify Project Management and Task Collaboration" />
+        <link rel="shortcut icon" href="/favicon.svg" />
+      </head>
+      <body
+        className={cn('min-h-[100dvh] bg-background font-sans antialiased', fontSans.variable, fontHeading.variable)}
+      >
+        <QueryClientProvider client={queryClient}>
+          <SessionProvider>
             <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
               {children}
             </ThemeProvider>
             <Toaster />
-          </body>
-        </html>
-      </SessionProvider>
-    </QueryClientProvider>
+          </SessionProvider>
+        </QueryClientProvider>
+      </body>
+    </html>
   );
 }
