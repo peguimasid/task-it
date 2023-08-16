@@ -24,7 +24,7 @@ const fontHeading = localFont({
 
 export const metadata: Metadata = {
   title: {
-    default: '',
+    default: siteConfig.name,
     template: `${siteConfig.name} | %s`
   },
   description: siteConfig.description,
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     { media: '(prefers-color-scheme: dark)', color: 'black' }
   ],
   icons: {
-    icon: '/favicon.ico'
+    icon: '/favicon.svg'
   }
 };
 
