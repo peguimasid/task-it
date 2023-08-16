@@ -40,7 +40,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   return {
-    title: `Task-it | ${project?.name}`
+    title: project?.name
   };
 }
 

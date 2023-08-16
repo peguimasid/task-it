@@ -1,19 +1,18 @@
-'use client';
-
 import '../styles/globals.css';
 
 import { ReactNode } from 'react';
-import { Inter as FontSans } from 'next/font/google';
+import { Metadata } from 'next';
+import { Inter } from 'next/font/google';
 import localFont from 'next/font/local';
-import { QueryClientProvider } from '@tanstack/react-query';
-import { SessionProvider } from 'next-auth/react';
-import { ThemeProvider } from 'next-themes';
 
-import { queryClient } from '@/lib/query-client';
+import { siteConfig } from '@/config/site';
 import { cn } from '@/lib/utils';
 import { Toaster } from '@/components/ui/toaster';
+import { NextAuthProvider } from '@/components/next-auth-provider';
+import { ReactQueryProvider } from '@/components/react-query-provider';
+import { ThemeProvider } from '@/components/theme-provider';
 
-const fontSans = FontSans({
+const fontSans = Inter({
   subsets: ['latin'],
   variable: '--font-sans'
 });
@@ -23,25 +22,39 @@ const fontHeading = localFont({
   variable: '--font-heading'
 });
 
+export const metadata: Metadata = {
+  title: {
+    default: '',
+    template: `${siteConfig.name} | %s`
+  },
+  description: siteConfig.description,
+  keywords: ['Next.js', 'React', 'Tailwind CSS', 'Server Components', 'Radix UI'],
+  authors: [{ name: 'peguimasid', url: 'https://masid.dev' }],
+  creator: 'peguimasid',
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: 'white' },
+    { media: '(prefers-color-scheme: dark)', color: 'black' }
+  ],
+  icons: {
+    icon: '/favicon.ico'
+  }
+};
+
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        <title>Task-it | Home</title>
-        <meta name="description" content="Simplify Project Management and Task Collaboration" />
-        <link rel="shortcut icon" href="/favicon.svg" />
-      </head>
+      <head />
       <body
         className={cn('min-h-[100dvh] bg-background font-sans antialiased', fontSans.variable, fontHeading.variable)}
       >
-        <QueryClientProvider client={queryClient}>
-          <SessionProvider>
+        <ReactQueryProvider>
+          <NextAuthProvider>
             <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
               {children}
             </ThemeProvider>
             <Toaster />
-          </SessionProvider>
-        </QueryClientProvider>
+          </NextAuthProvider>
+        </ReactQueryProvider>
       </body>
     </html>
   );

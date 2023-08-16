@@ -6,7 +6,7 @@ import { AuthProviderButtons } from '@/components/auth-provider-buttons';
 import { Icons } from '@/components/icons';
 
 export const metadata: Metadata = {
-  title: 'Task-it | Login'
+  title: 'Login'
 };
 
 export default function Page() {

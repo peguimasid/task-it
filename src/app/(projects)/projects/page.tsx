@@ -10,7 +10,7 @@ import { TopBar } from '@/components/top-bar';
 import { UserMenu } from '@/components/user-menu';
 
 export const metadata: Metadata = {
-  title: 'Task-it | Projects'
+  title: 'Projects'
 };
 
 const getUserProjects = async () => {
