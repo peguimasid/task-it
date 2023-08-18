@@ -42,8 +42,8 @@ export default async function Page() {
       <div className="mx-auto flex h-full w-full max-w-4xl flex-col px-5 py-10">
         <div className="space-y-4 py-4">
           <section className="space-y-2">
-            <h1 className="truncate text-2xl md:text-4xl">Welcome back, {session?.user.name}</h1>
-            <div className="flex h-5 items-center space-x-2 text-sm md:text-base">
+            <h1 className="truncate text-2xl font-bold md:text-4xl">Welcome back, {session?.user.name}</h1>
+            <div className="flex h-5 items-center space-x-2 text-sm text-muted-foreground md:text-base">
               <div>{currentDate}</div>
               <Separator orientation="vertical" />
               <div>
