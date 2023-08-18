@@ -67,7 +67,7 @@ export default async function ProjectLayout({ children, params: { projectId } }:
   return (
     <main className="flex min-h-[100dvh] w-full flex-col">
       <header className="sticky inset-0 z-10 flex h-20 w-full border-b border-muted backdrop-blur-md">
-        <div className="mx-auto flex w-full flex-row items-center justify-between px-5">
+        <div className="mx-auto flex w-full flex-row items-center justify-between px-10">
           <div className="flex items-center">
             <Icons.kanbanSquare className="h-6 w-6" />
             <Icons.chevronRight className="mx-2 h-4 w-4 text-zinc-400" />
@@ -79,9 +79,7 @@ export default async function ProjectLayout({ children, params: { projectId } }:
             <Icons.chevronRight className="mx-2 h-4 w-4 text-zinc-400" />
             <h1 className="font-semibold">{project.name}</h1>
           </div>
-          <div className="mr-5">
-            <UserMenu />
-          </div>
+          <UserMenu />
         </div>
       </header>
       <div className="grid flex-1 gap-10 pt-5 md:grid-cols-[300px_1fr]">
