@@ -26,14 +26,8 @@ type FormValues = z.infer<typeof projectSchema>;
 
 type Project = Pick<PrismaProject, 'id' | 'name' | 'description'>;
 
-interface CreateProjectResponse {
-  newProject: Project;
-}
-
-const createProject = async (data: FormValues): Promise<CreateProjectResponse> => {
+const updateProject = async (data: FormValues): Promise<void> => {
   console.log(data);
-
-  return { newProject: { id: '123', name: 'TODO', description: '' } };
 };
 
 interface UpdateProjectDataFormProps {
@@ -56,13 +50,17 @@ export const UpdateProjectDataForm = ({ project }: UpdateProjectDataFormProps) =
 
   const { isValid, dirtyFields } = form.formState;
 
-  const onSuccess = useCallback(() => {
-    toast({
-      title: 'Success',
-      description: 'You project info has been updated'
-    });
-    router.refresh();
-  }, [router]);
+  const onSuccess = useCallback(
+    (_: unknown, variables: FormValues) => {
+      toast({
+        title: 'Success',
+        description: 'You project info has been updated'
+      });
+      router.refresh();
+      form.reset(variables);
+    },
+    [router, form]
+  );
 
   const onError = useCallback(() => {
     toast({
@@ -73,7 +71,7 @@ export const UpdateProjectDataForm = ({ project }: UpdateProjectDataFormProps) =
   }, []);
 
   const { isLoading, mutate } = useMutation({
-    mutationFn: createProject,
+    mutationFn: updateProject,
     onSuccess,
     onError
   });
@@ -84,7 +82,7 @@ export const UpdateProjectDataForm = ({ project }: UpdateProjectDataFormProps) =
 
   return (
     <Form {...form}>
-      <form name="createProjectForm" noValidate onSubmit={form.handleSubmit(onSubmit)}>
+      <form name="updateProjectForm" noValidate onSubmit={form.handleSubmit(onSubmit)}>
         <Card>
           <CardHeader>
             <CardTitle>Project</CardTitle>
