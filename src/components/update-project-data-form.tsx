@@ -36,11 +36,11 @@ const createProject = async (data: FormValues): Promise<CreateProjectResponse> =
   return { newProject: { id: '123', name: 'TODO', description: '' } };
 };
 
-interface ProjectDataFormProps {
+interface UpdateProjectDataFormProps {
   project: Project;
 }
 
-export const ProjectDataForm = ({ project }: ProjectDataFormProps) => {
+export const UpdateProjectDataForm = ({ project }: UpdateProjectDataFormProps) => {
   const router = useRouter();
 
   const defaultValues = {

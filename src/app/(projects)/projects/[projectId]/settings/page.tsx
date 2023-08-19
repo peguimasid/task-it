@@ -3,7 +3,7 @@ import { Project } from '@prisma/client';
 
 import { getServerAuthSession } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
-import { ProjectDataForm } from '@/components/project-data-form';
+import { UpdateProjectDataForm } from '@/components/update-project-data-form';
 
 interface PageProps {
   params: { projectId: string };
@@ -37,7 +37,7 @@ export default async function Page({ params }: PageProps) {
         <h1 className="font-heading text-3xl md:text-4xl">Settings</h1>
         <p className="text-lg text-muted-foreground">Mange project settings</p>
       </div>
-      <ProjectDataForm project={project} />
+      <UpdateProjectDataForm project={project} />
     </main>
   );
 }
