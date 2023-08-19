@@ -26,8 +26,11 @@ type FormValues = z.infer<typeof projectSchema>;
 
 type Project = Pick<PrismaProject, 'id' | 'name' | 'description'>;
 
-const updateProject = async (data: FormValues): Promise<void> => {
-  console.log(data);
+const updateProject = async (data: FormValues, projectId: Project['id']): Promise<void> => {
+  await fetch(`/api/projects/${projectId}`, {
+    method: 'PATCH',
+    body: JSON.stringify(data)
+  });
 };
 
 interface UpdateProjectDataFormProps {
@@ -71,7 +74,7 @@ export const UpdateProjectDataForm = ({ project }: UpdateProjectDataFormProps) =
   }, []);
 
   const { isLoading, mutate } = useMutation({
-    mutationFn: updateProject,
+    mutationFn: (data) => updateProject(data, project.id),
     onSuccess,
     onError
   });

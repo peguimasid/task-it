@@ -35,7 +35,7 @@ export async function PATCH(request: Request, context: z.infer<typeof routeConte
       }
     });
 
-    return NextResponse.json(null, { status: 204 });
+    return NextResponse.json(null, { status: 200 });
   } catch (error) {
     if (error instanceof z.ZodError) {
       return NextResponse.json(JSON.stringify(error.issues), { status: 422 });
