@@ -119,7 +119,7 @@ export const CreateProjectDialog = () => {
                 <FormItem>
                   <FormLabel>Name</FormLabel>
                   <FormControl>
-                    <Input {...field} />
+                    <Input {...field} autoComplete="off" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -132,7 +132,7 @@ export const CreateProjectDialog = () => {
                 <FormItem>
                   <FormLabel>Description</FormLabel>
                   <FormControl>
-                    <Input {...field} />
+                    <Input {...field} autoComplete="off" />
                   </FormControl>
                   <FormDescription>This is optional but very useful</FormDescription>
                   <FormMessage />
