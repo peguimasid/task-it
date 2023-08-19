@@ -5,6 +5,7 @@ import { getServerAuthSession } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import { Separator } from '@/components/ui/separator';
 import { CreateProjectButton } from '@/components/create-project-button';
+import { EmptyPlaceholder } from '@/components/empty-placeholder';
 import { ProjectCard } from '@/components/project-card';
 import { TopBar } from '@/components/top-bar';
 import { UserMenu } from '@/components/user-menu';
@@ -30,7 +31,7 @@ const getUserProjects = async () => {
 export default async function Page() {
   const session = await getServerAuthSession();
 
-  const usersProjects = await getUserProjects();
+  const projects = await getUserProjects();
 
   const currentDate = format(new Date(), 'MMMM dd, yyyy');
 
@@ -47,18 +48,29 @@ export default async function Page() {
               <div>{currentDate}</div>
               <Separator orientation="vertical" />
               <div>
-                Recently viewed {usersProjects?.length} project{usersProjects?.length !== 1 ? 's' : ''}
+                Recently viewed {projects?.length} project{projects?.length !== 1 ? 's' : ''}
               </div>
             </div>
           </section>
           <section className="flex w-full items-center justify-end py-5 md:py-0">
             <CreateProjectButton />
           </section>
-          <section className="grid auto-rows-fr grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
-            {usersProjects?.map((project) => (
-              <ProjectCard key={project.id} project={project} />
-            ))}
-          </section>
+          {projects?.length ? (
+            <section className="grid auto-rows-fr grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
+              {projects?.map((project) => (
+                <ProjectCard key={project.id} project={project} />
+              ))}
+            </section>
+          ) : (
+            <EmptyPlaceholder>
+              <EmptyPlaceholder.Icon name="kanbanSquare" />
+              <EmptyPlaceholder.Title>No projects created</EmptyPlaceholder.Title>
+              <EmptyPlaceholder.Description>
+                You don&apos;t have any project yet. Start by creating one.
+              </EmptyPlaceholder.Description>
+              <CreateProjectButton variant="outline" />
+            </EmptyPlaceholder>
+          )}
         </div>
       </div>
     </main>
