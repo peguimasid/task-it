@@ -3,6 +3,7 @@ import { Project } from '@prisma/client';
 
 import { getServerAuthSession } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
+import { DeleteProjectButton } from '@/components/delete-project-button';
 import { UpdateProjectDataForm } from '@/components/update-project-data-form';
 
 interface PageProps {
@@ -38,6 +39,9 @@ export default async function Page({ params }: PageProps) {
         <p className="text-lg text-muted-foreground">Mange project settings</p>
       </div>
       <UpdateProjectDataForm project={project} />
+      <div>
+        <DeleteProjectButton project={project} />
+      </div>
     </main>
   );
 }

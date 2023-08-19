@@ -19,7 +19,7 @@ export async function PATCH(request: Request, context: z.infer<typeof routeConte
     const userCanAccessProject = await userHasAccessToProject(params.projectId);
 
     if (!userCanAccessProject) {
-      return NextResponse.json({ error: 'You cannot access this route' }, { status: 403 });
+      return new Response('You cannot access this route', { status: 403 });
     }
 
     const json = await request.json();
@@ -35,13 +35,13 @@ export async function PATCH(request: Request, context: z.infer<typeof routeConte
       }
     });
 
-    return NextResponse.json(null, { status: 200 });
+    return new Response(null, { status: 200 });
   } catch (error) {
     if (error instanceof z.ZodError) {
-      return NextResponse.json(JSON.stringify(error.issues), { status: 422 });
+      return new Response(JSON.stringify(error.issues), { status: 422 });
     }
 
-    return NextResponse.json(null, { status: 500 });
+    return new Response(null, { status: 500 });
   }
 }
 
@@ -52,7 +52,7 @@ export async function DELETE(request: Request, context: z.infer<typeof routeCont
     const userCanAccessProject = await userHasAccessToProject(params.projectId);
 
     if (!userCanAccessProject) {
-      return NextResponse.json({ error: 'You cannot access this route' }, { status: 403 });
+      return new Response('You cannot access this route', { status: 403 });
     }
 
     await prisma.project.delete({
@@ -61,13 +61,13 @@ export async function DELETE(request: Request, context: z.infer<typeof routeCont
       }
     });
 
-    return NextResponse.json(null, { status: 204 });
+    return new Response(null, { status: 204 });
   } catch (error) {
     if (error instanceof z.ZodError) {
-      return NextResponse.json(JSON.stringify(error.issues), { status: 422 });
+      return new Response(JSON.stringify(error.issues), { status: 422 });
     }
 
-    return NextResponse.json(null, { status: 500 });
+    return new Response(null, { status: 500 });
   }
 }
 
