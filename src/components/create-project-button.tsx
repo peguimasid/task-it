@@ -9,7 +9,8 @@ import { Loader2, Plus } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
+import { Button, ButtonProps } from '@/components/ui/button';
 import {
   Dialog,
   DialogContent,
@@ -43,6 +44,8 @@ interface CreateProjectResponse {
   newProject: Project;
 }
 
+type CreateProjectButtonProps = ButtonProps;
+
 const createProject = async (data: FormValues): Promise<CreateProjectResponse> => {
   const response = await fetch('/api/projects', {
     method: 'POST',
@@ -52,7 +55,7 @@ const createProject = async (data: FormValues): Promise<CreateProjectResponse> =
   return responseData;
 };
 
-export const CreateProjectDialog = () => {
+export const CreateProjectButton = ({ className, variant, ...props }: CreateProjectButtonProps) => {
   const router = useRouter();
 
   const [open, setOpen] = useState<boolean>(false);
@@ -95,7 +98,7 @@ export const CreateProjectDialog = () => {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogTrigger asChild>
-        <Button size="sm" className="gap-2" aria-controls="">
+        <Button size="sm" className={cn('gap-2', className)} variant={variant} {...props}>
           <Plus className="h-5 w-5" />
           <p>Create project</p>
         </Button>

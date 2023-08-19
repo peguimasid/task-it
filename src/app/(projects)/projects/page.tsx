@@ -4,7 +4,7 @@ import { format } from 'date-fns';
 import { getServerAuthSession } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import { Separator } from '@/components/ui/separator';
-import { CreateProjectDialog } from '@/components/create-project-dialog';
+import { CreateProjectButton } from '@/components/create-project-button';
 import { ProjectCard } from '@/components/project-card';
 import { TopBar } from '@/components/top-bar';
 import { UserMenu } from '@/components/user-menu';
@@ -52,7 +52,7 @@ export default async function Page() {
             </div>
           </section>
           <section className="flex w-full items-center justify-end py-5 md:py-0">
-            <CreateProjectDialog />
+            <CreateProjectButton />
           </section>
           <section className="grid auto-rows-fr grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
             {usersProjects?.map((project) => (
