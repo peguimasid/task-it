@@ -45,6 +45,32 @@ export async function PATCH(request: Request, context: z.infer<typeof routeConte
   }
 }
 
+export async function DELETE(request: Request, context: z.infer<typeof routeContextSchema>) {
+  try {
+    const { params } = routeContextSchema.parse(context);
+
+    const userCanAccessProject = await userHasAccessToProject(params.projectId);
+
+    if (!userCanAccessProject) {
+      return NextResponse.json({ error: 'You cannot access this route' }, { status: 403 });
+    }
+
+    await prisma.project.delete({
+      where: {
+        id: params.projectId
+      }
+    });
+
+    return NextResponse.json(null, { status: 204 });
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      return NextResponse.json(JSON.stringify(error.issues), { status: 422 });
+    }
+
+    return NextResponse.json(null, { status: 500 });
+  }
+}
+
 async function userHasAccessToProject(projectId: Project['id']): Promise<boolean> {
   const session = await getServerAuthSession();
 
