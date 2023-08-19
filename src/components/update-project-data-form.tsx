@@ -57,7 +57,7 @@ export const UpdateProjectDataForm = ({ project }: UpdateProjectDataFormProps) =
     (_: unknown, variables: FormValues) => {
       toast({
         title: 'Success',
-        description: 'You project info has been updated'
+        description: 'You project has been updated'
       });
       router.refresh();
       form.reset(variables);
