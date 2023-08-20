@@ -30,20 +30,20 @@ By combining these essential features, Task-it simplifies project management, em
 1. Projects
     - [x]  Allow users to view the list of their projects on the home page.
     - [x]  Create projects
-    - [ ]  Update projects
-    - [ ]  Delete projects
-    
+    - [x]  Update projects
+    - [x]  Delete projects
+
     **Project Fields:**
-    
+
     - `Name`: Provide a name for the project.
     - `Description`: Include a brief description of the project.
 2. Tasks
     - [ ]  Enhance the display of project tasks, ensuring an intuitive and visually appealing list.
     - [ ]  Enable users to create, update, and delete tasks within projects.
     - [ ]  Implement drag-and-drop functionality to allow tasks to be easily moved between different status categories.
-    
+
     **Task Fields:**
-    
+
     - `Title`: Provide a concise title for the task.
     - `Description`: Include additional details or instructions for the task.
     - `Status`: Assign an status to the task (Backlog, In Progress, In Review, Done).
