@@ -86,7 +86,7 @@ export default async function ProjectLayout({ children, params: { projectId } }:
         <aside className="hidden w-[300px] flex-col pl-5 md:flex">
           <DashboardNav items={sidebarItems} />
         </aside>
-        <main className="flex w-full flex-1 flex-col overflow-hidden">{children}</main>
+        <main className="flex-1 overflow-hidden">{children}</main>
       </div>
     </main>
   );
