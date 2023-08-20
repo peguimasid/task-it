@@ -4,7 +4,7 @@ import { getServerAuthSession } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import { CreateProjectButton } from '@/components/create-project-button';
 import { EmptyPlaceholder } from '@/components/empty-placeholder';
-import { ProjectCard } from '@/components/project-card';
+import { ProjectItem } from '@/components/project-item';
 import { TopBar } from '@/components/top-bar';
 import { UserMenu } from '@/components/user-menu';
 
@@ -47,11 +47,11 @@ export default async function Page() {
             <CreateProjectButton />
           </section>
           {projects?.length ? (
-            <section className="flex flex-col">
+            <div className="divide-y divide-border rounded-md border">
               {projects?.map((project) => (
-                <ProjectCard key={project.id} project={project} />
+                <ProjectItem key={project.id} project={project} />
               ))}
-            </section>
+            </div>
           ) : (
             <EmptyPlaceholder>
               <EmptyPlaceholder.Icon name="kanbanSquare" />
