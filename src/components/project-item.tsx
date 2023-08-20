@@ -1,7 +1,7 @@
 import { FunctionComponent } from 'react';
 import Link from 'next/link';
 import { Project } from '@prisma/client';
-import { formatDistance } from 'date-fns';
+import { formatDistanceToNow } from 'date-fns';
 
 interface ProjectCardProps {
   project: Project;
@@ -14,7 +14,9 @@ export const ProjectItem: FunctionComponent<ProjectCardProps> = ({ project }) =>
         <Link href={`/projects/${project.id}`} className="font-semibold hover:underline">
           {project.name}
         </Link>
-        <p className="text-sm text-muted-foreground">Updated {formatDistance(project.updatedAt, new Date())} ago</p>
+        <p className="text-sm text-muted-foreground">
+          Updated {formatDistanceToNow(project.updatedAt, { addSuffix: true })}
+        </p>
       </div>
     </div>
   );
