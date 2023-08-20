@@ -100,7 +100,7 @@ export const CreateProjectButton = ({ className, variant, ...props }: CreateProj
       <DialogTrigger asChild>
         <Button size="sm" className={cn('gap-2', className)} variant={variant} {...props}>
           <Plus className="h-5 w-5" />
-          <p>Create project</p>
+          <p>New project</p>
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
