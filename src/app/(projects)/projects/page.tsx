@@ -1,9 +1,7 @@
 import { Metadata } from 'next';
-import { format } from 'date-fns';
 
 import { getServerAuthSession } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
-import { Separator } from '@/components/ui/separator';
 import { CreateProjectButton } from '@/components/create-project-button';
 import { EmptyPlaceholder } from '@/components/empty-placeholder';
 import { ProjectCard } from '@/components/project-card';
@@ -32,34 +30,24 @@ const getUserProjects = async () => {
 };
 
 export default async function Page() {
-  const session = await getServerAuthSession();
-
   const projects = await getUserProjects();
-
-  const currentDate = format(new Date(), 'MMMM dd, yyyy');
 
   return (
     <main className="flex min-h-[100dvh] w-full flex-col">
       <TopBar>
         <UserMenu />
       </TopBar>
-      <div className="mx-auto flex h-full w-full max-w-4xl flex-col px-5 py-10">
+      <div className="mx-auto flex h-full w-full max-w-4xl flex-col p-5 ">
         <div className="space-y-4 py-4">
-          <section className="space-y-2">
-            <h1 className="truncate text-2xl font-bold md:text-4xl">Welcome back, {session?.user.name}</h1>
-            <div className="flex h-5 items-center space-x-2 text-sm text-muted-foreground md:text-base">
-              <div>{currentDate}</div>
-              <Separator orientation="vertical" />
-              <div>
-                Recently viewed {projects?.length} project{projects?.length !== 1 ? 's' : ''}
-              </div>
+          <section className="flex flex-row items-center justify-between">
+            <div className="space-y-2">
+              <h1 className="font-heading text-3xl md:text-4xl">Projects</h1>
+              <p className="text-lg text-muted-foreground">Create and manage projects</p>
             </div>
-          </section>
-          <section className="flex w-full items-center justify-end py-5 md:py-0">
             <CreateProjectButton />
           </section>
           {projects?.length ? (
-            <section className="grid auto-rows-fr grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
+            <section className="flex flex-col">
               {projects?.map((project) => (
                 <ProjectCard key={project.id} project={project} />
               ))}
