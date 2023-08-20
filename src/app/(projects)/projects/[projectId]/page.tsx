@@ -35,7 +35,12 @@ export default async function Page({ params }: PageProps) {
 
   return (
     <div className="flex h-full">
-      <h1>{project.id}</h1>
+      <main className="flex h-full flex-col space-y-5 px-10">
+        <div className="space-y-2">
+          <h1 className="font-heading text-3xl md:text-4xl">{project.name}</h1>
+          <p className="text-muted-foreground">{project.description}</p>
+        </div>
+      </main>
     </div>
   );
 }
