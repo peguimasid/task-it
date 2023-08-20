@@ -38,7 +38,7 @@ export default async function Page() {
         <UserMenu />
       </TopBar>
       <div className="mx-auto flex h-full w-full max-w-4xl flex-col p-5 ">
-        <div className="space-y-4 py-4">
+        <div className="space-y-8 py-4">
           <section className="flex flex-row items-center justify-between">
             <div className="space-y-2">
               <h1 className="font-heading text-3xl md:text-4xl">Projects</h1>
