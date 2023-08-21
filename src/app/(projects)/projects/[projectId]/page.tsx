@@ -35,18 +35,18 @@ export default async function Page({ params }: PageProps) {
 
   return (
     <div className="flex h-full w-full">
-      <main className="flex h-full flex-col space-y-5 overflow-hidden px-10">
+      <main className="flex h-full flex-col space-y-5 overflow-hidden px-5">
         <div className="space-y-2">
           <h1 className="font-heading text-3xl md:text-4xl">{project.name}</h1>
           <p className="text-muted-foreground">{project.description}</p>
         </div>
-        <div className="h-full w-full">
-          <div className="flex h-full w-full space-x-4 overflow-x-auto py-3">
-            <div className="h-full min-w-[300px] bg-zinc-800"></div>
-            <div className="h-full min-w-[300px] bg-zinc-800"></div>
-            <div className="h-full min-w-[300px] bg-zinc-800"></div>
-            <div className="h-full min-w-[300px] bg-zinc-800"></div>
-            <div className="h-full min-w-[300px] bg-zinc-800"></div>
+        <div className="h-full w-full rounded-md border">
+          <div className="flex h-full w-full gap-4 overflow-x-auto p-3">
+            <div className="h-full min-w-[300px] rounded-sm bg-zinc-800"></div>
+            <div className="h-full min-w-[300px] rounded-sm bg-zinc-800"></div>
+            <div className="h-full min-w-[300px] rounded-sm bg-zinc-800"></div>
+            <div className="h-full min-w-[300px] rounded-sm bg-zinc-800"></div>
+            <div className="h-full min-w-[300px] rounded-sm bg-zinc-800"></div>
           </div>
         </div>
       </main>
