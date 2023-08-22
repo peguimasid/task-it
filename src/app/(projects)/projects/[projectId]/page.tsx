@@ -42,11 +42,11 @@ export default async function Page({ params }: PageProps) {
         </div>
         <div className="h-full w-full rounded-md border">
           <div className="flex h-full w-full gap-4 overflow-x-auto p-3">
-            <div className="h-full min-w-[300px] rounded-sm bg-zinc-800"></div>
-            <div className="h-full min-w-[300px] rounded-sm bg-zinc-800"></div>
-            <div className="h-full min-w-[300px] rounded-sm bg-zinc-800"></div>
-            <div className="h-full min-w-[300px] rounded-sm bg-zinc-800"></div>
-            <div className="h-full min-w-[300px] rounded-sm bg-zinc-800"></div>
+            <div className="h-full min-w-[300px] rounded-sm bg-muted"></div>
+            <div className="h-full min-w-[300px] rounded-sm bg-muted"></div>
+            <div className="h-full min-w-[300px] rounded-sm bg-muted"></div>
+            <div className="h-full min-w-[300px] rounded-sm bg-muted"></div>
+            <div className="h-full min-w-[300px] rounded-sm bg-muted"></div>
           </div>
         </div>
       </main>
