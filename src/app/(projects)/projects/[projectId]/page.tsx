@@ -41,7 +41,7 @@ export default async function Page({ params }: PageProps) {
           <p className="text-muted-foreground">{project.description}</p>
         </div>
         <div className="h-full w-full rounded-md border">
-          <div className="flex h-full w-full gap-4 p-3">
+          <div className="flex h-full w-full gap-4 overflow-x-auto p-3">
             {/* COLUM */}
             <div className="h-full min-w-[300px] space-y-3 rounded-sm bg-muted p-3">
               <div className="flex w-full flex-row justify-between">
