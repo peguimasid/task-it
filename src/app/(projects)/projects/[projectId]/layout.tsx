@@ -77,7 +77,11 @@ export default async function ProjectLayout({ children, params: { projectId } }:
               </Link>
             </Button>
             <Icons.chevronRight className="mx-2 h-4 w-4 text-zinc-400" />
-            <h1 className="font-semibold">{project.name}</h1>
+            <Button asChild variant="link">
+              <Link href={`/projects/${projectId}`} className="!px-0 font-semibold">
+                {project.name}
+              </Link>
+            </Button>
           </div>
           <UserMenu />
         </div>
