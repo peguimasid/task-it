@@ -1,12 +1,12 @@
-import { NextResponse } from 'next/server';
-
 import { getServerAuthSession } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 
 export async function POST(request: Request) {
   const session = await getServerAuthSession();
 
-  if (!session) return null;
+  if (!session) {
+    return new Response('Unauthorized', { status: 401 });
+  }
 
   const { name, description } = await request.json();
 
@@ -22,5 +22,5 @@ export async function POST(request: Request) {
     }
   });
 
-  return NextResponse.json({ newProject });
+  return new Response(JSON.stringify({ newProject }));
 }
