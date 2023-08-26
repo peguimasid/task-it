@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "db-up": "docker-compose -f ./docker-compose.yaml up -d",
+    "db-down": "docker-compose -f ./docker-compose.yaml down",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
