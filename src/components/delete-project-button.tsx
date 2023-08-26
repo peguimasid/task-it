@@ -16,10 +16,10 @@ import {
   AlertDialogHeader,
   AlertDialogTitle
 } from './ui/alert-dialog';
-import { Button } from './ui/button';
+import { Button, ButtonProps } from './ui/button';
 import { toast } from './ui/use-toast';
 
-interface DeleteProjectButtonProps {
+interface DeleteProjectButtonProps extends ButtonProps {
   project: Pick<Project, 'id' | 'name'>;
 }
 
@@ -29,7 +29,7 @@ const deleteProject = async (projectId: Project['id']): Promise<void> => {
   });
 };
 
-export const DeleteProjectButton = ({ project }: DeleteProjectButtonProps) => {
+export const DeleteProjectButton = ({ project, ...rest }: DeleteProjectButtonProps) => {
   const router = useRouter();
 
   const [alertDialogOpen, setAlertDialogOpen] = useState<boolean>(false);
@@ -59,7 +59,7 @@ export const DeleteProjectButton = ({ project }: DeleteProjectButtonProps) => {
 
   return (
     <>
-      <Button variant="destructive" onClick={openAlertDialog}>
+      <Button variant="destructive" onClick={openAlertDialog} {...rest}>
         Delete project
       </Button>
       <AlertDialog open={alertDialogOpen} onOpenChange={setAlertDialogOpen}>

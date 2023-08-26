@@ -4,6 +4,7 @@ import { Project } from '@prisma/client';
 import { getServerAuthSession } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import { KanbanBoard } from '@/components/kanban-board';
+import { ProjectShell } from '@/components/project-shell';
 
 interface PageProps {
   params: { projectId: string };
@@ -35,12 +36,8 @@ export default async function Page({ params }: PageProps) {
   }
 
   return (
-    <main className="flex h-full w-full flex-col space-y-5 px-5">
-      <div className="space-y-2">
-        <h1 className="font-heading text-3xl md:text-4xl">{project.name}</h1>
-        <p className="text-muted-foreground">{project.description}</p>
-      </div>
+    <ProjectShell title={project.name} description={project.description}>
       <KanbanBoard />
-    </main>
+    </ProjectShell>
   );
 }

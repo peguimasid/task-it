@@ -4,6 +4,7 @@ import { Project } from '@prisma/client';
 import { getServerAuthSession } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import { DeleteProjectButton } from '@/components/delete-project-button';
+import { ProjectShell } from '@/components/project-shell';
 import { UpdateProjectDataForm } from '@/components/update-project-data-form';
 
 interface PageProps {
@@ -33,15 +34,9 @@ export default async function Page({ params }: PageProps) {
   }
 
   return (
-    <main className="flex h-full w-full flex-col space-y-5 px-5">
-      <div className="space-y-2">
-        <h1 className="font-heading text-3xl md:text-4xl">Settings</h1>
-        <p className="text-lg text-muted-foreground">Mange project settings</p>
-      </div>
+    <ProjectShell title="Settings" description="Mange project settings">
       <UpdateProjectDataForm project={project} />
-      <div>
-        <DeleteProjectButton project={project} />
-      </div>
-    </main>
+      <DeleteProjectButton project={project} className="w-36" />
+    </ProjectShell>
   );
 }
