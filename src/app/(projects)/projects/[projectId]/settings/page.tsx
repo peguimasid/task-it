@@ -33,7 +33,7 @@ export default async function Page({ params }: PageProps) {
   }
 
   return (
-    <main className="flex h-full flex-col space-y-5 px-5">
+    <main className="flex h-full w-full flex-col space-y-5 px-5">
       <div className="space-y-2">
         <h1 className="font-heading text-3xl md:text-4xl">Settings</h1>
         <p className="text-lg text-muted-foreground">Mange project settings</p>
