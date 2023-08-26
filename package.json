@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "db-up": "docker-compose -f ./docker-compose.yaml up -d",
+    "db-down": "docker-compose -f ./docker-compose.yaml down",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
@@ -33,6 +35,7 @@
     "next-auth": "^4.22.1",
     "next-themes": "^0.2.1",
     "react": "^18.2.0",
+    "react-beautiful-dnd": "^13.1.1",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.45.2",
     "tailwind-merge": "^1.14.0",

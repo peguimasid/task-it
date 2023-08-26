@@ -82,7 +82,7 @@ export default async function ProjectLayout({ children, params: { projectId } }:
           <UserMenu />
         </div>
       </header>
-      <div className="grid flex-1 pt-5 md:grid-cols-[300px_1fr]">
+      <div className="grid flex-1 py-5 md:grid-cols-[300px_1fr]">
         <aside className="hidden w-[300px] flex-col pl-5 md:flex">
           <DashboardNav items={sidebarItems} />
         </aside>
