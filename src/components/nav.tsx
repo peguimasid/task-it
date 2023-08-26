@@ -6,11 +6,11 @@ import { SidebarNavItem } from '@/types';
 
 import { Icons } from '@/components/icons';
 
-interface DashboardNavProps {
+interface ProjectNavProps {
   items: SidebarNavItem[];
 }
 
-export const DashboardNav = ({ items }: DashboardNavProps) => {
+export const ProjectNav = ({ items }: ProjectNavProps) => {
   const path = usePathname();
 
   if (!items?.length) {

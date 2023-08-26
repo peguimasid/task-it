@@ -9,7 +9,7 @@ import { getServerAuthSession } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import { Button } from '@/components/ui/button';
 import { Icons } from '@/components/icons';
-import { DashboardNav } from '@/components/nav';
+import { ProjectNav } from '@/components/nav';
 import { UserMenu } from '@/components/user-menu';
 
 interface PageProps {
@@ -88,7 +88,7 @@ export default async function ProjectLayout({ children, params: { projectId } }:
       </header>
       <div className="grid flex-1 py-5 md:grid-cols-[300px_1fr]">
         <aside className="hidden w-[300px] flex-col pl-5 md:flex">
-          <DashboardNav items={sidebarItems} />
+          <ProjectNav items={sidebarItems} />
         </aside>
         <main className="flex-1 overflow-hidden">{children}</main>
       </div>
