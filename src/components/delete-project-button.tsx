@@ -52,7 +52,7 @@ export const DeleteProjectButton = ({ project, ...rest }: DeleteProjectButtonPro
   }, []);
 
   const { isLoading, mutate } = useMutation({
-    mutationFn: () => deleteProject(project.id),
+    mutationFn: deleteProject,
     onSuccess,
     onError
   });
@@ -70,7 +70,7 @@ export const DeleteProjectButton = ({ project, ...rest }: DeleteProjectButtonPro
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel>Cancel</AlertDialogCancel>
-            <AlertDialogAction onClick={() => mutate()} className="bg-red-600 focus:ring-red-600">
+            <AlertDialogAction onClick={() => mutate(project.id)} className="bg-red-600 focus:ring-red-600">
               {isLoading ? (
                 <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
               ) : (
