@@ -1,6 +1,6 @@
 export const KanbanBoard = () => {
   return (
-    <div className="h-full w-full rounded-md border">
+    <div className="h-full w-full rounded-lg border">
       <div className="flex h-full w-full gap-4 overflow-x-auto p-3">
         {/* COLUM */}
         <div className="h-full min-w-[300px] space-y-3 rounded-sm bg-muted p-3">
