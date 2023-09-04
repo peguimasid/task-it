@@ -65,7 +65,7 @@ export default async function ProjectLayout({ children, params: { projectId } }:
   ];
 
   return (
-    <main className="flex min-h-[100dvh] w-full flex-col">
+    <div className="flex min-h-[100dvh] w-full flex-col">
       <header className="sticky inset-0 z-10 flex h-20 w-full border-b border-muted backdrop-blur-md">
         <div className="mx-auto flex w-full flex-row items-center justify-between px-10">
           <div className="flex items-center">
@@ -86,12 +86,12 @@ export default async function ProjectLayout({ children, params: { projectId } }:
           <UserMenu />
         </div>
       </header>
-      <div className="grid flex-1 py-5 md:grid-cols-[300px_1fr]">
-        <aside className="hidden w-[300px] flex-col pl-5 md:flex">
+      <div className="grid flex-1 md:grid-cols-[300px_1fr]">
+        <aside className="sticky top-20 hidden w-full flex-col self-start py-5 pl-5 md:flex">
           <ProjectNav items={sidebarItems} />
         </aside>
-        <main className="flex-1 overflow-hidden">{children}</main>
+        <main className="flex-1 overflow-hidden py-5">{children}</main>
       </div>
-    </main>
+    </div>
   );
 }
