@@ -3,8 +3,7 @@ import { Metadata } from 'next';
 import { getServerAuthSession } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import { CreateProjectButton } from '@/components/create-project-button';
-import { EmptyPlaceholder } from '@/components/empty-placeholder';
-import { ProjectItem } from '@/components/project-item';
+import { ProjectList } from '@/components/project-list';
 import { TopBar } from '@/components/top-bar';
 import { UserMenu } from '@/components/user-menu';
 
@@ -37,7 +36,7 @@ export default async function Page() {
       <TopBar>
         <UserMenu />
       </TopBar>
-      <div className="mx-auto flex h-full w-full max-w-4xl flex-col p-5 ">
+      <div className="mx-auto flex h-full w-full max-w-4xl flex-col p-5">
         <div className="space-y-8 py-4">
           <section className="flex flex-row items-center justify-between">
             <div className="space-y-2">
@@ -46,22 +45,7 @@ export default async function Page() {
             </div>
             <CreateProjectButton />
           </section>
-          {projects?.length ? (
-            <div className="divide-y divide-border rounded-md border">
-              {projects?.map((project) => (
-                <ProjectItem key={project.id} project={project} />
-              ))}
-            </div>
-          ) : (
-            <EmptyPlaceholder>
-              <EmptyPlaceholder.Icon name="kanbanSquare" />
-              <EmptyPlaceholder.Title>No projects created</EmptyPlaceholder.Title>
-              <EmptyPlaceholder.Description>
-                You don&apos;t have any project yet. Start by creating one.
-              </EmptyPlaceholder.Description>
-              <CreateProjectButton variant="outline" />
-            </EmptyPlaceholder>
-          )}
+          <ProjectList projects={projects} />
         </div>
       </div>
     </main>
