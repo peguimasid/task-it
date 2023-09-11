@@ -23,3 +23,5 @@ export type SidebarNavItem = {
       items: NavLink[];
     }
 );
+
+export type TaskStatus = 'BACKLOG' | 'IN_PROGRESS' | 'IN_REVIEW' | 'FINISHED';
