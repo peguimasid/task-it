@@ -1,4 +1,29 @@
+'use client';
+
+import { useParams } from 'next/navigation';
+import { useQuery } from '@tanstack/react-query';
+
+interface FetchProjectTasksProps {
+  queryKey: readonly unknown[] | [string];
+}
+
+const fetchProjectTasks = async ({ queryKey }: FetchProjectTasksProps) => {
+  const [, projectId] = queryKey;
+  const response = await fetch(`/api/projects/${projectId}/tasks`);
+  const responseData = await response.json();
+  return responseData;
+};
+
 export const KanbanBoard = () => {
+  const { projectId } = useParams();
+
+  const { data: tasks } = useQuery({
+    queryKey: ['projectTasks', projectId],
+    queryFn: fetchProjectTasks
+  });
+
+  console.log(tasks);
+
   return (
     <div className="h-full w-full rounded-lg border">
       <div className="flex h-full w-full gap-4 overflow-x-auto p-3">
