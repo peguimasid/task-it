@@ -1,13 +1,16 @@
 'use client';
 
 import { useParams } from 'next/navigation';
+import { Task } from '@prisma/client';
 import { useQuery } from '@tanstack/react-query';
 
 interface FetchProjectTasksProps {
   queryKey: readonly unknown[] | [string];
 }
 
-const fetchProjectTasks = async ({ queryKey }: FetchProjectTasksProps) => {
+type KanbanTask = Omit<Task, 'projectId' | 'createdAt' | 'updatedAt'>;
+
+const fetchProjectTasks = async ({ queryKey }: FetchProjectTasksProps): Promise<KanbanTask[]> => {
   const [, projectId] = queryKey;
   const response = await fetch(`/api/projects/${projectId}/tasks`);
   const responseData = await response.json();
