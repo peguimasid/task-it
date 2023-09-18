@@ -1,5 +1,6 @@
 import { z } from 'zod';
 
+import { prisma } from '@/lib/prisma';
 import { userHasAccessToProject } from '@/lib/project';
 
 const routeContextSchema = z.object({
@@ -18,9 +19,23 @@ export async function GET(request: Request, context: z.infer<typeof routeContext
       return new Response('You cannot access this route', { status: 403 });
     }
 
-    // return 'ok';
+    const tasks = await prisma.task.findMany({
+      select: {
+        id: true,
+        index: true,
+        title: true,
+        description: true,
+        tags: true,
+        status: true,
+        priority: true,
+        size: true
+      },
+      where: {
+        projectId: params.projectId
+      }
+    });
 
-    return new Response('ok', { status: 200 });
+    return new Response(JSON.stringify(tasks));
   } catch (error) {
     return new Response(null, { status: 500 });
   }
