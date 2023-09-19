@@ -13,3 +13,5 @@ export const READABLE_STATUS: Record<TaskStatus, string> = {
   IN_REVIEW: 'In review',
   DONE: 'Done'
 };
+
+export const statuses = Object.keys(TASK_STATUS) as TaskStatus[];

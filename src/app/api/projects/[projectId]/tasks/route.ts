@@ -20,16 +20,6 @@ export async function GET(request: Request, context: z.infer<typeof routeContext
     }
 
     const tasks = await prisma.task.findMany({
-      select: {
-        id: true,
-        index: true,
-        title: true,
-        description: true,
-        tags: true,
-        status: true,
-        priority: true,
-        size: true
-      },
       where: {
         projectId: params.projectId
       }
