@@ -1,6 +1,8 @@
 'use client';
 
 import { useParams } from 'next/navigation';
+import { TASK_STATUS } from '@/constants/task-statuses';
+import { TaskStatus } from '@/types';
 import { Task } from '@prisma/client';
 import { useQuery } from '@tanstack/react-query';
 
@@ -9,6 +11,8 @@ interface FetchProjectTasksProps {
 }
 
 type KanbanTask = Omit<Task, 'projectId' | 'createdAt' | 'updatedAt'>;
+
+const statuses = Object.keys(TASK_STATUS) as TaskStatus[];
 
 const fetchProjectTasks = async ({ queryKey }: FetchProjectTasksProps): Promise<KanbanTask[]> => {
   const [, projectId] = queryKey;
@@ -24,8 +28,6 @@ export const KanbanBoard = () => {
     queryKey: ['projectTasks', projectId],
     queryFn: fetchProjectTasks
   });
-
-  console.log(tasks);
 
   return (
     <div className="h-full w-full rounded-lg border">
