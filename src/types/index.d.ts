@@ -24,4 +24,4 @@ export type SidebarNavItem = {
     }
 );
 
-export type TaskStatus = 'BACKLOG' | 'IN_PROGRESS' | 'IN_REVIEW' | 'FINISHED';
+export type TaskStatus = 'BACKLOG' | 'IN_PROGRESS' | 'IN_REVIEW' | 'DONE';
