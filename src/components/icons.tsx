@@ -1,8 +1,11 @@
 import {
   AlertTriangle,
   ArrowRight,
+  Bookmark,
+  Check,
   ChevronLeft,
   ChevronRight,
+  Clock,
   CreditCard,
   File,
   FileText,
@@ -47,6 +50,9 @@ export const Icons = {
   laptop: Laptop,
   kanban: Kanban,
   kanbanSquare: KanbanSquare,
+  bookmark: Bookmark,
+  clock: Clock,
+  check: Check,
   logo: (props: LucideProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"

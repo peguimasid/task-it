@@ -1,8 +1,11 @@
 'use client';
 
-import { READABLE_STATUS } from '@/constants/task-statuses';
+import { READABLE_STATUS, TASK_STATUS_ICONS } from '@/constants/task-statuses';
 import { TaskStatus } from '@/types';
 import { Task } from '@prisma/client';
+import { Plus } from 'lucide-react';
+
+import { Button } from './ui/button';
 
 interface StatusColumnProps {
   tasks: Task[];
@@ -11,18 +14,26 @@ interface StatusColumnProps {
 
 export const StatusColumn = ({ status, tasks }: StatusColumnProps) => {
   const title = READABLE_STATUS[status];
+  const Icon = TASK_STATUS_ICONS[status];
 
   return (
-    <div className="h-full min-w-[350px] space-y-3 rounded-sm bg-muted p-3">
-      <div className="flex w-full flex-row justify-between">
-        <h1>{title}</h1>
-        <button>+</button>
-      </div>
-      {tasks.map((task) => (
-        <div key={task.id} className="h-20 w-full bg-blue-900">
-          {task.title}
+    <div className="h-full min-w-[350px] bg-muted rounded-lg border border-muted">
+      <div className="flex w-full bg-card rounded-t-lg flex-row items-center justify-between p-3">
+        <div className="flex gap-2 items-center">
+          <Icon className="w-4 h-4" />
+          <h1 className="font-semibold">{title}</h1>
         </div>
-      ))}
+        <Button variant="ghost" size="icon" className="w-7 h-7">
+          <Plus className="h-4 w-4" />
+        </Button>
+      </div>
+      <div className="bg-muted w-full space-y-3 p-3">
+        {tasks.map((task) => (
+          <div key={task.id} className="h-20 w-full bg-blue-900">
+            {task.title}
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

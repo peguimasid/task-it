@@ -1,16 +1,22 @@
 import { TaskStatus } from '@/types';
 
+import { Icons } from '@/components/icons';
+
 export const TASK_STATUS: Record<TaskStatus, TaskStatus> = {
   BACKLOG: 'BACKLOG',
   IN_PROGRESS: 'IN_PROGRESS',
-  IN_REVIEW: 'IN_REVIEW',
   DONE: 'DONE'
+};
+
+export const TASK_STATUS_ICONS: Record<TaskStatus, (typeof Icons)[keyof typeof Icons]> = {
+  BACKLOG: Icons.bookmark,
+  IN_PROGRESS: Icons.clock,
+  DONE: Icons.check
 };
 
 export const READABLE_STATUS: Record<TaskStatus, string> = {
   BACKLOG: 'Backlog',
   IN_PROGRESS: 'In progress',
-  IN_REVIEW: 'In review',
   DONE: 'Done'
 };
 
