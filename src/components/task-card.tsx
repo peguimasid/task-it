@@ -12,7 +12,7 @@ interface TaskCardProps {
 
 export const TaskCard = ({ task }: TaskCardProps) => {
   return (
-    <Card className="min-h-[7rem] p-3 group relative">
+    <Card className="min-h-[6rem] p-3 group relative">
       <CardTitle className="text-sm">{task.title}</CardTitle>
       <Button
         variant="outline"
