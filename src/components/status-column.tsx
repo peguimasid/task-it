@@ -19,7 +19,7 @@ export const StatusColumn = ({ status, tasks }: StatusColumnProps) => {
   const Icon = TASK_STATUS_ICONS[status];
 
   return (
-    <div className="h-full min-w-[350px] bg-secondary rounded-lg border border-secondary">
+    <div className="h-full w-[350px] min-w-[350px] bg-secondary rounded-lg border border-secondary">
       <div className="flex w-full bg-card rounded-t-lg flex-row items-center justify-between p-3">
         <div className="flex gap-2 items-center">
           <Icon className="w-4 h-4" />
