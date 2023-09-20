@@ -5,9 +5,9 @@ import { TaskStatus } from '@/types';
 import { Task } from '@prisma/client';
 import { Plus } from 'lucide-react';
 
+import { TaskCard } from './task-card';
 import { Badge } from './ui/badge';
 import { Button } from './ui/button';
-import { Card, CardTitle } from './ui/card';
 
 interface StatusColumnProps {
   tasks: Task[];
@@ -32,9 +32,7 @@ export const StatusColumn = ({ status, tasks }: StatusColumnProps) => {
       </div>
       <div className="w-full space-y-3 p-3">
         {tasks.map((task) => (
-          <Card key={task.id} className="h-20">
-            <CardTitle className="text-md">{task.title}</CardTitle>
-          </Card>
+          <TaskCard key={task.id} task={task} />
         ))}
       </div>
     </div>
