@@ -1,8 +1,10 @@
 'use client';
 
+import Link from 'next/link';
 import { Task } from '@prisma/client';
-import { MoreHorizontal } from 'lucide-react';
+import { Anchor, Bell, MoreHorizontal } from 'lucide-react';
 
+import { Badge } from './ui/badge';
 import { Button } from './ui/button';
 import { Card, CardTitle } from './ui/card';
 
@@ -12,8 +14,23 @@ interface TaskCardProps {
 
 export const TaskCard = ({ task }: TaskCardProps) => {
   return (
-    <Card className="min-h-[6rem] p-3 group relative">
+    <Card className="min-h-[6rem] p-3 group space-y-2 relative">
       <CardTitle className="text-sm">{task.title}</CardTitle>
+      <div className="flex gap-2 flex-wrap">
+        <Badge variant="secondary">
+          <Bell className="w-3 h-3 mr-1" />
+          {task.priority}
+        </Badge>
+        <Badge variant="secondary">
+          <Anchor className="w-3 h-3 mr-1" />
+          {task.size}
+        </Badge>
+        {task.tags?.map((tag) => (
+          <Badge key={tag} variant="secondary">
+            {tag}
+          </Badge>
+        ))}
+      </div>
       <Button
         variant="outline"
         size="icon"
