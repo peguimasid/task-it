@@ -37,7 +37,7 @@ export default async function Page({ params }: PageProps) {
 
   return (
     <ProjectShell title={project.name} description={project.description}>
-      <KanbanBoard />
+      <KanbanBoard tasks={project.tasks} />
     </ProjectShell>
   );
 }
