@@ -10,10 +10,14 @@ interface PageProps {
   params: { projectId: string };
 }
 
+const delay = async (time = 0) => new Promise((resolve) => setTimeout(resolve, time));
+
 const getProjectForUser = async (projectId: Project['id']) => {
   const session = await getServerAuthSession();
 
   if (!session) return null;
+
+  await delay(3000);
 
   const project = await prisma.project.findFirst({
     where: {
