@@ -40,7 +40,7 @@ By combining these essential features, Task-it simplifies project management, em
 2. Tasks
     - [x] Develop an endpoint to retrieve project-specific tasks.
     - [x] Create a `StatusColumn` component to display task columns for each status.
-    - [ ] Design a `TaskCard` component to present individual tasks within status columns.
+    - [x] Design a `TaskCard` component to present individual tasks within status columns.
     - [ ] Enable drag-and-drop functionality for seamless task movement between columns.
     - [ ] Implement a modal for adding new tasks to the project.
     - [ ] Add task editing features, including modifications to title, description, status, priority, size, and tags.
