@@ -22,6 +22,7 @@ export const KanbanBoard = ({ tasks: initialState }: KanbanBoardProps) => {
 
   const onDragEnd = (dropResult: DropResult) => {
     const reorderedTasks = reorderTasksOnDrop(dropResult, tasks);
+    if (!reorderedTasks?.length) return;
     setTasks(reorderedTasks);
   };
 

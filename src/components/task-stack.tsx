@@ -12,7 +12,7 @@ interface TaskStackProps {
 
 export const TaskStack = ({ tasks, provided }: TaskStackProps) => {
   return (
-    <div ref={provided.innerRef} className="h-full w-full space-y-3 p-3">
+    <div ref={provided.innerRef} className="flex flex-col h-full w-full p-3">
       {tasks.map((task, index) => (
         <TaskCard key={task.id} task={task} index={index} />
       ))}
