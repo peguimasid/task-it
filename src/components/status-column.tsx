@@ -2,6 +2,7 @@
 
 import { READABLE_STATUS, TASK_STATUS_ICONS } from '@/constants/task-statuses';
 import { TaskStatus } from '@/types';
+import { Droppable } from '@hello-pangea/dnd';
 import { Task } from '@prisma/client';
 import { Plus } from 'lucide-react';
 
@@ -30,11 +31,16 @@ export const StatusColumn = ({ status, tasks }: StatusColumnProps) => {
           <Plus className="h-4 w-4" />
         </Button>
       </div>
-      <div className="w-full space-y-3 p-3">
-        {tasks.map((task) => (
-          <TaskCard key={task.id} task={task} />
-        ))}
-      </div>
+      <Droppable droppableId={status}>
+        {(provided) => (
+          <div ref={provided.innerRef} {...provided.droppableProps} className="w-full space-y-3 p-3">
+            {tasks.map((task, index) => (
+              <TaskCard key={task.id} task={task} index={index} />
+            ))}
+            {provided.placeholder}
+          </div>
+        )}
+      </Droppable>
     </div>
   );
 };
