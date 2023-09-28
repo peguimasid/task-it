@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { statuses } from '@/constants/task-statuses';
 import { TaskStatus } from '@/types';
 import { Task } from '@prisma/client';
@@ -10,7 +11,9 @@ interface KanbanBoardProps {
   tasks: Task[];
 }
 
-export const KanbanBoard = ({ tasks }: KanbanBoardProps) => {
+export const KanbanBoard = ({ tasks: initialState }: KanbanBoardProps) => {
+  const [tasks, setTasks] = useState(initialState);
+
   const getTasksByStatus = (status: TaskStatus): Task[] => {
     return tasks?.filter((task) => task.status === status) ?? [];
   };
