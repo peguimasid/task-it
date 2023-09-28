@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { statuses } from '@/constants/task-statuses';
 import { TaskStatus } from '@/types';
+import { reorderTasksOnDrop } from '@/utils/dnd/reorders-tasks-on-drop';
 import { DragDropContext, DropResult } from '@hello-pangea/dnd';
 import { Task } from '@prisma/client';
 
@@ -20,7 +21,8 @@ export const KanbanBoard = ({ tasks: initialState }: KanbanBoardProps) => {
   };
 
   const onDragEnd = (dropResult: DropResult) => {
-    console.log(dropResult);
+    const reorderedTasks = reorderTasksOnDrop(dropResult, tasks);
+    setTasks(reorderedTasks);
   };
 
   return (
