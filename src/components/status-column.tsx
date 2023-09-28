@@ -6,7 +6,7 @@ import { Droppable } from '@hello-pangea/dnd';
 import { Task } from '@prisma/client';
 import { Plus } from 'lucide-react';
 
-import { TaskCard } from './task-card';
+import { TaskStack } from './task-stack';
 import { Badge } from './ui/badge';
 import { Button } from './ui/button';
 
@@ -32,14 +32,7 @@ export const StatusColumn = ({ status, tasks }: StatusColumnProps) => {
         </Button>
       </div>
       <Droppable droppableId={status}>
-        {(provided) => (
-          <div ref={provided.innerRef} {...provided.droppableProps} className="h-full w-full space-y-3 p-3">
-            {tasks.map((task, index) => (
-              <TaskCard key={task.id} task={task} index={index} />
-            ))}
-            {provided.placeholder}
-          </div>
-        )}
+        {(provided) => <TaskStack {...provided.droppableProps} tasks={tasks} provided={provided} />}
       </Droppable>
     </div>
   );
