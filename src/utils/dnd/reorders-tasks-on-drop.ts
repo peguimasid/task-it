@@ -4,15 +4,13 @@ import { Task } from '@prisma/client';
 function reorderInSameColumn(dropResult: DropResult, tasks: Task[], movedTask: Task) {
   const { destination, source } = dropResult;
 
-  const newTasks = tasks.filter((t) => t.status === destination!.droppableId);
+  const newTasks = tasks.filter((task) => task.status === destination?.droppableId);
 
-  newTasks.splice(source.index, 1);
-  newTasks.splice(destination!.index, 0, movedTask);
+  console.log(newTasks);
 
-  return newTasks.map((task, index) => ({
-    ...task,
-    index
-  }));
+  console.log(source, destination);
+
+  return newTasks;
 }
 
 export function reorderTasksOnDrop(dropResult: DropResult, tasks: Task[]) {
@@ -28,8 +26,8 @@ export function reorderTasksOnDrop(dropResult: DropResult, tasks: Task[]) {
 
   const movedTask = tasks.find((task) => task.id === draggableId) as Task;
 
-  if (hasChangedIndex && hasChangedColumn) {
-    // return reordedBetweenColumns(dropResult, tasks, movedTask);
+  if (hasChangedColumn) {
+    // return reorderBetweenColumns(dropResult, tasks, movedTask);
     return;
   }
 
