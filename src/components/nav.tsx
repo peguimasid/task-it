@@ -18,7 +18,7 @@ export const ProjectNav = ({ items }: ProjectNavProps) => {
   }
 
   return (
-    <nav className="grid items-start gap-2">
+    <nav className="grid items-start gap-1">
       {items.map((item) => {
         const Icon = Icons[item?.icon ?? 'arrowRight'];
         return (
