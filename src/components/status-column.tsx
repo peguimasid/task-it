@@ -20,9 +20,7 @@ export const StatusColumn = ({ status, data }: StatusColumnProps) => {
   const title = READABLE_STATUS[status];
   const Icon = TASK_STATUS_ICONS[status];
 
-  const tasks = useMemo(() => {
-    return data?.filter((task) => task.status === status);
-  }, []);
+  const tasks = data?.filter((task) => task.status === status) ?? [];
 
   return (
     <div className="h-full w-[350px] min-w-[350px] bg-secondary rounded-lg border border-secondary overflow-hidden">
