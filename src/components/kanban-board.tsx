@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useParams, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { statuses } from '@/constants/task-statuses';
 import { reorderTasksOnDrop } from '@/utils/dnd/reorders-tasks-on-drop';
 import { DragDropContext, DropResult } from '@hello-pangea/dnd';
@@ -11,6 +11,7 @@ import { useMutation } from '@tanstack/react-query';
 import { StatusColumn } from './status-column';
 
 interface KanbanBoardProps {
+  projectId: Project['id'];
   tasks: Task[];
 }
 
@@ -26,9 +27,8 @@ const reorderTasks = async ({ projectId, reorderedTasks }: ReorderTasksProps): P
   });
 };
 
-export const KanbanBoard = ({ tasks: initialState }: KanbanBoardProps) => {
+export const KanbanBoard = ({ projectId, tasks: initialState }: KanbanBoardProps) => {
   const router = useRouter();
-  const { projectId }: { projectId: string } = useParams();
 
   const [tasks, setTasks] = useState(initialState);
 
