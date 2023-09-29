@@ -32,6 +32,10 @@ export const KanbanBoard = ({ projectId, tasks: initialState }: KanbanBoardProps
 
   const [tasks, setTasks] = useState(initialState);
 
+  const handleCreateTask = (newTask: Task) => {
+    setTasks((prevTasks) => [newTask, ...prevTasks]);
+  };
+
   const dropTaskMutation = useMutation({
     mutationFn: reorderTasks,
     onSettled: router.refresh
@@ -49,7 +53,7 @@ export const KanbanBoard = ({ projectId, tasks: initialState }: KanbanBoardProps
       <div className="h-full w-full rounded-lg border">
         <div className="flex h-full w-full gap-4 overflow-x-auto p-3">
           {statuses.map((status) => (
-            <StatusColumn key={status} status={status} data={tasks} />
+            <StatusColumn key={status} status={status} data={tasks} onCreateTask={handleCreateTask} />
           ))}
         </div>
       </div>

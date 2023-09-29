@@ -1,5 +1,3 @@
-'use client';
-
 import { useMemo } from 'react';
 import { READABLE_STATUS, TASK_STATUS_ICONS } from '@/constants/task-statuses';
 import { TaskStatus } from '@/types';
@@ -13,9 +11,10 @@ import { Badge } from './ui/badge';
 interface StatusColumnProps {
   data: Task[];
   status: TaskStatus;
+  onCreateTask: (newTask: Task) => void;
 }
 
-export const StatusColumn = ({ status, data }: StatusColumnProps) => {
+export const StatusColumn = ({ status, data, onCreateTask }: StatusColumnProps) => {
   const title = READABLE_STATUS[status];
   const Icon = TASK_STATUS_ICONS[status];
 
@@ -31,7 +30,7 @@ export const StatusColumn = ({ status, data }: StatusColumnProps) => {
           <h1 className="font-semibold">{title}</h1>
           <Badge variant="secondary">{tasks.length}</Badge>
         </div>
-        <CreateTaskButton status={status} variant="ghost" className="h-7 w-7" />
+        <CreateTaskButton status={status} variant="ghost" className="h-7 w-7" onCreateTask={onCreateTask} />
       </div>
       <Droppable droppableId={status}>
         {(provided) => <TaskStack {...provided.droppableProps} tasks={tasks} provided={provided} />}

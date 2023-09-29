@@ -31,7 +31,7 @@ export async function POST(request: Request, context: z.infer<typeof routeContex
       data: { index: { increment: 1 } }
     });
 
-    await prisma.task.create({
+    const newTask = await prisma.task.create({
       data: {
         title,
         status,
@@ -39,7 +39,7 @@ export async function POST(request: Request, context: z.infer<typeof routeContex
       }
     });
 
-    return new Response(null, { status: 200 });
+    return new Response(JSON.stringify({ newTask }), { status: 201 });
   } catch (error) {
     if (error instanceof z.ZodError) {
       return new Response(JSON.stringify(error.issues), { status: 422 });

@@ -1,10 +1,8 @@
-'use client';
-
 import { useCallback, useMemo, useState } from 'react';
-import { useParams, useRouter } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import { TaskStatus } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Project } from '@prisma/client';
+import { Project, Task } from '@prisma/client';
 import { useMutation } from '@tanstack/react-query';
 import { isEmpty } from 'lodash';
 import { Loader2, Plus, SendHorizonal } from 'lucide-react';
@@ -32,6 +30,11 @@ type FormValues = z.infer<typeof createProjectSchema>;
 
 interface CreateTaskButtonProps extends ButtonProps {
   status: TaskStatus;
+  onCreateTask: (newTask: Task) => void;
+}
+
+interface CreateTaskResponse {
+  newTask: Task;
 }
 
 interface CreateTaskProps {
@@ -40,17 +43,17 @@ interface CreateTaskProps {
   status: TaskStatus;
 }
 
-const createTask = async ({ projectId, title, status }: CreateTaskProps) => {
-  await fetch(`/api/projects/${projectId}/tasks`, {
+const createTask = async ({ projectId, title, status }: CreateTaskProps): Promise<CreateTaskResponse> => {
+  const response = await fetch(`/api/projects/${projectId}/tasks`, {
     method: 'POST',
     body: JSON.stringify({ title, status })
   });
+  const responseData = await response.json();
+  return responseData;
 };
 
-export const CreateTaskButton = ({ className, variant, status, ...props }: CreateTaskButtonProps) => {
+export const CreateTaskButton = ({ className, variant, status, onCreateTask, ...props }: CreateTaskButtonProps) => {
   const { projectId }: { projectId: string } = useParams();
-
-  const router = useRouter();
 
   const [open, setOpen] = useState<boolean>(false);
 
@@ -62,11 +65,14 @@ export const CreateTaskButton = ({ className, variant, status, ...props }: Creat
 
   const { isValid, dirtyFields, errors } = form.formState;
 
-  const onSuccess = useCallback(() => {
-    setOpen(false);
-    form.reset(defaultValues);
-    router.refresh();
-  }, [form, router]);
+  const onSuccess = useCallback(
+    ({ newTask }: CreateTaskResponse) => {
+      form.reset(defaultValues);
+      setOpen(false);
+      onCreateTask(newTask);
+    },
+    [form, onCreateTask]
+  );
 
   const { isLoading, mutate } = useMutation({
     mutationFn: createTask,
