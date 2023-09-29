@@ -12,16 +12,16 @@ interface TagsListProps {
 
 export const TagsList = ({ priority, size, tags }: TagsListProps) => {
   return (
-    <div className="flex gap-2 flex-wrap">
+    <div className="flex flex-wrap gap-2">
       {priority && (
         <Badge variant="secondary">
-          <Bell className="w-3 h-3 mr-1" />
+          <Bell className="mr-1 h-3 w-3" />
           {priority}
         </Badge>
       )}
       {size && (
         <Badge data-has-size={!!size} variant="secondary" className="data-[has-size=false]:hidden">
-          <Anchor className="w-3 h-3 mr-1" />
+          <Anchor className="mr-1 h-3 w-3" />
           {size}
         </Badge>
       )}

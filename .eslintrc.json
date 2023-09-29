@@ -3,22 +3,15 @@
   "root": true,
   "extends": [
     "next/core-web-vitals",
-    "plugin:@next/next/recommended",
-    "eslint:recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:prettier/recommended",
-    "plugin:react/recommended",
-    "plugin:react/jsx-runtime",
-    "plugin:react-hooks/recommended",
-    "plugin:@tanstack/eslint-plugin-query/recommended",
-    "plugin:tailwindcss/recommended"
+    "prettier",
+    "plugin:tailwindcss/recommended",
+    "plugin:@tanstack/eslint-plugin-query/recommended"
   ],
-  "plugins": ["react", "react-hooks", "prettier", "@typescript-eslint", "@tanstack/query", "tailwindcss"],
+  "plugins": ["@tanstack/query", "tailwindcss"],
   "rules": {
     "@next/next/no-html-link-for-pages": "off",
     "react/jsx-key": "off",
     "tailwindcss/no-custom-classname": "off",
-    "react/prop-types": "off",
     "tailwindcss/classnames-order": "error"
   },
   "settings": {

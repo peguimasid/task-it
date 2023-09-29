@@ -20,17 +20,19 @@ export const StatusColumn = ({ status, data }: StatusColumnProps) => {
   const title = READABLE_STATUS[status];
   const Icon = TASK_STATUS_ICONS[status];
 
-  const tasks = data?.filter((task) => task.status === status) ?? [];
+  const tasks = useMemo(() => {
+    return data?.filter((task) => task.status === status) ?? [];
+  }, [data, status]);
 
   return (
-    <div className="h-full w-[350px] min-w-[350px] bg-secondary rounded-lg border border-secondary overflow-hidden">
-      <div className="flex w-full bg-card rounded-t-lg flex-row items-center justify-between p-3">
-        <div className="flex gap-2 items-center">
-          <Icon className="w-4 h-4" />
+    <div className="h-full w-[350px] min-w-[350px] overflow-hidden rounded-lg border border-secondary bg-secondary">
+      <div className="flex w-full flex-row items-center justify-between rounded-t-lg bg-card p-3">
+        <div className="flex items-center gap-2">
+          <Icon className="h-4 w-4" />
           <h1 className="font-semibold">{title}</h1>
           <Badge variant="secondary">{tasks.length}</Badge>
         </div>
-        <Button variant="ghost" size="icon" className="w-7 h-7">
+        <Button variant="ghost" size="icon" className="h-7 w-7">
           <Plus className="h-4 w-4" />
         </Button>
       </div>

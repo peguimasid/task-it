@@ -18,7 +18,7 @@ export const TaskCard = ({ task, index }: TaskCardProps) => {
     <Draggable draggableId={task.id} index={index}>
       {(provided) => (
         <Card
-          className="min-h-[6rem] p-3 group space-y-2 mb-3 relative"
+          className="group relative mb-3 min-h-[6rem] space-y-2 p-3"
           ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
@@ -28,7 +28,7 @@ export const TaskCard = ({ task, index }: TaskCardProps) => {
           <Button
             variant="outline"
             size="icon"
-            className="w-6 h-6 absolute opacity-0 top-0 right-0 group-hover:opacity-100 transition m-3"
+            className="absolute right-0 top-0 m-3 h-6 w-6 opacity-0 transition group-hover:opacity-100"
           >
             <MoreHorizontal className="h-4 w-4" />
           </Button>
