@@ -16,10 +16,6 @@ interface KanbanBoardProps {
 export const KanbanBoard = ({ tasks: initialState }: KanbanBoardProps) => {
   const [tasks, setTasks] = useState(initialState);
 
-  const getTasksByStatus = (status: TaskStatus): Task[] => {
-    return tasks?.filter((task) => task.status === status) ?? [];
-  };
-
   const onDragEnd = (dropResult: DropResult) => {
     const reorderedTasks = reorderTasksOnDrop(dropResult, tasks);
     if (!reorderedTasks?.length) return;
@@ -31,7 +27,7 @@ export const KanbanBoard = ({ tasks: initialState }: KanbanBoardProps) => {
       <div className="h-full w-full rounded-lg border">
         <div className="flex h-full w-full gap-4 overflow-x-auto p-3">
           {statuses.map((status) => (
-            <StatusColumn key={status} status={status} tasks={getTasksByStatus(status)} />
+            <StatusColumn key={status} status={status} data={tasks} />
           ))}
         </div>
       </div>
