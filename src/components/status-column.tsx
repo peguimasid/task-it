@@ -31,7 +31,7 @@ export const StatusColumn = ({ status, data }: StatusColumnProps) => {
           <h1 className="font-semibold">{title}</h1>
           <Badge variant="secondary">{tasks.length}</Badge>
         </div>
-        <CreateTaskButton variant="ghost" className="h-7 w-7" />
+        <CreateTaskButton status={status} variant="ghost" className="h-7 w-7" />
       </div>
       <Droppable droppableId={status}>
         {(provided) => <TaskStack {...provided.droppableProps} tasks={tasks} provided={provided} />}

@@ -2,39 +2,36 @@
 
 import { useCallback, useMemo, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { TaskStatus } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
 import { isEmpty } from 'lodash';
-import { Loader2, Plus } from 'lucide-react';
+import { Loader2, Plus, SendHorizonal } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
 import { cn } from '@/lib/utils';
 import { Button, ButtonProps } from '@/components/ui/button';
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger
-} from '@/components/ui/dialog';
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 
 const createProjectSchema = z.object({
-  name: z.string().min(1, { message: 'Name is required' }).max(30, { message: 'Name can have at most 30 characters' }),
-  description: z.string().max(200, { message: 'Can you keep under 200 characters please?' }).optional()
+  title: z
+    .string()
+    .min(1, { message: 'This field is required' })
+    .max(500, { message: 'Title can have at most 500 characters' })
 });
 
 const defaultValues = {
-  name: '',
-  description: ''
+  title: ''
 };
 
 type FormValues = z.infer<typeof createProjectSchema>;
 
-type CreateTaskButtonProps = ButtonProps;
+interface CreateTaskButtonProps extends ButtonProps {
+  status: TaskStatus;
+}
 
 const createTask = async (data: FormValues) => {
   console.log(data);
@@ -54,8 +51,10 @@ export const CreateTaskButton = ({ className, variant, ...props }: CreateTaskBut
   const { isValid, dirtyFields } = form.formState;
 
   const onSuccess = useCallback(() => {
+    setOpen(false);
+    form.reset(defaultValues);
     router.refresh();
-  }, [router]);
+  }, [form, router]);
 
   const { isLoading, mutate } = useMutation({
     mutationFn: createTask,
@@ -77,61 +76,39 @@ export const CreateTaskButton = ({ className, variant, ...props }: CreateTaskBut
   const onSubmit = useCallback((formData: FormValues) => mutate(formData), [mutate]);
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogTrigger asChild>
+    <Popover open={open} onOpenChange={onOpenChange}>
+      <PopoverTrigger asChild>
         <Button size="icon" className={cn('gap-2', className)} variant={variant} {...props}>
           <Plus className="h-4 w-4" />
         </Button>
-      </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
-        <DialogHeader>
-          <DialogTitle>Create Project</DialogTitle>
-          <DialogDescription>Add name and description to create your project</DialogDescription>
-        </DialogHeader>
+      </PopoverTrigger>
+      <PopoverContent side="left" className="w-[425px]">
         <Form {...form}>
           <form
             name="createProjectForm"
             noValidate
             onSubmit={form.handleSubmit(onSubmit)}
-            className="flex flex-col space-y-4"
+            className="flex justify-between gap-2"
           >
             <FormField
               control={form.control}
-              name="name"
+              name="title"
               render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Name</FormLabel>
+                <FormItem className="w-full">
                   <FormControl>
-                    <Input {...field} autoComplete="off" />
+                    <Input {...field} placeholder="Title" autoComplete="off" className="h-8" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
-            <FormField
-              control={form.control}
-              name="description"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Description</FormLabel>
-                  <FormControl>
-                    <Input {...field} autoComplete="off" />
-                  </FormControl>
-                  <FormDescription>This is optional but very useful</FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <Button type="submit" disabled={isSubmitButtonDisabled}>
-              <Loader2
-                data-loading={isLoading}
-                className="mr-2 hidden h-4 w-4 animate-spin data-[loading=true]:block"
-              />
-              Send
+            <Button className="h-8" type="submit" size="icon" disabled={isSubmitButtonDisabled}>
+              <Loader2 data-loading={isLoading} className="hidden h-4 w-4 animate-spin data-[loading=true]:block" />
+              <SendHorizonal data-loading={isLoading} className="h-4 w-4 data-[loading=true]:hidden" />
             </Button>
           </form>
         </Form>
-      </DialogContent>
-    </Dialog>
+      </PopoverContent>
+    </Popover>
   );
 };
