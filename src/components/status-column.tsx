@@ -5,11 +5,10 @@ import { READABLE_STATUS, TASK_STATUS_ICONS } from '@/constants/task-statuses';
 import { TaskStatus } from '@/types';
 import { Droppable } from '@hello-pangea/dnd';
 import { Task } from '@prisma/client';
-import { Plus } from 'lucide-react';
 
+import { CreateTaskButton } from './create-task-button';
 import { TaskStack } from './task-stack';
 import { Badge } from './ui/badge';
-import { Button } from './ui/button';
 
 interface StatusColumnProps {
   data: Task[];
@@ -32,9 +31,7 @@ export const StatusColumn = ({ status, data }: StatusColumnProps) => {
           <h1 className="font-semibold">{title}</h1>
           <Badge variant="secondary">{tasks.length}</Badge>
         </div>
-        <Button variant="ghost" size="icon" className="h-7 w-7">
-          <Plus className="h-4 w-4" />
-        </Button>
+        <CreateTaskButton variant="ghost" className="h-7 w-7" />
       </div>
       <Droppable droppableId={status}>
         {(provided) => <TaskStack {...provided.droppableProps} tasks={tasks} provided={provided} />}
