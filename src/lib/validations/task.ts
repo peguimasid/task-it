@@ -9,3 +9,11 @@ export const taskPatchSchema = z.object({
     })
   )
 });
+
+export const taskPostSchema = z.object({
+  status: z.string(),
+  title: z
+    .string()
+    .min(1, { message: 'This field is required' })
+    .max(500, { message: 'Title can have at most 500 characters' })
+});

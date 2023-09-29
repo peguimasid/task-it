@@ -1,9 +1,10 @@
 'use client';
 
 import { useCallback, useMemo, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import { TaskStatus } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { Project } from '@prisma/client';
 import { useMutation } from '@tanstack/react-query';
 import { isEmpty } from 'lodash';
 import { Loader2, Plus, SendHorizonal } from 'lucide-react';
@@ -33,11 +34,22 @@ interface CreateTaskButtonProps extends ButtonProps {
   status: TaskStatus;
 }
 
-const createTask = async (data: FormValues) => {
-  console.log(data);
+interface CreateTaskProps {
+  projectId: Project['id'];
+  title: FormValues['title'];
+  status: TaskStatus;
+}
+
+const createTask = async ({ projectId, title, status }: CreateTaskProps) => {
+  await fetch(`/api/projects/${projectId}/tasks`, {
+    method: 'POST',
+    body: JSON.stringify({ title, status })
+  });
 };
 
-export const CreateTaskButton = ({ className, variant, ...props }: CreateTaskButtonProps) => {
+export const CreateTaskButton = ({ className, variant, status, ...props }: CreateTaskButtonProps) => {
+  const { projectId }: { projectId: string } = useParams();
+
   const router = useRouter();
 
   const [open, setOpen] = useState<boolean>(false);
@@ -73,7 +85,12 @@ export const CreateTaskButton = ({ className, variant, ...props }: CreateTaskBut
     [form]
   );
 
-  const onSubmit = useCallback((formData: FormValues) => mutate(formData), [mutate]);
+  const onSubmit = useCallback(
+    ({ title }: FormValues) => {
+      mutate({ projectId, title, status });
+    },
+    [mutate, projectId, status]
+  );
 
   return (
     <Popover open={open} onOpenChange={onOpenChange}>

@@ -2,13 +2,52 @@ import { z } from 'zod';
 
 import { prisma } from '@/lib/prisma';
 import { userHasAccessToProject } from '@/lib/project';
-import { taskPatchSchema } from '@/lib/validations/task';
+import { taskPatchSchema, taskPostSchema } from '@/lib/validations/task';
 
 const routeContextSchema = z.object({
   params: z.object({
     projectId: z.string()
   })
 });
+
+export async function POST(request: Request, context: z.infer<typeof routeContextSchema>) {
+  try {
+    const { params } = routeContextSchema.parse(context);
+
+    const userCanAccessProject = await userHasAccessToProject(params.projectId);
+
+    if (!userCanAccessProject) {
+      return new Response('You cannot access this route', { status: 403 });
+    }
+
+    const json = await request.json();
+    const { title, status } = taskPostSchema.parse(json);
+
+    await prisma.task.updateMany({
+      where: {
+        projectId: params.projectId,
+        status: { equals: status }
+      },
+      data: { index: { increment: 1 } }
+    });
+
+    await prisma.task.create({
+      data: {
+        title,
+        status,
+        projectId: params.projectId
+      }
+    });
+
+    return new Response(null, { status: 200 });
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      return new Response(JSON.stringify(error.issues), { status: 422 });
+    }
+
+    return new Response(null, { status: 500 });
+  }
+}
 
 export async function PATCH(request: Request, context: z.infer<typeof routeContextSchema>) {
   try {
