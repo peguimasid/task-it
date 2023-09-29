@@ -1,8 +1,7 @@
-import { Project } from '@prisma/client';
 import { z } from 'zod';
 
-import { getServerAuthSession } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
+import { userHasAccessToProject } from '@/lib/project';
 import { taskPatchSchema } from '@/lib/validations/task';
 
 const routeContextSchema = z.object({
@@ -41,19 +40,4 @@ export async function PATCH(request: Request, context: z.infer<typeof routeConte
 
     return new Response(null, { status: 500 });
   }
-}
-
-async function userHasAccessToProject(projectId: Project['id']): Promise<boolean> {
-  const session = await getServerAuthSession();
-
-  if (!session) return false;
-
-  const count = await prisma.project.count({
-    where: {
-      id: projectId,
-      userId: session.user.id
-    }
-  });
-
-  return count > 0;
 }
