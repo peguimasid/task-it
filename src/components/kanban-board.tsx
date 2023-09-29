@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { statuses } from '@/constants/task-statuses';
-import { TaskStatus } from '@/types';
 import { reorderTasksOnDrop } from '@/utils/dnd/reorders-tasks-on-drop';
 import { DragDropContext, DropResult } from '@hello-pangea/dnd';
 import { Task } from '@prisma/client';
