@@ -48,7 +48,7 @@ export const CreateTaskButton = ({ className, variant, ...props }: CreateTaskBut
     resolver: zodResolver(createProjectSchema)
   });
 
-  const { isValid, dirtyFields } = form.formState;
+  const { isValid, dirtyFields, errors } = form.formState;
 
   const onSuccess = useCallback(() => {
     setOpen(false);
@@ -82,13 +82,14 @@ export const CreateTaskButton = ({ className, variant, ...props }: CreateTaskBut
           <Plus className="h-4 w-4" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent side="left" className="w-[425px]">
+      <PopoverContent side="left" className="w-[425px] rounded-lg">
         <Form {...form}>
           <form
             name="createProjectForm"
             noValidate
             onSubmit={form.handleSubmit(onSubmit)}
-            className="flex justify-between gap-2"
+            data-has-errors={!isEmpty(errors)}
+            className="flex items-center justify-between gap-4 data-[has-errors=true]:items-start"
           >
             <FormField
               control={form.control}
@@ -96,13 +97,13 @@ export const CreateTaskButton = ({ className, variant, ...props }: CreateTaskBut
               render={({ field }) => (
                 <FormItem className="w-full">
                   <FormControl>
-                    <Input {...field} placeholder="Title" autoComplete="off" className="h-8" />
+                    <Input {...field} placeholder="Title" autoComplete="off" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
-            <Button className="h-8" type="submit" size="icon" disabled={isSubmitButtonDisabled}>
+            <Button type="submit" size="icon" className="h-9" disabled={isSubmitButtonDisabled}>
               <Loader2 data-loading={isLoading} className="hidden h-4 w-4 animate-spin data-[loading=true]:block" />
               <SendHorizonal data-loading={isLoading} className="h-4 w-4 data-[loading=true]:hidden" />
             </Button>
