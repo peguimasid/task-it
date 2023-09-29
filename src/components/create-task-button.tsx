@@ -120,7 +120,7 @@ export const CreateTaskButton = ({ className, variant, status, onCreateTask, ...
               render={({ field }) => (
                 <FormItem className="w-full">
                   <FormControl>
-                    <Input {...field} placeholder="Title" autoComplete="off" />
+                    <Input {...field} placeholder="Title" autoComplete="off" disabled={isLoading} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
