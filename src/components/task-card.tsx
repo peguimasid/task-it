@@ -2,10 +2,9 @@
 
 import { Draggable } from '@hello-pangea/dnd';
 import { Task } from '@prisma/client';
-import { MoreHorizontal } from 'lucide-react';
 
 import { TagsList } from './tags-list';
-import { Button } from './ui/button';
+import { TaskOperations } from './task-operations';
 import { Card, CardTitle } from './ui/card';
 
 interface TaskCardProps {
@@ -25,13 +24,7 @@ export const TaskCard = ({ task, index }: TaskCardProps) => {
         >
           <CardTitle className="text-sm">{task.title}</CardTitle>
           <TagsList priority={task.priority} size={task.size} tags={task.tags} />
-          <Button
-            variant="outline"
-            size="icon"
-            className="absolute right-0 top-0 m-3 h-6 w-6 opacity-0 transition group-hover:opacity-100"
-          >
-            <MoreHorizontal className="h-4 w-4" />
-          </Button>
+          <TaskOperations task={task} />
         </Card>
       )}
     </Draggable>
