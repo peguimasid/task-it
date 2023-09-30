@@ -37,9 +37,9 @@ interface DeleteTaskProps {
 }
 
 const deleteTask = async ({ projectId, taskId }: DeleteTaskProps): Promise<void> => {
-  // await fetch(`/api/projects/${projectId}`, {
-  //   method: 'DELETE'
-  // });
+  await fetch(`/api/projects/${projectId}/tasks/${taskId}`, {
+    method: 'DELETE'
+  });
 };
 
 export const TaskOperations = ({ task }: TaskOperationsProps) => {
