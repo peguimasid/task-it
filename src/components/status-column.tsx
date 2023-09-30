@@ -11,10 +11,9 @@ import { Badge } from './ui/badge';
 interface StatusColumnProps {
   data: Task[];
   status: TaskStatus;
-  onCreateTask: (newTask: Task) => void;
 }
 
-export const StatusColumn = ({ status, data, onCreateTask }: StatusColumnProps) => {
+export const StatusColumn = ({ status, data }: StatusColumnProps) => {
   const title = READABLE_STATUS[status];
   const Icon = TASK_STATUS_ICONS[status];
 
@@ -30,7 +29,7 @@ export const StatusColumn = ({ status, data, onCreateTask }: StatusColumnProps) 
           <h1 className="font-semibold">{title}</h1>
           <Badge variant="secondary">{tasks.length}</Badge>
         </div>
-        <CreateTaskButton status={status} variant="ghost" className="h-7 w-7" onCreateTask={onCreateTask} />
+        <CreateTaskButton status={status} variant="ghost" className="h-7 w-7" />
       </div>
       <Droppable droppableId={status}>
         {(provided) => <TaskStack {...provided.droppableProps} tasks={tasks} provided={provided} />}
