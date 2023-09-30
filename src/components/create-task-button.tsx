@@ -16,6 +16,8 @@ import { Form, FormControl, FormField, FormItem, FormMessage } from '@/component
 import { Input } from '@/components/ui/input';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 
+import { toast } from './ui/use-toast';
+
 const createProjectSchema = z.object({
   title: z
     .string()
@@ -54,11 +56,12 @@ const createTask = async ({ projectId, title, status }: CreateTaskProps): Promis
 
 export const CreateTaskButton = ({ className, variant, status, ...props }: CreateTaskButtonProps) => {
   const router = useRouter();
+
   const { projectId }: { projectId: string } = useParams();
 
   const onCreateTask = useTaskStore((store) => store.onCreateTask);
 
-  const [open, setOpen] = useState<boolean>(false);
+  const [isPopoverOpen, setIsPopoverOpen] = useState<boolean>(false);
 
   const form = useForm<FormValues>({
     mode: 'onChange',
@@ -71,16 +74,25 @@ export const CreateTaskButton = ({ className, variant, status, ...props }: Creat
   const onSuccess = useCallback(
     ({ newTask }: CreateTaskResponse) => {
       form.reset(defaultValues);
-      setOpen(false);
+      setIsPopoverOpen(false);
       onCreateTask(newTask);
       router.refresh();
     },
     [form, onCreateTask, router]
   );
 
+  const onError = useCallback(() => {
+    toast({
+      title: "Task couldn't be created",
+      description: 'Please try again later.',
+      variant: 'destructive'
+    });
+  }, []);
+
   const { isLoading, mutate } = useMutation({
     mutationFn: createTask,
-    onSuccess
+    onSuccess,
+    onError
   });
 
   const isSubmitButtonDisabled = useMemo(() => {
@@ -90,7 +102,7 @@ export const CreateTaskButton = ({ className, variant, status, ...props }: Creat
   const onOpenChange = useCallback(
     (open: boolean) => {
       if (!open) form.reset(defaultValues);
-      setOpen(open);
+      setIsPopoverOpen(open);
     },
     [form]
   );
@@ -103,7 +115,7 @@ export const CreateTaskButton = ({ className, variant, status, ...props }: Creat
   );
 
   return (
-    <Popover open={open} onOpenChange={onOpenChange}>
+    <Popover open={isPopoverOpen} onOpenChange={onOpenChange}>
       <PopoverTrigger asChild>
         <Button size="icon" className={cn('gap-2', className)} variant={variant} {...props}>
           <Plus className="h-4 w-4" />
