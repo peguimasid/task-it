@@ -39,6 +39,15 @@ export async function POST(request: Request, context: z.infer<typeof routeContex
       }
     });
 
+    await prisma.project.update({
+      where: {
+        id: params.projectId
+      },
+      data: {
+        updatedAt: new Date()
+      }
+    });
+
     return new Response(JSON.stringify({ newTask }), { status: 201 });
   } catch (error) {
     if (error instanceof z.ZodError) {

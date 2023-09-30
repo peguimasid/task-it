@@ -34,6 +34,7 @@ export const KanbanBoard = ({ projectId, tasks: initialState }: KanbanBoardProps
 
   const handleCreateTask = (newTask: Task) => {
     setTasks((prevTasks) => [newTask, ...prevTasks]);
+    router.refresh();
   };
 
   const dropTaskMutation = useMutation({
