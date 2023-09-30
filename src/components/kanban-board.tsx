@@ -1,8 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { statuses } from '@/constants/task-statuses';
+import { useTaskStore } from '@/store/task-store';
 import { reorderTasksOnDrop } from '@/utils/dnd/reorders-tasks-on-drop';
 import { DragDropContext, DropResult } from '@hello-pangea/dnd';
 import { Project, Task } from '@prisma/client';
@@ -27,15 +28,15 @@ const reorderTasks = async ({ projectId, reorderedTasks }: ReorderTasksProps): P
   });
 };
 
-export const KanbanBoard = ({ projectId, tasks: initialState }: KanbanBoardProps) => {
+export const KanbanBoard = ({ projectId, tasks: initialTasks }: KanbanBoardProps) => {
   const router = useRouter();
 
-  const [tasks, setTasks] = useState(initialState);
-
-  const handleCreateTask = (newTask: Task) => {
-    setTasks((prevTasks) => [newTask, ...prevTasks]);
-    router.refresh();
-  };
+  const { tasks, setTasks } = useTaskStore((store) => {
+    return {
+      tasks: store?.tasks ?? initialTasks,
+      setTasks: store.setTasks
+    };
+  });
 
   const dropTaskMutation = useMutation({
     mutationFn: reorderTasks,
@@ -49,12 +50,16 @@ export const KanbanBoard = ({ projectId, tasks: initialState }: KanbanBoardProps
     dropTaskMutation.mutate({ projectId, reorderedTasks });
   };
 
+  useEffect(() => {
+    setTasks(initialTasks);
+  }, [setTasks, initialTasks]);
+
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <div className="h-full w-full rounded-lg border">
         <div className="flex h-full w-full gap-4 overflow-x-auto p-3">
           {statuses.map((status) => (
-            <StatusColumn key={status} status={status} data={tasks} onCreateTask={handleCreateTask} />
+            <StatusColumn key={status} status={status} data={tasks} />
           ))}
         </div>
       </div>

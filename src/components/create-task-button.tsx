@@ -1,5 +1,6 @@
 import { useCallback, useMemo, useState } from 'react';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
+import { useTaskStore } from '@/store/task-store';
 import { TaskStatus } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Project, Task } from '@prisma/client';
@@ -30,7 +31,6 @@ type FormValues = z.infer<typeof createProjectSchema>;
 
 interface CreateTaskButtonProps extends ButtonProps {
   status: TaskStatus;
-  onCreateTask: (newTask: Task) => void;
 }
 
 interface CreateTaskResponse {
@@ -52,8 +52,11 @@ const createTask = async ({ projectId, title, status }: CreateTaskProps): Promis
   return responseData;
 };
 
-export const CreateTaskButton = ({ className, variant, status, onCreateTask, ...props }: CreateTaskButtonProps) => {
+export const CreateTaskButton = ({ className, variant, status, ...props }: CreateTaskButtonProps) => {
+  const router = useRouter();
   const { projectId }: { projectId: string } = useParams();
+
+  const onCreateTask = useTaskStore((store) => store.onCreateTask);
 
   const [open, setOpen] = useState<boolean>(false);
 
@@ -70,8 +73,9 @@ export const CreateTaskButton = ({ className, variant, status, onCreateTask, ...
       form.reset(defaultValues);
       setOpen(false);
       onCreateTask(newTask);
+      router.refresh();
     },
-    [form, onCreateTask]
+    [form, onCreateTask, router]
   );
 
   const { isLoading, mutate } = useMutation({
