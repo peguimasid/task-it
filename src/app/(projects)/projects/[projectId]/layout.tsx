@@ -66,7 +66,7 @@ export default async function ProjectLayout({ children, params: { projectId } }:
 
   return (
     <div className="flex min-h-[100dvh] w-full flex-col">
-      <header className="sticky inset-0 z-10 flex h-20 w-full border-b border-muted backdrop-blur-md">
+      <header className="sticky inset-0 z-10 flex h-20 w-full border-b backdrop-blur-md">
         <div className="mx-auto flex w-full flex-row items-center justify-between px-10">
           <div className="flex items-center">
             <Icons.kanbanSquare className="h-6 w-6" />
