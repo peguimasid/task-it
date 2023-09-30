@@ -2,6 +2,7 @@
 
 import { useCallback, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
+import { useTaskStore } from '@/store/task-store';
 import { Project, Task } from '@prisma/client';
 import { useMutation } from '@tanstack/react-query';
 import { MoreHorizontal } from 'lucide-react';
@@ -47,6 +48,8 @@ export const TaskOperations = ({ task }: TaskOperationsProps) => {
 
   const { projectId }: { projectId: string } = useParams();
 
+  const onDeleteTask = useTaskStore((store) => store.onDeleteTask);
+
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
   const [alertDialogOpen, setAlertDialogOpen] = useState<boolean>(false);
 
@@ -55,8 +58,9 @@ export const TaskOperations = ({ task }: TaskOperationsProps) => {
   }, []);
 
   const onSuccess = useCallback(() => {
+    onDeleteTask(task.id);
     router.refresh();
-  }, [router]);
+  }, [router, onDeleteTask, task]);
 
   const onError = useCallback(() => {
     toast({
