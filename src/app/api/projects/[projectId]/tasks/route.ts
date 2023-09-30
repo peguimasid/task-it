@@ -71,6 +71,15 @@ export async function PATCH(request: Request, context: z.infer<typeof routeConte
 
     await prisma.$transaction(updateTasksPromises);
 
+    await prisma.project.update({
+      where: {
+        id: params.projectId
+      },
+      data: {
+        updatedAt: new Date()
+      }
+    });
+
     return new Response(null, { status: 200 });
   } catch (error) {
     if (error instanceof z.ZodError) {
