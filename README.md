@@ -42,7 +42,7 @@ By combining these essential features, Task-it simplifies project management, em
     - [x] Create a `StatusColumn` component to display task columns for each status.
     - [x] Design a `TaskCard` component to present individual tasks within status columns.
     - [x] Enable drag-and-drop functionality for seamless task movement between columns.
-    - [ ] Implement a modal for adding new tasks to the project.
+    - [x] Implement a modal for adding new tasks to the project.
     - [ ] Add task editing features, including modifications to title, description, status, priority, size, and tags.
     - [ ] Integrate a Novel WYSIWYG editor to enhance the task description interface.
 
