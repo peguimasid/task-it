@@ -1,12 +1,12 @@
 'use client';
 
-import Link from 'next/link';
 import { Draggable } from '@hello-pangea/dnd';
 import { Task } from '@prisma/client';
 
+import { EditTaskButton } from './edit-task-button';
 import { TagsList } from './tags-list';
 import { TaskOperations } from './task-operations';
-import { Card, CardTitle } from './ui/card';
+import { Card } from './ui/card';
 
 interface TaskCardProps {
   task: Task;
@@ -23,12 +23,7 @@ export const TaskCard = ({ task, index }: TaskCardProps) => {
           {...provided.draggableProps}
           {...provided.dragHandleProps}
         >
-          <Link
-            href={{ query: { task: task.id } }}
-            className="text-sm font-semibold leading-none tracking-tight hover:underline"
-          >
-            {task.title}
-          </Link>
+          <EditTaskButton task={task} />
           <TagsList priority={task.priority} size={task.size} tags={task.tags} />
           <TaskOperations task={task} />
         </Card>
