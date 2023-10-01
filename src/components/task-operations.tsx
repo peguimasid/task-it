@@ -58,6 +58,10 @@ export const TaskOperations = ({ task }: TaskOperationsProps) => {
     setAlertDialogOpen(true);
   }, []);
 
+  const closeDropdown = useCallback(() => {
+    setIsDropdownOpen(false);
+  }, []);
+
   const onSuccess = useCallback(() => {
     onDeleteTask(task.id);
     router.refresh();
@@ -101,8 +105,8 @@ export const TaskOperations = ({ task }: TaskOperationsProps) => {
         </DropdownMenuTrigger>
         <DropdownMenuPortal>
           <DropdownMenuContent align="end">
-            <DropdownMenuItem>
-              <Link href={{ query: { task: task.id } }} className="flex w-full">
+            <DropdownMenuItem className="cursor-pointer">
+              <Link href={{ query: { task: task.id } }} className="flex w-full" onClick={closeDropdown}>
                 Edit
               </Link>
             </DropdownMenuItem>
