@@ -26,7 +26,7 @@ export const EditTaskButton = ({ task }: EditTaskButtonProps) => {
           {task.title}
         </Button>
       </SheetTrigger>
-      <SheetContent>
+      <SheetContent className="w-screen sm:w-[70vw] sm:max-w-none">
         <SheetHeader>
           <SheetTitle>Edit profile</SheetTitle>
           <SheetDescription>Make changes to your profile here. Click save when you done.</SheetDescription>
