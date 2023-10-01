@@ -1,7 +1,6 @@
 'use client';
 
 import { useCallback, useState } from 'react';
-import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
 import { useTaskStore } from '@/store/task-store';
 import { Project, Task } from '@prisma/client';
@@ -58,10 +57,6 @@ export const TaskOperations = ({ task }: TaskOperationsProps) => {
     setAlertDialogOpen(true);
   }, []);
 
-  const closeDropdown = useCallback(() => {
-    setIsDropdownOpen(false);
-  }, []);
-
   const onSuccess = useCallback(() => {
     onDeleteTask(task.id);
     router.refresh();
@@ -105,11 +100,6 @@ export const TaskOperations = ({ task }: TaskOperationsProps) => {
         </DropdownMenuTrigger>
         <DropdownMenuPortal>
           <DropdownMenuContent align="end">
-            <DropdownMenuItem className="cursor-pointer">
-              <Link href={{ query: { task: task.id } }} className="flex w-full" onClick={closeDropdown}>
-                Edit
-              </Link>
-            </DropdownMenuItem>
             <DropdownMenuItem
               className="cursor-pointer text-destructive focus:text-destructive"
               onSelect={openAlertDialog}
