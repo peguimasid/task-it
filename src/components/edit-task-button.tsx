@@ -1,4 +1,5 @@
 import { Task } from '@prisma/client';
+import { formatDistanceToNow } from 'date-fns';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -26,30 +27,17 @@ export const EditTaskButton = ({ task }: EditTaskButtonProps) => {
           {task.title}
         </Button>
       </SheetTrigger>
-      <SheetContent className="w-screen sm:w-[70vw] sm:max-w-none">
-        <SheetHeader>
-          <SheetTitle>Edit profile</SheetTitle>
-          <SheetDescription>Make changes to your profile here. Click save when you done.</SheetDescription>
+      <SheetContent className="w-screen space-y-4 rounded-l-xl sm:w-[70vw] sm:max-w-none">
+        <SheetHeader className="space-y-1 text-left">
+          <SheetTitle>{task.title}</SheetTitle>
+          <SheetDescription>Created {formatDistanceToNow(task.createdAt, { addSuffix: true })}</SheetDescription>
         </SheetHeader>
-        <div className="grid gap-4 py-4">
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="name" className="text-right">
-              Name
-            </Label>
-            <Input id="name" value="Pedro Duarte" className="col-span-3" />
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="username" className="text-right">
-              Username
-            </Label>
-            <Input id="username" value="@peduarte" className="col-span-3" />
-          </div>
+        <div className="h-[700px] w-full rounded-lg border"></div>
+        <div className="flex w-full justify-end">
+          <Button type="submit" className="ml-auto w-36">
+            Save changes
+          </Button>
         </div>
-        <SheetFooter>
-          <SheetClose asChild>
-            <Button type="submit">Save changes</Button>
-          </SheetClose>
-        </SheetFooter>
       </SheetContent>
     </Sheet>
   );
