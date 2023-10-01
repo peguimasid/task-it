@@ -121,7 +121,7 @@ export const CreateTaskButton = ({ className, variant, status, ...props }: Creat
           <Plus className="h-4 w-4" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent side="left" className="w-[425px] rounded-lg">
+      <PopoverContent side="left" className="w-80 rounded-lg">
         <Form {...form}>
           <form
             name="createProjectForm"
@@ -135,8 +135,8 @@ export const CreateTaskButton = ({ className, variant, status, ...props }: Creat
               name="title"
               render={({ field }) => (
                 <FormItem className="w-full">
-                  <FormControl>
-                    <Input {...field} placeholder="Title" autoComplete="off" disabled={isLoading} />
+                  <FormControl placeholder="Title">
+                    <Input {...field} autoComplete="off" disabled={isLoading} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
