@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { Draggable } from '@hello-pangea/dnd';
 import { Task } from '@prisma/client';
 
@@ -22,7 +23,12 @@ export const TaskCard = ({ task, index }: TaskCardProps) => {
           {...provided.draggableProps}
           {...provided.dragHandleProps}
         >
-          <CardTitle className="text-sm">{task.title}</CardTitle>
+          <Link
+            href={{ query: { task: task.id } }}
+            className="text-sm font-semibold leading-none tracking-tight hover:underline"
+          >
+            {task.title}
+          </Link>
           <TagsList priority={task.priority} size={task.size} tags={task.tags} />
           <TaskOperations task={task} />
         </Card>
