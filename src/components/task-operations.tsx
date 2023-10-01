@@ -44,7 +44,6 @@ export const TaskOperations = ({ task }: TaskOperationsProps) => {
 
   const onDeleteTask = useTaskStore((store) => store.onDeleteTask);
 
-  const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
   const [alertDialogOpen, setAlertDialogOpen] = useState<boolean>(false);
 
   const openAlertDialog = useCallback(() => {
@@ -75,19 +74,14 @@ export const TaskOperations = ({ task }: TaskOperationsProps) => {
     mutate({ projectId, taskId });
   }, [task, mutate, projectId]);
 
-  const onOpenChange = useCallback((open: boolean) => {
-    setIsDropdownOpen(open);
-  }, []);
-
   return (
     <>
-      <DropdownMenu open={isDropdownOpen} onOpenChange={onOpenChange}>
+      <DropdownMenu modal={false}>
         <DropdownMenuTrigger asChild>
           <Button
             variant="outline"
             size="icon"
-            data-is-dropdown-open={isDropdownOpen}
-            className="absolute right-0 top-0 m-3 h-6 w-6 opacity-0 transition group-hover:opacity-100 data-[is-dropdown-open=true]:opacity-100"
+            className="absolute right-0 top-0 m-3 h-6 w-6 opacity-0 transition group-hover:opacity-100 data-[state=open]:opacity-100"
           >
             <MoreHorizontal className="h-4 w-4" />
           </Button>
