@@ -19,13 +19,7 @@ import {
   AlertDialogTitle
 } from './ui/alert-dialog';
 import { Button } from './ui/button';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuPortal,
-  DropdownMenuTrigger
-} from './ui/dropdown-menu';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from './ui/dropdown-menu';
 import { toast } from './ui/use-toast';
 
 interface TaskOperationsProps {
@@ -98,16 +92,14 @@ export const TaskOperations = ({ task }: TaskOperationsProps) => {
             <MoreHorizontal className="h-4 w-4" />
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuPortal>
-          <DropdownMenuContent align="end">
-            <DropdownMenuItem
-              className="cursor-pointer text-destructive focus:text-destructive"
-              onSelect={openAlertDialog}
-            >
-              Delete
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenuPortal>
+        <DropdownMenuContent align="end">
+          <DropdownMenuItem
+            className="cursor-pointer text-destructive focus:text-destructive"
+            onSelect={openAlertDialog}
+          >
+            Delete
+          </DropdownMenuItem>
+        </DropdownMenuContent>
       </DropdownMenu>
       <AlertDialog open={alertDialogOpen} onOpenChange={setAlertDialogOpen}>
         <AlertDialogContent>

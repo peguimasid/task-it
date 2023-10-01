@@ -30,7 +30,9 @@ export const EditTaskButton = ({ task }: EditTaskButtonProps) => {
       <SheetContent className="w-screen space-y-4 rounded-l-xl sm:w-[70vw] sm:max-w-none">
         <SheetHeader className="space-y-1 text-left">
           <SheetTitle>{task.title}</SheetTitle>
-          <SheetDescription>Created {formatDistanceToNow(task.createdAt, { addSuffix: true })}</SheetDescription>
+          <SheetDescription>
+            Created {formatDistanceToNow(new Date(task.createdAt), { addSuffix: true })}
+          </SheetDescription>
         </SheetHeader>
         <div className="h-[700px] w-full rounded-lg border"></div>
         <div className="flex w-full justify-end">
