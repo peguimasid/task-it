@@ -27,7 +27,7 @@ export const EditTaskButton = ({ task }: EditTaskButtonProps) => {
           {task.title}
         </Button>
       </SheetTrigger>
-      <SheetContent className="w-screen space-y-4 rounded-l-xl sm:w-[70vw] sm:max-w-none">
+      <SheetContent className="w-screen space-y-4 overflow-y-auto rounded-l-xl sm:w-[70vw] sm:max-w-none">
         <SheetHeader className="space-y-1 text-left">
           <SheetTitle>{task.title}</SheetTitle>
           <SheetDescription>
