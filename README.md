@@ -51,6 +51,6 @@ By combining these essential features, Task-it simplifies project management, em
 
     - `Title`: Provide a concise title for the task.
     - `Description`: Include additional details or instructions for the task.
-    - `Status`: Assign an status to the task (Backlog, In Progress, In Review, Done).
+    - `Status`: Assign an status to the task (Backlog, In Progress, Done).
     - `Priority`: Specify the priority level of the task (Urgent, High, Medium, Low).
     - `Size`: Indicate the size or effort required for the task (Large, Medium, Small, Tiny).
