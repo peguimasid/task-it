@@ -1,7 +1,6 @@
 'use client';
 
-import { Anchor, Bell } from 'lucide-react';
-
+import { Icons } from './icons';
 import { Badge } from './ui/badge';
 
 interface TagsListProps {
@@ -15,13 +14,13 @@ export const TagsList = ({ priority, size, tags }: TagsListProps) => {
     <div className="flex flex-wrap gap-2">
       {priority && (
         <Badge variant="secondary">
-          <Bell className="mr-1 h-3 w-3" />
+          <Icons.bell className="mr-1 h-3 w-3" />
           {priority}
         </Badge>
       )}
       {size && (
         <Badge data-has-size={!!size} variant="secondary" className="data-[has-size=false]:hidden">
-          <Anchor className="mr-1 h-3 w-3" />
+          <Icons.weight className="mr-1 h-3 w-3" />
           {size}
         </Badge>
       )}

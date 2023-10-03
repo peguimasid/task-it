@@ -1,6 +1,7 @@
 import {
   AlertTriangle,
   ArrowRight,
+  Bell,
   Bookmark,
   Check,
   ChevronLeft,
@@ -24,6 +25,7 @@ import {
   SunMedium,
   Trash,
   User,
+  Weight,
   X
 } from 'lucide-react';
 
@@ -53,6 +55,8 @@ export const Icons = {
   bookmark: Bookmark,
   clock: Clock,
   check: Check,
+  bell: Bell,
+  weight: Weight,
   logo: (props: LucideProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
