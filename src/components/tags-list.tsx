@@ -19,7 +19,7 @@ export const TagsList = ({ priority, size, tags }: TagsListProps) => {
         </Badge>
       )}
       {size && (
-        <Badge data-has-size={!!size} variant="secondary" className="data-[has-size=false]:hidden">
+        <Badge variant="secondary">
           <Icons.weight className="mr-1 h-3 w-3" />
           {size}
         </Badge>
