@@ -16,18 +16,16 @@ export const EditTaskButton = ({ task }: EditTaskButtonProps) => {
           {task.title}
         </Button>
       </SheetTrigger>
-      <SheetContent className="w-screen space-y-4 overflow-y-auto rounded-l-xl sm:w-[70vw] sm:max-w-none">
+      <SheetContent className="flex w-screen flex-col space-y-4 overflow-y-auto sm:w-[70vw] sm:max-w-none sm:rounded-l-xl">
         <SheetHeader className="space-y-1 text-left">
           <SheetTitle>{task.title}</SheetTitle>
           <SheetDescription>
             Created {formatDistanceToNow(new Date(task.createdAt), { addSuffix: true })}
           </SheetDescription>
         </SheetHeader>
-        <div className="h-[700px] w-full rounded-lg border"></div>
-        <div className="flex w-full justify-end">
-          <Button type="submit" className="ml-auto w-36">
-            Save changes
-          </Button>
+        <div className="flex w-full flex-col gap-6 lg:flex-row">
+          <div className="min-h-[500px] w-full rounded-lg border lg:min-h-[700px] lg:w-3/4" />
+          <div className="h-96 w-full rounded-lg border lg:w-1/4" />
         </div>
       </SheetContent>
     </Sheet>
