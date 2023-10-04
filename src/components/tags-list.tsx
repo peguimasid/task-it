@@ -14,7 +14,7 @@ export const TagsList = ({ priority, size, tags }: TagsListProps) => {
     <div className="flex flex-wrap gap-2">
       {priority && (
         <Badge variant="secondary">
-          <Icons.bell className="mr-1 h-3 w-3" />
+          <Icons.flag className="mr-1 h-3 w-3" />
           {priority}
         </Badge>
       )}

@@ -10,6 +10,7 @@ import {
   CreditCard,
   File,
   FileText,
+  Flag,
   HelpCircle,
   Image,
   Kanban,
@@ -55,6 +56,7 @@ export const Icons = {
   bookmark: Bookmark,
   clock: Clock,
   check: Check,
+  flag: Flag,
   bell: Bell,
   weight: Weight,
   logo: (props: LucideProps) => (
