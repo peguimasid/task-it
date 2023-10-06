@@ -67,7 +67,7 @@ export default async function Page() {
               <EmptyPlaceholder.Icon name="kanbanSquare" />
               <EmptyPlaceholder.Title>No projects created</EmptyPlaceholder.Title>
               <EmptyPlaceholder.Description>
-                You don&apos;t have any project yet. Start by creating one.
+                You don&apos;t have any projects yet. Start by creating one.
               </EmptyPlaceholder.Description>
               <CreateProjectButton variant="outline" />
             </EmptyPlaceholder>

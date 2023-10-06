@@ -26,7 +26,7 @@ CREATE TABLE "Task" (
     "id" TEXT NOT NULL,
     "index" INTEGER NOT NULL DEFAULT 0,
     "title" TEXT NOT NULL,
-    "description" TEXT,
+    "content" JSONB,
     "tags" TEXT[],
     "status" TEXT NOT NULL DEFAULT 'BACKLOG',
     "priority" TEXT,
