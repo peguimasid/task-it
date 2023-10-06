@@ -4,10 +4,11 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { statuses } from '@/constants/task-statuses';
 import { useTaskStore } from '@/store/task-store';
-import { reorderTasksOnDrop } from '@/utils/dnd/reorders-tasks-on-drop';
 import { DragDropContext, DropResult } from '@hello-pangea/dnd';
 import { Project, Task } from '@prisma/client';
 import { useMutation } from '@tanstack/react-query';
+
+import { reorderTasksOnDrop } from '@/lib/utils/reorder-tasks-on-drop';
 
 import { StatusColumn } from './status-column';
 
