@@ -5,6 +5,7 @@ const sampleTasks = [
   {
     title: 'Create your first task',
     status: 'BACKLOG',
+    index: 0,
     priority: 'Medium',
     tags: ['Beginner'],
     size: 'Small'
@@ -12,12 +13,14 @@ const sampleTasks = [
   {
     title: 'Write your first task description',
     status: 'BACKLOG',
+    index: 1,
     priority: 'Low',
     size: 'Large'
   },
   {
     title: 'Explore Task-it platform',
     status: 'IN_PROGRESS',
+    index: 0,
     priority: 'High',
     tags: ['Explore'],
     size: 'Medium'
@@ -25,6 +28,7 @@ const sampleTasks = [
   {
     title: 'Bring your project to life',
     status: 'DONE',
+    index: 0,
     priority: 'Urgent',
     tags: ['Achievement'],
     size: 'Tiny'
