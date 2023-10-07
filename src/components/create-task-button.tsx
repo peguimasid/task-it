@@ -6,7 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Project, Task } from '@prisma/client';
 import { useMutation } from '@tanstack/react-query';
 import { isEmpty } from 'lodash';
-import { Loader2, Plus, SendHorizonal } from 'lucide-react';
+import { Loader2, Plus, SendHorizontal } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
@@ -144,7 +144,7 @@ export const CreateTaskButton = ({ className, variant, status, ...props }: Creat
             />
             <Button type="submit" size="icon" className="h-9" disabled={isSubmitButtonDisabled}>
               <Loader2 data-loading={isLoading} className="hidden h-4 w-4 animate-spin data-[loading=true]:block" />
-              <SendHorizonal data-loading={isLoading} className="h-4 w-4 data-[loading=true]:hidden" />
+              <SendHorizontal data-loading={isLoading} className="h-4 w-4 data-[loading=true]:hidden" />
             </Button>
           </form>
         </Form>
