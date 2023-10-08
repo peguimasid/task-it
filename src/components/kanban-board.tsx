@@ -57,12 +57,10 @@ export const KanbanBoard = ({ projectId, tasks: initialTasks }: KanbanBoardProps
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <div className="h-full w-full rounded-lg border">
-        <div className="flex h-full w-full gap-3 overflow-x-auto p-3">
-          {statuses.map((status) => (
-            <StatusColumn key={status} status={status} data={tasks} />
-          ))}
-        </div>
+      <div className="flex h-full w-full gap-3 overflow-x-auto">
+        {statuses.map((status) => (
+          <StatusColumn key={status} status={status} data={tasks} />
+        ))}
       </div>
     </DragDropContext>
   );

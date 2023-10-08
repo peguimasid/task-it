@@ -51,28 +51,18 @@ export default async function ProjectLayout({ children, params: { projectId } }:
 
   return (
     <div className="flex min-h-[100dvh] w-full flex-col">
-      <header className="sticky inset-0 z-10 flex h-20 w-full border-b backdrop-blur-md">
-        <div className="mx-auto flex w-full flex-row items-center justify-between px-5">
-          <div className="flex items-center">
-            <Icons.logo className="h-6 w-6" />
-            <Icons.chevronRight className="mx-2 h-4 w-4 text-zinc-400" />
-            <Button asChild variant="link">
-              <Link href="/" className="!px-0 font-semibold">
-                projects
-              </Link>
-            </Button>
-            <Icons.chevronRight className="mx-2 h-4 w-4 text-zinc-400" />
-            <Button asChild variant="link">
-              <Link href={`/projects/${projectId}`} className="!px-0 font-semibold">
-                {project.name}
-              </Link>
-            </Button>
-          </div>
-          <UserMenu />
+      <header className="sticky inset-0 z-10 flex h-16 w-full backdrop-blur-md">
+        <div className="container flex h-full w-full max-w-6xl items-center">
+          <Button asChild variant="ghost" className="-ml-4">
+            <Link href="/projects">
+              <Icons.chevronLeft className="mr-2 h-4 w-4" />
+              Back
+            </Link>
+          </Button>
         </div>
       </header>
       <div className="grid flex-1">
-        <main className="container flex-1 overflow-hidden py-5">{children}</main>
+        <main className="container max-w-6xl flex-1 overflow-hidden py-5">{children}</main>
       </div>
     </div>
   );
