@@ -20,10 +20,13 @@ export async function DELETE(request: Request, context: z.infer<typeof routeCont
       return new Response('You cannot access this route', { status: 403 });
     }
 
-    await prisma.task.delete({
+    await prisma.task.update({
       where: {
         id: params.taskId,
         projectId: params.projectId
+      },
+      data: {
+        deletedAt: new Date()
       }
     });
 

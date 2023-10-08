@@ -21,7 +21,10 @@ const getProjectForUser = async (projectId: Project['id']) => {
       userId: session?.user?.id
     },
     include: {
-      tasks: { orderBy: { index: 'asc' } }
+      tasks: {
+        orderBy: { index: 'asc' },
+        where: { deletedAt: null }
+      }
     }
   });
 
