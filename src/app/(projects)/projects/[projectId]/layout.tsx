@@ -51,6 +51,7 @@ export default async function ProjectLayout({ children, params: { projectId } }:
 
   return (
     <div className="flex min-h-[100dvh] w-full flex-col">
+      <div className="h-8" />
       <header className="sticky inset-0 z-10 flex h-16 w-full backdrop-blur-md">
         <div className="container flex h-full w-full max-w-6xl items-center">
           <Button asChild variant="ghost" className="-ml-4">
