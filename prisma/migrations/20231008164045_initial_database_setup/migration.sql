@@ -26,7 +26,7 @@ CREATE TABLE "Task" (
     "id" TEXT NOT NULL,
     "index" INTEGER NOT NULL DEFAULT 0,
     "title" TEXT NOT NULL,
-    "content" JSONB,
+    "description" JSONB,
     "tags" TEXT[],
     "status" TEXT NOT NULL DEFAULT 'BACKLOG',
     "priority" TEXT,
@@ -34,6 +34,7 @@ CREATE TABLE "Task" (
     "projectId" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "deletedAt" TIMESTAMP(3),
 
     CONSTRAINT "Task_pkey" PRIMARY KEY ("id")
 );
