@@ -36,7 +36,7 @@ export default async function Page() {
 
   return (
     <main className="flex min-h-[100dvh] w-full flex-col">
-      <header className="sticky inset-0 z-10 flex h-20 w-full border-b backdrop-blur-md">
+      <header className="sticky inset-0 z-10 flex h-16 w-full border-b backdrop-blur-md">
         <div className="mx-auto flex w-full max-w-4xl flex-row items-center px-5">
           <Link as="/" href="/" className="flex flex-row items-center justify-center gap-1">
             <CheckSquare className="h-6 w-6" />
