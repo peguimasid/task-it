@@ -20,7 +20,7 @@ export const TagsList = ({ priority, size, tags }: TagsListProps) => {
       )}
       {size && (
         <Badge variant="secondary">
-          <Icons.weight className="mr-1 h-3 w-3" />
+          <Icons.ruler className="mr-1 h-3 w-3" />
           {size}
         </Badge>
       )}
