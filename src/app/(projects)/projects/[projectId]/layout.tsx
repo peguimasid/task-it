@@ -50,16 +50,16 @@ export default async function ProjectLayout({ children, params: { projectId } }:
   }
 
   return (
-    <div className="flex min-h-[100dvh] w-full flex-col">
-      <div className="h-8" />
-      <header className="sticky inset-0 z-10 flex h-16 w-full backdrop-blur-md">
-        <div className="container flex h-full w-full max-w-6xl items-center">
+    <div className="flex min-h-[100dvh] w-full scroll-mt-64 flex-col">
+      <header className="sticky inset-0 z-10 flex h-16 w-full border-b bg-card/80 backdrop-blur-sm">
+        <div className="container flex h-full w-full max-w-6xl items-center justify-between">
           <Button asChild variant="ghost" className="-ml-4">
             <Link href="/projects">
               <Icons.chevronLeft className="mr-2 h-4 w-4" />
               Back
             </Link>
           </Button>
+          <UserMenu />
         </div>
       </header>
       <div className="grid flex-1">

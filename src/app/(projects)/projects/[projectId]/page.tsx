@@ -39,7 +39,7 @@ export default async function Page({ params }: PageProps) {
 
   return (
     <main className="flex h-full w-full flex-col space-y-5">
-      <h1 className="font-heading text-3xl md:text-4xl">{project.name}</h1>
+      <h1 className="font-heading text-3xl sm:text-4xl">{project.name}</h1>
       <KanbanBoard projectId={project.id} tasks={project.tasks} />
     </main>
   );
