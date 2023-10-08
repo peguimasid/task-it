@@ -41,7 +41,7 @@ export const EditTaskButton = ({ task }: EditTaskButtonProps) => {
       </SheetTrigger>
       <SheetContent
         data-expanded={isExpanded}
-        className="flex w-[50vw] flex-col space-y-4 overflow-y-auto transition-[width] data-[expanded=true]:w-screen sm:max-w-none sm:rounded-l-xl"
+        className="flex w-screen flex-col space-y-4 overflow-y-auto transition-[width] data-[expanded=true]:w-screen sm:w-[50vw] sm:max-w-none sm:rounded-l-xl"
       >
         <div className="container mx-auto flex max-w-4xl flex-col gap-6 p-0">
           <div className="flex w-full flex-row justify-between">
@@ -52,7 +52,7 @@ export const EditTaskButton = ({ task }: EditTaskButtonProps) => {
               </SheetDescription>
             </SheetHeader>
             <div className="flex items-center space-x-2">
-              <Button variant="secondary" className="space-x-2" onClick={handleClickExpand}>
+              <Button variant="secondary" className="hidden space-x-2 sm:flex" onClick={handleClickExpand}>
                 <p>{isExpanded ? 'Collapse' : 'Expand'}</p>
                 {isExpanded ? <Icons.minimize className="h-4 w-4" /> : <Icons.maximize className="h-4 w-4" />}
               </Button>
