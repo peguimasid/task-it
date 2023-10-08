@@ -19,6 +19,8 @@ model User {
   accounts      Account[]
   sessions      Session[]
   projects      Project[]
+
+  @@map(name: "users")
 }
 
 model Project {
@@ -30,6 +32,8 @@ model Project {
   tasks       Task[]
   createdAt   DateTime @default(now())
   updatedAt   DateTime @default(now()) @updatedAt
+
+  @@map(name: "projects")
 }
 
 model Task {
@@ -46,6 +50,8 @@ model Task {
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @default(now()) @updatedAt
   deletedAt   DateTime?
+
+  @@map(name: "tasks")
 }
 
 model Account {
@@ -67,6 +73,7 @@ model Account {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
+  @@map(name: "accounts")
 }
 
 model Session {
@@ -75,6 +82,8 @@ model Session {
   userId       String
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map(name: "sessions")
 }
 
 model VerificationToken {
@@ -83,4 +92,5 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+  @@map(name: "verification_tokens")
 }
