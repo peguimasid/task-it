@@ -28,6 +28,10 @@ export const EditTaskButton = ({ task }: EditTaskButtonProps) => {
     setIsSheetOpen(open);
   }, []);
 
+  const handleClickExpand = useCallback(() => {
+    setIsExpanded((previousValue) => !previousValue);
+  }, []);
+
   return (
     <Sheet open={isSheetOpen} onOpenChange={handleOpenChange}>
       <SheetTrigger asChild>
@@ -48,7 +52,7 @@ export const EditTaskButton = ({ task }: EditTaskButtonProps) => {
               </SheetDescription>
             </SheetHeader>
             <div className="flex items-center space-x-2">
-              <Button variant="secondary" className="space-x-2" onClick={() => setIsExpanded((prev) => !prev)}>
+              <Button variant="secondary" className="space-x-2" onClick={handleClickExpand}>
                 <p>{isExpanded ? 'Collapse' : 'Expand'}</p>
                 {isExpanded ? <Icons.minimize className="h-4 w-4" /> : <Icons.maximize className="h-4 w-4" />}
               </Button>
