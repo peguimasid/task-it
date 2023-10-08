@@ -8,20 +8,4 @@ export type SiteConfig = {
   };
 };
 
-export type SidebarNavItem = {
-  title: string;
-  disabled?: boolean;
-  external?: boolean;
-  icon?: keyof typeof Icons;
-} & (
-  | {
-      href: string;
-      items?: never;
-    }
-  | {
-      href?: string;
-      items: NavLink[];
-    }
-);
-
 export type TaskStatus = 'BACKLOG' | 'IN_PROGRESS' | 'DONE';
