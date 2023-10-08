@@ -18,10 +18,13 @@ import {
   Laptop,
   Loader2,
   LucideProps,
+  Maximize2,
+  Minimize2,
   Moon,
   MoreVertical,
   Pizza,
   Plus,
+  Ruler,
   Settings,
   SunMedium,
   Trash,
@@ -59,6 +62,9 @@ export const Icons = {
   flag: Flag,
   bell: Bell,
   weight: Weight,
+  maximize: Maximize2,
+  minimize: Minimize2,
+  ruler: Ruler,
   logo: (props: LucideProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
