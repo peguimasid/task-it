@@ -18,7 +18,7 @@ export const TaskCard = ({ task, index }: TaskCardProps) => {
     <Draggable draggableId={task.id} index={index}>
       {(provided) => (
         <Card
-          className="group relative mb-3 min-h-[6rem] space-y-2 p-3"
+          className="group relative mb-3 min-h-[6rem] space-y-2 border-none p-3"
           ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}

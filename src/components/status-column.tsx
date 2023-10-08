@@ -22,7 +22,7 @@ export const StatusColumn = ({ status, data }: StatusColumnProps) => {
   }, [data, status]);
 
   return (
-    <div className="h-full w-1/3 min-w-[300px] max-w-[400px] overflow-hidden rounded-lg border bg-secondary sm:min-w-[350px]">
+    <div className="h-full w-1/3 min-w-[300px] max-w-[400px] overflow-hidden rounded-lg border border-secondary bg-secondary sm:min-w-[350px]">
       <div className="flex w-full flex-row items-center justify-between rounded-t-lg bg-card p-3">
         <div className="flex items-center gap-2">
           <Icon className="h-4 w-4" />
