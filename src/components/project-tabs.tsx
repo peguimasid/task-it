@@ -24,7 +24,7 @@ export const ProjectTabs = ({ project }: ProjectTabsProps) => {
   const onTabChange = (value: string) => {
     const params = new URLSearchParams(searchParams);
     params.set('tab', value);
-    router.push(`${pathname}?${params}`);
+    router.replace(`${pathname}?${params}`);
   };
 
   return (
