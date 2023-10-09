@@ -8,6 +8,7 @@ import { getServerAuthSession } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import { Button } from '@/components/ui/button';
 import { Icons } from '@/components/icons';
+import { TopBar } from '@/components/top-bar';
 import { UserMenu } from '@/components/user-menu';
 
 interface PageProps {
@@ -51,7 +52,7 @@ export default async function ProjectLayout({ children, params: { projectId } }:
 
   return (
     <div className="flex min-h-[100dvh] w-full scroll-mt-64 flex-col">
-      <header className="sticky inset-0 z-10 flex h-16 w-full border-b bg-card/80 backdrop-blur-sm">
+      <TopBar>
         <div className="container flex h-full w-full max-w-6xl items-center justify-between">
           <Button asChild variant="ghost" className="-ml-4">
             <Link href="/projects">
@@ -61,7 +62,7 @@ export default async function ProjectLayout({ children, params: { projectId } }:
           </Button>
           <UserMenu />
         </div>
-      </header>
+      </TopBar>
       <div className="grid flex-1">
         <main className="container max-w-6xl flex-1 overflow-hidden py-5">{children}</main>
       </div>

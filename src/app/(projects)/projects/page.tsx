@@ -1,12 +1,13 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { CheckSquare } from 'lucide-react';
 
 import { getServerAuthSession } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import { CreateProjectButton } from '@/components/create-project-button';
 import { EmptyPlaceholder } from '@/components/empty-placeholder';
+import { Icons } from '@/components/icons';
 import { ProjectItem } from '@/components/project-item';
+import { TopBar } from '@/components/top-bar';
 import { UserMenu } from '@/components/user-menu';
 
 export const metadata: Metadata = {
@@ -35,17 +36,17 @@ export default async function Page() {
 
   return (
     <main className="flex min-h-[100dvh] w-full flex-col">
-      <header className="sticky inset-0 z-10 flex h-16 w-full border-b backdrop-blur-md">
+      <TopBar>
         <div className="mx-auto flex w-full max-w-4xl flex-row items-center px-5">
           <Link as="/" href="/" className="flex flex-row items-center justify-center gap-1">
-            <CheckSquare className="h-6 w-6" />
+            <Icons.logo className="h-6 w-6" />
             <h1 className="font-heading text-xl font-extrabold">task-it</h1>
           </Link>
           <div className="ml-auto flex flex-row space-x-4">
             <UserMenu />
           </div>
         </div>
-      </header>
+      </TopBar>
       <div className="mx-auto flex h-full w-full max-w-4xl flex-col p-5">
         <div className="space-y-8 py-4">
           <section className="flex flex-row items-center justify-between">
