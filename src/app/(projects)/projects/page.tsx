@@ -7,7 +7,6 @@ import { prisma } from '@/lib/prisma';
 import { CreateProjectButton } from '@/components/create-project-button';
 import { EmptyPlaceholder } from '@/components/empty-placeholder';
 import { ProjectItem } from '@/components/project-item';
-import { TopBar } from '@/components/top-bar';
 import { UserMenu } from '@/components/user-menu';
 
 export const metadata: Metadata = {
