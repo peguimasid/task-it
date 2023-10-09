@@ -5,6 +5,7 @@ import { formatDistanceToNow } from 'date-fns';
 import { getServerAuthSession } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import { DeletedTaskOperations } from '@/components/deleted-task-operations';
+import { EmptyPlaceholder } from '@/components/empty-placeholder';
 
 interface PageProps {
   params: { projectId: string };
@@ -48,19 +49,27 @@ export default async function Page({ params }: PageProps) {
         <h1 className="font-heading text-3xl sm:text-4xl">Deleted Tasks</h1>
       </section>
       <div className="flex w-full items-center justify-between">
-        <div className="w-full divide-y divide-border rounded-md border">
-          {project.tasks?.map((task) => (
-            <div key={task.id} className="flex w-full items-center justify-between p-4">
-              <div className="space-y-1">
-                <p className="font-semibold">{task.title}</p>
-                <p className="text-sm text-muted-foreground">
-                  Deleted {formatDistanceToNow(task.deletedAt!, { addSuffix: true })}
-                </p>
+        {project?.tasks?.length ? (
+          <div className="w-full divide-y divide-border rounded-md border">
+            {project.tasks?.map((task) => (
+              <div key={task.id} className="flex w-full items-center justify-between p-4">
+                <div className="space-y-1">
+                  <p className="font-semibold">{task.title}</p>
+                  <p className="text-sm text-muted-foreground">
+                    Deleted {formatDistanceToNow(task.deletedAt!, { addSuffix: true })}
+                  </p>
+                </div>
+                <DeletedTaskOperations task={task} />
               </div>
-              <DeletedTaskOperations task={task} />
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        ) : (
+          <EmptyPlaceholder className="w-full">
+            <EmptyPlaceholder.Icon name="trash" />
+            <EmptyPlaceholder.Title>Nothing here</EmptyPlaceholder.Title>
+            <EmptyPlaceholder.Description>You don&apos;t have any deleted tasks</EmptyPlaceholder.Description>
+          </EmptyPlaceholder>
+        )}
       </div>
     </main>
   );
