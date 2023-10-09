@@ -1,5 +1,6 @@
 import {
   AlertTriangle,
+  ArchiveX,
   ArrowRight,
   Bell,
   Bookmark,
@@ -66,6 +67,7 @@ export const Icons = {
   minimize: Minimize2,
   ruler: Ruler,
   moreVertical: MoreVertical,
+  archiveX: ArchiveX,
   logo: (props: LucideProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
