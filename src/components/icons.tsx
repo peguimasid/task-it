@@ -65,6 +65,7 @@ export const Icons = {
   maximize: Maximize2,
   minimize: Minimize2,
   ruler: Ruler,
+  moreVertical: MoreVertical,
   logo: (props: LucideProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
