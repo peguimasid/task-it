@@ -49,8 +49,12 @@ export const ProjectTabs = ({ project }: ProjectTabsProps) => {
         <KanbanBoard projectId={project.id} tasks={project.tasks} />
       </TabsContent>
       <TabsContent value="overview" className="flex-1 space-y-3">
-        <h1 className="font-medium text-secondary-foreground">Project description</h1>
-        <div className="min-h-[135px] w-full rounded-lg bg-secondary/80 p-3">{project.description}</div>
+        {!!project?.description && (
+          <>
+            <h1 className="font-medium text-secondary-foreground">Project description</h1>
+            <div className="min-h-[135px] w-full rounded-lg bg-secondary p-3">{project.description}</div>
+          </>
+        )}
       </TabsContent>
     </Tabs>
   );
