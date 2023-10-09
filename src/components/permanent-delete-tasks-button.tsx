@@ -24,7 +24,7 @@ interface PermanentDeleteTasksButtonProps extends ButtonProps {
 }
 
 const permanentDeleteTasks = async (projectId: Project['id']): Promise<void> => {
-  await fetch(`/api/projects/${projectId}/permanent-delete-tasks`, {
+  await fetch(`/api/projects/${projectId}/tasks/permanent-delete-all`, {
     method: 'DELETE'
   });
 };
