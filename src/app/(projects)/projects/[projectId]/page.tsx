@@ -1,17 +1,21 @@
 import { notFound } from 'next/navigation';
-import { Project } from '@prisma/client';
+import { Project, Task } from '@prisma/client';
 
 import { getServerAuthSession } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
-import { KanbanBoard } from '@/components/kanban-board';
 import { ProjectOperations } from '@/components/project-operations';
 import { ProjectSettingsButton } from '@/components/project-settings-button';
+import { ProjectTabs } from '@/components/project-tabs';
 
 interface PageProps {
   params: { projectId: string };
 }
 
-const getProjectForUser = async (projectId: Project['id']) => {
+type ProjectWithTasks = Project & {
+  tasks: Task[];
+};
+
+const getProjectForUser = async (projectId: Project['id']): Promise<ProjectWithTasks | null> => {
   const session = await getServerAuthSession();
 
   if (!session) return null;
@@ -48,7 +52,7 @@ export default async function Page({ params }: PageProps) {
           <ProjectOperations project={project} />
         </div>
       </section>
-      <KanbanBoard projectId={project.id} tasks={project.tasks} />
+      <ProjectTabs project={project} />
     </main>
   );
 }
