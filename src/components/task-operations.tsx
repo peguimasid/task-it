@@ -26,14 +26,14 @@ interface TaskOperationsProps {
   task: Pick<Task, 'id'>;
 }
 
-interface DeleteTaskProps {
+interface SoftDeleteTaskProps {
   projectId: Project['id'];
   taskId: Task['id'];
 }
 
-const deleteTask = async ({ projectId, taskId }: DeleteTaskProps): Promise<void> => {
-  await fetch(`/api/projects/${projectId}/tasks/${taskId}`, {
-    method: 'DELETE'
+const softDeleteTask = async ({ projectId, taskId }: SoftDeleteTaskProps): Promise<void> => {
+  await fetch(`/api/projects/${projectId}/tasks/${taskId}/soft-delete`, {
+    method: 'PATCH'
   });
 };
 
@@ -64,7 +64,7 @@ export const TaskOperations = ({ task }: TaskOperationsProps) => {
   }, []);
 
   const { isLoading, mutate } = useMutation({
-    mutationFn: deleteTask,
+    mutationFn: softDeleteTask,
     onSuccess,
     onError
   });

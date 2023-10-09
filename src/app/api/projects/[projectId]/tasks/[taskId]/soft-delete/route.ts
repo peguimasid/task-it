@@ -10,7 +10,7 @@ const routeContextSchema = z.object({
   })
 });
 
-export async function DELETE(request: Request, context: z.infer<typeof routeContextSchema>) {
+export async function PATCH(request: Request, context: z.infer<typeof routeContextSchema>) {
   try {
     const { params } = routeContextSchema.parse(context);
 
