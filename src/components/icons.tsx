@@ -13,6 +13,7 @@ import {
   FileText,
   Flag,
   HelpCircle,
+  History,
   Image,
   Kanban,
   KanbanSquare,
@@ -68,6 +69,7 @@ export const Icons = {
   ruler: Ruler,
   moreVertical: MoreVertical,
   archiveX: ArchiveX,
+  history: History,
   logo: (props: LucideProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"

@@ -4,6 +4,7 @@ import { formatDistanceToNow } from 'date-fns';
 
 import { getServerAuthSession } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
+import { DeletedTaskOperations } from '@/components/deleted-task-operations';
 
 interface PageProps {
   params: { projectId: string };
@@ -56,6 +57,7 @@ export default async function Page({ params }: PageProps) {
                   Deleted {formatDistanceToNow(task.deletedAt!, { addSuffix: true })}
                 </p>
               </div>
+              <DeletedTaskOperations task={task} />
             </div>
           ))}
         </div>
