@@ -6,6 +6,7 @@ import { getServerAuthSession } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import { DeletedTaskOperations } from '@/components/deleted-task-operations';
 import { EmptyPlaceholder } from '@/components/empty-placeholder';
+import { PermanentDeleteTasksButton } from '@/components/permanent-delete-tasks-button';
 
 interface PageProps {
   params: { projectId: string };
@@ -47,6 +48,7 @@ export default async function Page({ params }: PageProps) {
     <main className="flex h-full w-full flex-col space-y-8">
       <section className="flex w-full items-center justify-between">
         <h1 className="font-heading text-3xl sm:text-4xl">Deleted Tasks</h1>
+        {!!project?.tasks?.length && <PermanentDeleteTasksButton project={project} />}
       </section>
       <div className="flex w-full items-center justify-between">
         {project?.tasks?.length ? (
