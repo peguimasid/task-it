@@ -109,7 +109,7 @@ export const ProjectSettingsButton = ({ project, className, variant, ...props }:
       <DialogTrigger asChild>
         <Button size="sm" className={cn('gap-2', className)} variant={variant} {...props}>
           <Icons.settings className="h-5 w-5" />
-          <p>Settings</p>
+          <p className="hidden sm:block">Settings</p>
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">

@@ -47,7 +47,7 @@ export const ProjectTabs = ({ project }: ProjectTabsProps) => {
       </div>
       <TabsContent value="overview" className="flex-1 space-y-3">
         <h1 className="font-medium text-secondary-foreground">Project description</h1>
-        <div className="min-h-[192px] w-full rounded-lg bg-secondary/80 p-3">{project.description}</div>
+        <div className="min-h-[135px] w-full rounded-lg bg-secondary/80 p-3">{project.description}</div>
       </TabsContent>
       <TabsContent value="tasks" className="flex-1">
         <KanbanBoard projectId={project.id} tasks={project.tasks} />
