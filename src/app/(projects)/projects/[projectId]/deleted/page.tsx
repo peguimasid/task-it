@@ -41,8 +41,10 @@ export default async function Page({ params }: PageProps) {
   }
 
   return (
-    <main className="flex h-full w-full flex-col space-y-8 pt-4">
-      <h1>Page</h1>
+    <main className="flex h-full w-full flex-col space-y-8">
+      <section className="flex w-full items-center justify-between">
+        <h1 className="font-heading text-3xl sm:text-4xl">Deleted Tasks</h1>
+      </section>
     </main>
   );
 }
