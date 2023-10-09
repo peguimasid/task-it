@@ -1,20 +1,28 @@
 'use client';
 
-import { useCallback } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Project as PrismaProject } from '@prisma/client';
 import { useMutation } from '@tanstack/react-query';
 import { isEmpty } from 'lodash';
-import { Loader2 } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
+import { Button, ButtonProps } from '@/components/ui/button';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger
+} from '@/components/ui/dialog';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
+import { Icons } from './icons';
 import { toast } from './ui/use-toast';
 
 const projectSchema = z.object({
@@ -33,17 +41,21 @@ const updateProject = async (data: FormValues, projectId: Project['id']): Promis
   });
 };
 
-interface UpdateProjectDataFormProps {
+interface ProjectSettingsButtonProps extends ButtonProps {
   project: Project;
 }
 
-export const UpdateProjectDataForm = ({ project }: UpdateProjectDataFormProps) => {
+export const ProjectSettingsButton = ({ project, className, variant, ...props }: ProjectSettingsButtonProps) => {
   const router = useRouter();
 
-  const defaultValues = {
-    name: project.name,
-    description: project.description
-  };
+  const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
+
+  const defaultValues = useMemo(() => {
+    return {
+      name: project.name,
+      description: project.description
+    };
+  }, [project]);
 
   const form = useForm<FormValues>({
     mode: 'onChange',
@@ -61,6 +73,7 @@ export const UpdateProjectDataForm = ({ project }: UpdateProjectDataFormProps) =
       });
       router.refresh();
       form.reset(variables);
+      setIsDialogOpen(false);
     },
     [router, form]
   );
@@ -83,22 +96,41 @@ export const UpdateProjectDataForm = ({ project }: UpdateProjectDataFormProps) =
 
   const onSubmit = useCallback((formData: FormValues) => mutate(formData), [mutate]);
 
+  const onOpenChange = useCallback(
+    (open: boolean) => {
+      if (!open) form.reset(defaultValues);
+      setIsDialogOpen(open);
+    },
+    [defaultValues, form]
+  );
+
   return (
-    <Form {...form}>
-      <form name="updateProjectForm" noValidate onSubmit={form.handleSubmit(onSubmit)}>
-        <Card>
-          <CardHeader>
-            <CardTitle>Project</CardTitle>
-            <CardDescription>Enter the project name and description that you most like</CardDescription>
-          </CardHeader>
-          <CardContent className="max-w-lg space-y-4">
+    <Dialog open={isDialogOpen} onOpenChange={onOpenChange}>
+      <DialogTrigger asChild>
+        <Button size="sm" className={cn('gap-2', className)} variant={variant} {...props}>
+          <Icons.settings className="h-5 w-5" />
+          <p>Settings</p>
+        </Button>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-[425px]">
+        <DialogHeader>
+          <DialogTitle>Project</DialogTitle>
+          <DialogDescription>Enter the name and description that you most like</DialogDescription>
+        </DialogHeader>
+        <Form {...form}>
+          <form
+            name="updateProjectForm"
+            noValidate
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="flex flex-col space-y-4"
+          >
             <FormField
               control={form.control}
               name="name"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Name</FormLabel>
-                  <FormControl>
+                  <FormControl autoFocus>
                     <Input {...field} autoComplete="off" />
                   </FormControl>
                   <FormMessage />
@@ -119,15 +151,15 @@ export const UpdateProjectDataForm = ({ project }: UpdateProjectDataFormProps) =
               )}
             />
             <Button type="submit" disabled={isSubmitButtonDisabled}>
-              <Loader2
+              <Icons.spinner
                 data-loading={isLoading}
                 className="mr-2 hidden h-4 w-4 animate-spin data-[loading=true]:block"
               />
               Save
             </Button>
-          </CardContent>
-        </Card>
-      </form>
-    </Form>
+          </form>
+        </Form>
+      </DialogContent>
+    </Dialog>
   );
 };
