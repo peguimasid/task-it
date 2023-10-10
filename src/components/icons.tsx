@@ -7,6 +7,9 @@ import {
   Check,
   ChevronLeft,
   ChevronRight,
+  CircleDashed,
+  CircleDot,
+  CircleDotDashed,
   Clock,
   CreditCard,
   File,
@@ -70,6 +73,9 @@ export const Icons = {
   moreVertical: MoreVertical,
   archiveX: ArchiveX,
   history: History,
+  circleDashed: CircleDashed,
+  circleDotDashed: CircleDotDashed,
+  circleDot: CircleDot,
   logo: (props: LucideProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"

@@ -9,9 +9,9 @@ export const TASK_STATUS: Record<TaskStatus, TaskStatus> = {
 };
 
 export const TASK_STATUS_ICONS: Record<TaskStatus, (typeof Icons)[keyof typeof Icons]> = {
-  BACKLOG: Icons.bookmark,
-  IN_PROGRESS: Icons.clock,
-  DONE: Icons.check
+  BACKLOG: Icons.circleDashed,
+  IN_PROGRESS: Icons.circleDotDashed,
+  DONE: Icons.circleDot
 };
 
 export const READABLE_STATUS: Record<TaskStatus, string> = {
