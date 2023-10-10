@@ -101,7 +101,7 @@ export const ProjectOperations = ({ project }: ProjectOperationsProps) => {
             <AlertDialogTitle>Are you sure?</AlertDialogTitle>
           </AlertDialogHeader>
           <div className="flex w-full items-center bg-destructive/20 p-4 text-red-600">
-            <p className="text-sm">Unexpected bad thing will happen if you don&apos;t read this!</p>
+            <p className="text-sm">Unexpected bad things will happen if you don&apos;t read this!</p>
           </div>
           <div className="px-4 text-sm text-muted-foreground">
             This will permanently delete the <span className="font-bold text-primary">{project.name}</span> project and
@@ -110,14 +110,14 @@ export const ProjectOperations = ({ project }: ProjectOperationsProps) => {
           </div>
           <div className="flex w-full flex-col gap-2 px-4">
             <Label htmlFor="project-name">Please type in the name of the project to confirm</Label>
-            <Input type="project-name" id="project-name" onChange={handleInputChange} />
+            <Input id="project-name" autoComplete="off" onChange={handleInputChange} />
           </div>
           <AlertDialogFooter className="px-4 pb-4">
             <AlertDialogCancel className="w-1/2">Cancel</AlertDialogCancel>
             <AlertDialogAction
               disabled={isDeleteButtonDisabled}
               onClick={handleClickDelete}
-              className="w-1/2 bg-red-600 focus:ring-red-600"
+              className="w-1/2 bg-red-600 transition-opacity focus:ring-red-600"
             >
               {isLoading ? (
                 <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
