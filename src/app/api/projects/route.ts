@@ -42,12 +42,11 @@ export async function POST(request: Request) {
     return new Response('Unauthorized', { status: 401 });
   }
 
-  const { name, description } = await request.json();
+  const { name } = await request.json();
 
   const newProject = await prisma.project.create({
     data: {
       name,
-      description,
       user: {
         connect: {
           id: session.user.id

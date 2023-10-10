@@ -26,8 +26,7 @@ export async function POST(request: Request, context: z.infer<typeof routeContex
     await prisma.task.updateMany({
       where: {
         projectId: params.projectId,
-        status: { equals: status },
-        deletedAt: null
+        status: { equals: status }
       },
       data: { index: { increment: 1 } }
     });

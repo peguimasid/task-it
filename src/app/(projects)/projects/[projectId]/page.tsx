@@ -27,8 +27,7 @@ const getProjectForUser = async (projectId: Project['id']): Promise<ProjectWithT
     },
     include: {
       tasks: {
-        orderBy: { index: 'asc' },
-        where: { deletedAt: null }
+        orderBy: { index: 'asc' }
       }
     }
   });

@@ -26,13 +26,12 @@ import { Icons } from './icons';
 import { toast } from './ui/use-toast';
 
 const projectSchema = z.object({
-  name: z.string().min(1, { message: 'Name is required' }).max(30, { message: 'Name can have at most 30 characters' }),
-  description: z.string().max(200, { message: 'Can you keep under 200 characters please?' }).optional()
+  name: z.string().min(1, { message: 'Name is required' }).max(30, { message: 'Name can have at most 30 characters' })
 });
 
 type FormValues = z.infer<typeof projectSchema>;
 
-type Project = Pick<PrismaProject, 'id' | 'name' | 'description'>;
+type Project = Pick<PrismaProject, 'id' | 'name'>;
 
 const updateProject = async (data: FormValues, projectId: Project['id']): Promise<void> => {
   await fetch(`/api/projects/${projectId}`, {
@@ -52,8 +51,7 @@ export const ProjectSettingsButton = ({ project, className, variant, ...props }:
 
   const defaultValues = useMemo(() => {
     return {
-      name: project.name,
-      description: project.description
+      name: project.name
     };
   }, [project]);
 
@@ -114,8 +112,8 @@ export const ProjectSettingsButton = ({ project, className, variant, ...props }:
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Project</DialogTitle>
-          <DialogDescription>Enter the name and description that you most like</DialogDescription>
+          <DialogTitle>Settings</DialogTitle>
+          <DialogDescription>Update your project details.</DialogDescription>
         </DialogHeader>
         <Form {...form}>
           <form
@@ -131,19 +129,6 @@ export const ProjectSettingsButton = ({ project, className, variant, ...props }:
                 <FormItem>
                   <FormLabel>Name</FormLabel>
                   <FormControl autoFocus>
-                    <Input {...field} autoComplete="off" />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="description"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Description</FormLabel>
-                  <FormControl>
                     <Input {...field} autoComplete="off" />
                   </FormControl>
                   <FormMessage />

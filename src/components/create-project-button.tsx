@@ -3,9 +3,10 @@
 import { useCallback, useMemo, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { Project } from '@prisma/client';
 import { useMutation } from '@tanstack/react-query';
 import { isEmpty } from 'lodash';
-import { Loader2, Plus } from 'lucide-react';
+import { Plus } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
@@ -19,26 +20,20 @@ import {
   DialogTitle,
   DialogTrigger
 } from '@/components/ui/dialog';
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 
+import { Icons } from './icons';
+
 const createProjectSchema = z.object({
-  name: z.string().min(1, { message: 'Name is required' }).max(30, { message: 'Name can have at most 30 characters' }),
-  description: z.string().max(200, { message: 'Can you keep under 200 characters please?' }).optional()
+  name: z.string().min(1, { message: 'Name is required' }).max(30, { message: 'Name can have at most 30 characters' })
 });
 
 const defaultValues = {
-  name: '',
-  description: ''
+  name: ''
 };
 
 type FormValues = z.infer<typeof createProjectSchema>;
-
-interface Project {
-  id: string;
-  name: string;
-  description?: string;
-}
 
 interface CreateProjectResponse {
   newProject: Project;
@@ -106,7 +101,7 @@ export const CreateProjectButton = ({ className, variant, ...props }: CreateProj
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>Create Project</DialogTitle>
-          <DialogDescription>Add name and description to create your project</DialogDescription>
+          <DialogDescription>Choose a name to create your project</DialogDescription>
         </DialogHeader>
         <Form {...form}>
           <form
@@ -128,22 +123,8 @@ export const CreateProjectButton = ({ className, variant, ...props }: CreateProj
                 </FormItem>
               )}
             />
-            <FormField
-              control={form.control}
-              name="description"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Description</FormLabel>
-                  <FormControl>
-                    <Input {...field} autoComplete="off" />
-                  </FormControl>
-                  <FormDescription>This is optional but very useful</FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
             <Button type="submit" disabled={isSubmitButtonDisabled}>
-              <Loader2
+              <Icons.spinner
                 data-loading={isLoading}
                 className="mr-2 hidden h-4 w-4 animate-spin data-[loading=true]:block"
               />

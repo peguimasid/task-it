@@ -46,7 +46,7 @@ export const DeleteProjectButton = ({ project, ...rest }: DeleteProjectButtonPro
   const onError = useCallback(() => {
     toast({
       title: 'Something went wrong.',
-      description: 'Your project was not updated. Please try again.',
+      description: 'Your project was not deleted. Please try again.',
       variant: 'destructive'
     });
   }, []);

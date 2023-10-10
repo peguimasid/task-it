@@ -26,14 +26,14 @@ interface TaskOperationsProps {
   task: Pick<Task, 'id'>;
 }
 
-interface SoftDeleteTaskProps {
+interface DeleteTaskProps {
   projectId: Project['id'];
   taskId: Task['id'];
 }
 
-const softDeleteTask = async ({ projectId, taskId }: SoftDeleteTaskProps): Promise<void> => {
-  await fetch(`/api/projects/${projectId}/tasks/${taskId}/soft-delete`, {
-    method: 'PATCH'
+const deleteTask = async ({ projectId, taskId }: DeleteTaskProps): Promise<void> => {
+  await fetch(`/api/projects/${projectId}/tasks/${taskId}`, {
+    method: 'DELETE'
   });
 };
 
@@ -64,7 +64,7 @@ export const TaskOperations = ({ task }: TaskOperationsProps) => {
   }, []);
 
   const { isLoading, mutate } = useMutation({
-    mutationFn: softDeleteTask,
+    mutationFn: deleteTask,
     onSuccess,
     onError
   });
@@ -99,7 +99,7 @@ export const TaskOperations = ({ task }: TaskOperationsProps) => {
         <AlertDialogContent>
           <AlertDialogHeader>
             <AlertDialogTitle>Are you sure you want to delete this task?</AlertDialogTitle>
-            <AlertDialogDescription>You still can recover it in deleted task page</AlertDialogDescription>
+            <AlertDialogDescription>This action cannot be undone.</AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel>Cancel</AlertDialogCancel>

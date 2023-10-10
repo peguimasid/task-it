@@ -21,15 +21,14 @@ export async function PATCH(request: Request, context: z.infer<typeof routeConte
     }
 
     const json = await request.json();
-    const { name, description } = projectPatchSchema.parse(json);
+    const { name } = projectPatchSchema.parse(json);
 
     await prisma.project.update({
       where: {
         id: params.projectId
       },
       data: {
-        name,
-        description
+        name
       }
     });
 

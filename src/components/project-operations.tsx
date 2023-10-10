@@ -1,7 +1,6 @@
 'use client';
 
 import { useCallback, useState } from 'react';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Project } from '@prisma/client';
 import { useMutation } from '@tanstack/react-query';
@@ -72,12 +71,6 @@ export const ProjectOperations = ({ project }: ProjectOperationsProps) => {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className="w-48">
-          <DropdownMenuItem className="cursor-pointer" asChild>
-            <Link href={`/projects/${project.id}/deleted`}>
-              <Icons.archiveX className="mr-2 h-4 w-4" />
-              <p>Deleted tasks</p>
-            </Link>
-          </DropdownMenuItem>
           <DropdownMenuItem
             className="cursor-pointer text-destructive focus:text-destructive"
             onSelect={openAlertDialog}
