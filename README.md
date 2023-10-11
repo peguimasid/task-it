@@ -6,6 +6,13 @@ I've created Task-it as a side project to address a common pain point I face as 
 
 I invite you to join me on this exciting journey and contribute your suggestions and improvements along the way. 😎
 
+### Progress so far:
+
+https://github.com/peguimasid/task-it/assets/54289589/a73d0f83-64a2-4776-a135-e72fc9f56324
+
+> Project page design was created by my talented brother, Pedro Masid, the best Product Designer i know.
+> You can check more of his work on [Dribbble](https://dribbble.com/pmasid)
+
 ## Version 0:
 
 In this initial version, our primary focus is on configuring and deploying the Task-it application. While doing so, we aim to maintain a sense of progress and inspiration throughout the development process. This version serves as a checkpoint, ensuring that we keep moving forward.
