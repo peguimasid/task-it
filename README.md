@@ -1,5 +1,3 @@
-Improve it:
-
 # Hi 👋 Welcome to Task-it
 
 ## Simplify Project Management and Task Collaboration
