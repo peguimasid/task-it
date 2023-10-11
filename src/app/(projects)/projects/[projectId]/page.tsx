@@ -20,6 +20,8 @@ const getProjectForUser = async (projectId: Project['id']): Promise<ProjectWithT
 
   if (!session) return null;
 
+  await new Promise((resolve) => setTimeout(resolve, 3000));
+
   const project = await prisma.project.findFirst({
     where: {
       id: projectId,

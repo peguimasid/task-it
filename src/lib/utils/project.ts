@@ -1,7 +1,7 @@
 import { Project } from '@prisma/client';
 
-import { getServerAuthSession } from './auth';
-import { prisma } from './prisma';
+import { getServerAuthSession } from '../auth';
+import { prisma } from '../prisma';
 
 export async function userHasAccessToProject(projectId: Project['id']): Promise<boolean> {
   const session = await getServerAuthSession();

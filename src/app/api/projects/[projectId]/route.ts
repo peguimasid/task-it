@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 import { prisma } from '@/lib/prisma';
-import { userHasAccessToProject } from '@/lib/project';
+import { userHasAccessToProject } from '@/lib/utils/project';
 import { projectPatchSchema } from '@/lib/validations/project';
 
 const routeContextSchema = z.object({
