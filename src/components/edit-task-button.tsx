@@ -13,6 +13,7 @@ import {
   SheetTrigger
 } from '@/components/ui/sheet';
 
+import { EditTaskForm } from './edit-task-form';
 import { Icons } from './icons';
 
 interface EditTaskButtonProps {
@@ -43,7 +44,7 @@ export const EditTaskButton = ({ task }: EditTaskButtonProps) => {
         data-expanded={isExpanded}
         className="flex w-screen flex-col space-y-4 overflow-y-auto transition-[width] data-[expanded=true]:w-screen sm:w-[50vw] sm:max-w-none sm:rounded-l-xl"
       >
-        <div className="container mx-auto flex max-w-4xl flex-col gap-6 p-0">
+        <div className="container mx-auto flex h-full max-w-4xl flex-col gap-6 p-0">
           <div className="flex w-full flex-row justify-between">
             <SheetHeader className="space-y-1 text-left">
               <SheetTitle>{task.title}</SheetTitle>
@@ -63,8 +64,7 @@ export const EditTaskButton = ({ task }: EditTaskButtonProps) => {
               </SheetClose>
             </div>
           </div>
-          <div className="h-16 w-full rounded-lg border" />
-          <div className="min-h-[500px] w-full rounded-lg border" />
+          <EditTaskForm task={task} />
         </div>
       </SheetContent>
     </Sheet>
