@@ -9,3 +9,5 @@ export type SiteConfig = {
 };
 
 export type TaskStatus = 'BACKLOG' | 'IN_PROGRESS' | 'DONE';
+
+export type TaskPriority = 'URGENT' | 'HIGH' | 'MEDIUM' | 'LOW';

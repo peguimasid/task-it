@@ -1,12 +1,17 @@
+import { priorities, READABLE_PRIORITY } from '@/constants/task-priorities';
+import { TaskPriority } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Task } from '@prisma/client';
+import { Check, ChevronsUpDown } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-import { Icons } from './icons';
+import { cn } from '@/lib/utils';
+
 import { Button } from './ui/button';
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from './ui/command';
 import { Form, FormControl, FormField, FormItem } from './ui/form';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
+import { Popover, PopoverContent, PopoverTrigger } from './ui/popover';
 
 interface EditTaskFormProps {
   task: Task;
@@ -37,28 +42,49 @@ export const EditTaskForm = ({ task }: EditTaskFormProps) => {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-6">
-        <div className="flex w-full flex-row gap-3">
+        <div className="flex w-full flex-col gap-3 sm:flex-row">
           <FormField
             control={form.control}
             name="priority"
             render={({ field }) => (
-              <FormItem className="w-1/3">
-                <Select value={field.value} onValueChange={field.onChange}>
-                  <FormControl className="flex w-full justify-start space-x-2 [&_svg]:!ml-auto">
-                    <SelectTrigger>
-                      <span className="text-muted-foreground">Priority: </span>
-                      <SelectValue placeholder="Select priority">
-                        <p>{field.value}</p>
-                      </SelectValue>
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    <SelectItem value="Urgent">Urgent</SelectItem>
-                    <SelectItem value="High">High</SelectItem>
-                    <SelectItem value="Medium">Medium</SelectItem>
-                    <SelectItem value="Low">Low</SelectItem>
-                  </SelectContent>
-                </Select>
+              <FormItem className="flex w-full flex-col sm:w-1/3">
+                <Popover modal>
+                  <PopoverTrigger asChild>
+                    <FormControl>
+                      <Button variant="outline" role="combobox" className="w-full justify-start gap-2">
+                        <span className="text-muted-foreground">Priority: </span>
+                        {field.value?.length ? (
+                          <p>{READABLE_PRIORITY[field.value as TaskPriority]}</p>
+                        ) : (
+                          <p>Select priority</p>
+                        )}
+                        <ChevronsUpDown className="ml-auto h-4 w-4 shrink-0 opacity-50" />
+                      </Button>
+                    </FormControl>
+                  </PopoverTrigger>
+                  <PopoverContent align="end" className="w-full p-0">
+                    <Command>
+                      <CommandInput placeholder="Search priority..." className="h-10" />
+                      <CommandEmpty>No priority found.</CommandEmpty>
+                      <CommandGroup>
+                        {priorities.map((priority) => (
+                          <CommandItem
+                            value={priority}
+                            key={priority}
+                            onSelect={() => {
+                              form.setValue('priority', priority === field.value ? '' : priority);
+                            }}
+                          >
+                            <Check
+                              className={cn('mr-2 h-4 w-4', field.value === priority ? 'opacity-100' : 'opacity-0')}
+                            />
+                            {READABLE_PRIORITY[priority]}
+                          </CommandItem>
+                        ))}
+                      </CommandGroup>
+                    </Command>
+                  </PopoverContent>
+                </Popover>
               </FormItem>
             )}
           />
