@@ -1,11 +1,15 @@
 'use client';
 
+import { READABLE_PRIORITY } from '@/constants/task-priorities';
+import { READABLE_SIZE } from '@/constants/task-sizes';
+import { TaskPriority, TaskSize } from '@/types';
+
 import { Icons } from './icons';
 import { Badge } from './ui/badge';
 
 interface TagsListProps {
-  size: string | null;
-  priority: string | null;
+  size: TaskSize | null;
+  priority: TaskPriority | null;
   tags: string[];
 }
 
@@ -15,13 +19,13 @@ export const TagsList = ({ priority, size, tags }: TagsListProps) => {
       {priority && (
         <Badge variant="secondary">
           <Icons.flag className="mr-1 h-3 w-3" />
-          {priority}
+          {READABLE_PRIORITY[priority]}
         </Badge>
       )}
       {size && (
         <Badge variant="secondary">
           <Icons.ruler className="mr-1 h-3 w-3" />
-          {size}
+          {READABLE_SIZE[size]}
         </Badge>
       )}
       {tags?.map((tag) => (
