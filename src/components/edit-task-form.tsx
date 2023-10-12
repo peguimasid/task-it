@@ -1,5 +1,7 @@
 import { priorities, READABLE_PRIORITY } from '@/constants/task-priorities';
-import { TaskPriority } from '@/types';
+import { READABLE_SIZE, sizes } from '@/constants/task-sizes';
+import { READABLE_STATUS, statuses } from '@/constants/task-statuses';
+import { TaskPriority, TaskSize, TaskStatus } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Task } from '@prisma/client';
 import { Check, ChevronsUpDown } from 'lucide-react';
@@ -19,14 +21,17 @@ interface EditTaskFormProps {
 
 const FormSchema = z.object({
   status: z.string(),
-  priority: z.string().optional()
+  priority: z.string().optional(),
+  size: z.string().optional()
 });
 
 type FormValues = z.infer<typeof FormSchema>;
 
 export const EditTaskForm = ({ task }: EditTaskFormProps) => {
-  const defaultValues = {
-    priority: task?.priority ?? ''
+  const defaultValues: FormValues = {
+    status: task.status,
+    priority: task?.priority ?? '',
+    size: task?.size ?? ''
   };
 
   const form = useForm<FormValues>({
@@ -45,10 +50,51 @@ export const EditTaskForm = ({ task }: EditTaskFormProps) => {
         <div className="flex w-full flex-col gap-3 sm:flex-row">
           <FormField
             control={form.control}
+            name="status"
+            render={({ field }) => (
+              <FormItem className="flex w-full flex-col sm:w-1/3">
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <FormControl>
+                      <Button variant="outline" role="combobox" className="w-full justify-start gap-2">
+                        <span className="text-muted-foreground">Status: </span>
+                        <p>{READABLE_STATUS[field.value as TaskStatus]}</p>
+                        <ChevronsUpDown className="ml-auto h-4 w-4 shrink-0 opacity-50" />
+                      </Button>
+                    </FormControl>
+                  </PopoverTrigger>
+                  <PopoverContent align="end" className="w-full p-0">
+                    <Command>
+                      <CommandInput placeholder="Search status..." className="h-10" />
+                      <CommandEmpty>No status found.</CommandEmpty>
+                      <CommandGroup>
+                        {statuses.map((status) => (
+                          <CommandItem
+                            value={status}
+                            key={status}
+                            onSelect={() => {
+                              form.setValue('status', status);
+                            }}
+                          >
+                            <Check
+                              className={cn('mr-2 h-4 w-4', field.value === status ? 'opacity-100' : 'opacity-0')}
+                            />
+                            {READABLE_STATUS[status]}
+                          </CommandItem>
+                        ))}
+                      </CommandGroup>
+                    </Command>
+                  </PopoverContent>
+                </Popover>
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
             name="priority"
             render={({ field }) => (
               <FormItem className="flex w-full flex-col sm:w-1/3">
-                <Popover modal>
+                <Popover>
                   <PopoverTrigger asChild>
                     <FormControl>
                       <Button variant="outline" role="combobox" className="w-full justify-start gap-2">
@@ -79,6 +125,45 @@ export const EditTaskForm = ({ task }: EditTaskFormProps) => {
                               className={cn('mr-2 h-4 w-4', field.value === priority ? 'opacity-100' : 'opacity-0')}
                             />
                             {READABLE_PRIORITY[priority]}
+                          </CommandItem>
+                        ))}
+                      </CommandGroup>
+                    </Command>
+                  </PopoverContent>
+                </Popover>
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="size"
+            render={({ field }) => (
+              <FormItem className="flex w-full flex-col sm:w-1/3">
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <FormControl>
+                      <Button variant="outline" role="combobox" className="w-full justify-start gap-2">
+                        <span className="text-muted-foreground">Size: </span>
+                        {field.value?.length ? <p>{READABLE_SIZE[field.value as TaskSize]}</p> : <p>Select size</p>}
+                        <ChevronsUpDown className="ml-auto h-4 w-4 shrink-0 opacity-50" />
+                      </Button>
+                    </FormControl>
+                  </PopoverTrigger>
+                  <PopoverContent align="end" className="w-full p-0">
+                    <Command>
+                      <CommandInput placeholder="Search size..." className="h-10" />
+                      <CommandEmpty>No size found.</CommandEmpty>
+                      <CommandGroup>
+                        {sizes.map((size) => (
+                          <CommandItem
+                            value={size}
+                            key={size}
+                            onSelect={() => {
+                              form.setValue('size', size === field.value ? '' : size);
+                            }}
+                          >
+                            <Check className={cn('mr-2 h-4 w-4', field.value === size ? 'opacity-100' : 'opacity-0')} />
+                            {READABLE_SIZE[size]}
                           </CommandItem>
                         ))}
                       </CommandGroup>
