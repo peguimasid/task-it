@@ -15,8 +15,11 @@ import {
   File,
   FileText,
   Flag,
+  Flame,
+  Hammer,
   HelpCircle,
   History,
+  IceCream,
   Image,
   Kanban,
   KanbanSquare,
@@ -31,6 +34,7 @@ import {
   Plus,
   Ruler,
   Settings,
+  Siren,
   SunMedium,
   Trash,
   User,
@@ -76,6 +80,10 @@ export const Icons = {
   circleDashed: CircleDashed,
   circleDotDashed: CircleDotDashed,
   circleDot: CircleDot,
+  flame: Flame,
+  siren: Siren,
+  hammer: Hammer,
+  iceCream: IceCream,
   logo: (props: LucideProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
