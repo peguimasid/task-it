@@ -57,8 +57,8 @@ export const EditTaskForm = ({ task }: EditTaskFormProps) => {
                   <PopoverTrigger asChild>
                     <FormControl>
                       <Button variant="outline" role="combobox" className="w-full justify-start gap-2">
-                        <span className="text-muted-foreground">Status: </span>
-                        <p>{READABLE_STATUS[field.value as TaskStatus]}</p>
+                        <span className="truncate text-muted-foreground">Status: </span>
+                        <p className="truncate">{READABLE_STATUS[field.value as TaskStatus]}</p>
                         <ChevronsUpDown className="ml-auto h-4 w-4 shrink-0 opacity-50" />
                       </Button>
                     </FormControl>
@@ -98,11 +98,11 @@ export const EditTaskForm = ({ task }: EditTaskFormProps) => {
                   <PopoverTrigger asChild>
                     <FormControl>
                       <Button variant="outline" role="combobox" className="w-full justify-start gap-2">
-                        <span className="text-muted-foreground">Priority: </span>
+                        <span className="truncate text-muted-foreground">Priority: </span>
                         {field.value?.length ? (
-                          <p>{READABLE_PRIORITY[field.value as TaskPriority]}</p>
+                          <p className="truncate">{READABLE_PRIORITY[field.value as TaskPriority]}</p>
                         ) : (
-                          <p>Select priority</p>
+                          <p className="truncate">Select priority</p>
                         )}
                         <ChevronsUpDown className="ml-auto h-4 w-4 shrink-0 opacity-50" />
                       </Button>
@@ -143,8 +143,12 @@ export const EditTaskForm = ({ task }: EditTaskFormProps) => {
                   <PopoverTrigger asChild>
                     <FormControl>
                       <Button variant="outline" role="combobox" className="w-full justify-start gap-2">
-                        <span className="text-muted-foreground">Size: </span>
-                        {field.value?.length ? <p>{READABLE_SIZE[field.value as TaskSize]}</p> : <p>Select size</p>}
+                        <span className="truncate text-muted-foreground">Size: </span>
+                        {field.value?.length ? (
+                          <p className="truncate">{READABLE_SIZE[field.value as TaskSize]}</p>
+                        ) : (
+                          <p className="truncate">Select size</p>
+                        )}
                         <ChevronsUpDown className="ml-auto h-4 w-4 shrink-0 opacity-50" />
                       </Button>
                     </FormControl>
