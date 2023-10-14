@@ -1,4 +1,4 @@
-import { priorities, READABLE_PRIORITY } from '@/constants/task-priorities';
+import { priorities, READABLE_PRIORITY, TASK_PRIORITY_ICONS } from '@/constants/task-priorities';
 import { READABLE_SIZE, sizes } from '@/constants/task-sizes';
 import { READABLE_STATUS, statuses, TASK_STATUS_ICONS } from '@/constants/task-statuses';
 import { TaskPriority, TaskSize, TaskStatus } from '@/types';
@@ -40,13 +40,9 @@ export const EditTaskForm = ({ task }: EditTaskFormProps) => {
     resolver: zodResolver(FormSchema)
   });
 
-  const onSubmit = (formData: FormValues) => {
-    console.log(formData);
-  };
-
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-6">
+      <form className="flex flex-col gap-6">
         <div className="flex w-full flex-col gap-3 sm:flex-row">
           <FormField
             control={form.control}
@@ -61,7 +57,7 @@ export const EditTaskForm = ({ task }: EditTaskFormProps) => {
                         <Button variant="outline" role="combobox" className="w-full justify-start gap-2">
                           <span className="truncate text-muted-foreground">Status: </span>
                           <div
-                            className={cn('flex items-center gap-2', {
+                            className={cn('flex items-center gap-2 truncate', {
                               'text-sky-500 dark:text-sky-300': field.value === 'BACKLOG',
                               'text-amber-500 dark:text-amber-200': field.value === 'IN_PROGRESS',
                               'text-green-500 dark:text-green-300': field.value === 'DONE'
@@ -116,47 +112,73 @@ export const EditTaskForm = ({ task }: EditTaskFormProps) => {
           <FormField
             control={form.control}
             name="priority"
-            render={({ field }) => (
-              <FormItem className="flex w-full flex-col sm:w-1/3">
-                <Popover>
-                  <PopoverTrigger asChild>
-                    <FormControl>
-                      <Button variant="outline" role="combobox" className="w-full justify-start gap-2">
-                        <span className="truncate text-muted-foreground">Priority: </span>
-                        {field.value?.length ? (
-                          <p className="truncate">{READABLE_PRIORITY[field.value as TaskPriority]}</p>
-                        ) : (
-                          <p className="truncate">Select priority</p>
-                        )}
-                        <ChevronsUpDown className="ml-auto h-4 w-4 shrink-0 opacity-50" />
-                      </Button>
-                    </FormControl>
-                  </PopoverTrigger>
-                  <PopoverContent align="end" className="w-full p-0">
-                    <Command>
-                      <CommandInput placeholder="Search priority..." className="h-10" />
-                      <CommandEmpty>No priority found.</CommandEmpty>
-                      <CommandGroup>
-                        {priorities.map((priority) => (
-                          <CommandItem
-                            value={priority}
-                            key={priority}
-                            onSelect={() => {
-                              form.setValue('priority', priority === field.value ? '' : priority);
-                            }}
-                          >
-                            <Check
-                              className={cn('mr-2 h-4 w-4', field.value === priority ? 'opacity-100' : 'opacity-0')}
-                            />
-                            {READABLE_PRIORITY[priority]}
-                          </CommandItem>
-                        ))}
-                      </CommandGroup>
-                    </Command>
-                  </PopoverContent>
-                </Popover>
-              </FormItem>
-            )}
+            render={({ field }) => {
+              const SelectedPriorityIcon = TASK_PRIORITY_ICONS[field.value as TaskPriority] ?? null;
+              return (
+                <FormItem className="flex w-full flex-col sm:w-1/3">
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <FormControl>
+                        <Button variant="outline" role="combobox" className="w-full justify-start gap-2">
+                          <span className="truncate text-muted-foreground">Priority: </span>
+                          {field.value?.length ? (
+                            <div
+                              className={cn('flex items-center gap-2 truncate', {
+                                'text-red-500 dark:text-red-400': field.value === 'URGENT',
+                                'text-yellow-500 dark:text-yellow-300': field.value === 'HIGH',
+                                'text-green-500 dark:text-green-300': field.value === 'MEDIUM',
+                                'text-blue-500 dark:text-blue-300': field.value === 'LOW'
+                              })}
+                            >
+                              <SelectedPriorityIcon className="h-4 w-4" />
+                              <p className="truncate">{READABLE_PRIORITY[field.value as TaskPriority]}</p>
+                            </div>
+                          ) : (
+                            <p className="truncate">Select priority</p>
+                          )}
+                          <ChevronsUpDown className="ml-auto h-4 w-4 shrink-0 opacity-50" />
+                        </Button>
+                      </FormControl>
+                    </PopoverTrigger>
+                    <PopoverContent align="end" className="w-full p-0">
+                      <Command>
+                        <CommandInput placeholder="Search priority..." className="h-10" />
+                        <CommandEmpty>No priority found.</CommandEmpty>
+                        <CommandGroup>
+                          {priorities.map((priority) => {
+                            const PriorityIcon = TASK_PRIORITY_ICONS[priority];
+                            return (
+                              <CommandItem
+                                value={priority}
+                                key={priority}
+                                onSelect={() => {
+                                  form.setValue('priority', priority === field.value ? '' : priority);
+                                }}
+                              >
+                                <Check
+                                  className={cn('mr-2 h-4 w-4', field.value === priority ? 'opacity-100' : 'opacity-0')}
+                                />
+                                <div
+                                  className={cn('flex items-center gap-2', {
+                                    'text-red-500 dark:text-red-400': priority === 'URGENT',
+                                    'text-yellow-500 dark:text-yellow-300': priority === 'HIGH',
+                                    'text-green-500 dark:text-green-300': priority === 'MEDIUM',
+                                    'text-blue-500 dark:text-blue-300': priority === 'LOW'
+                                  })}
+                                >
+                                  <PriorityIcon className="h-4 w-4" />
+                                  <p>{READABLE_PRIORITY[priority]}</p>
+                                </div>
+                              </CommandItem>
+                            );
+                          })}
+                        </CommandGroup>
+                      </Command>
+                    </PopoverContent>
+                  </Popover>
+                </FormItem>
+              );
+            }}
           />
           <FormField
             control={form.control}
