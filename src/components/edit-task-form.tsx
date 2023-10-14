@@ -12,7 +12,9 @@ import { z } from 'zod';
 import { cn } from '@/lib/utils';
 
 import { CreateTagButton } from './create-tag-button';
+import { EmptyPlaceholder } from './empty-placeholder';
 import { Icons } from './icons';
+import { Badge } from './ui/badge';
 import { Button } from './ui/button';
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from './ui/command';
 import { Form, FormControl, FormField, FormItem } from './ui/form';
@@ -51,6 +53,15 @@ export const EditTaskForm = ({ task }: EditTaskFormProps) => {
     (newTag: string) => {
       const tags = form.getValues('tags');
       form.setValue('tags', [...tags, newTag], { shouldDirty: true });
+    },
+    [form]
+  );
+
+  const handleDeleteTag = useCallback(
+    (deletedTag: string) => {
+      const tags = form.getValues('tags');
+      const tagsWithoutDeleted = tags.filter((tag) => tag !== deletedTag);
+      form.setValue('tags', tagsWithoutDeleted, { shouldDirty: true });
     },
     [form]
   );
@@ -252,12 +263,32 @@ export const EditTaskForm = ({ task }: EditTaskFormProps) => {
             )}
           />
         </div>
-        <div className="flex w-full flex-col">
+        <div className="flex w-full flex-col space-y-3">
           <div className="flex flex-row justify-between">
             <h1 className="font-medium text-muted-foreground">Tags</h1>
             <CreateTagButton variant="ghost" className="h-8" onSubmitTag={handleIncludeTag} />
           </div>
-          {}
+          <div className="flex flex-wrap gap-2">
+            {data.tags.length ? (
+              data.tags?.map((tag) => (
+                <Badge variant="secondary" className="flex items-center gap-1.5 px-2.5 text-sm">
+                  <p>{tag}</p>
+                  <Button variant="ghost" size="icon" className="h-3 w-3" onClick={() => handleDeleteTag(tag)}>
+                    <Icons.close />
+                  </Button>
+                </Badge>
+              ))
+            ) : (
+              <div className="flex w-full items-center justify-center">
+                <EmptyPlaceholder className="min-h-min w-full gap-2 p-4">
+                  <div className="flex items-center gap-2">
+                    <Icons.tag className="h-4 w-4" />
+                    <h1 className="text-sm">No tags</h1>
+                  </div>
+                </EmptyPlaceholder>
+              </div>
+            )}
+          </div>
         </div>
       </form>
     </Form>

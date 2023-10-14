@@ -39,6 +39,7 @@ import {
   Siren,
   Sprout,
   SunMedium,
+  Tag,
   TentTree,
   Trash,
   User,
@@ -92,6 +93,7 @@ export const Icons = {
   leaf: Leaf,
   tentTree: TentTree,
   coffee: Coffee,
+  tag: Tag,
   logo: (props: LucideProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
