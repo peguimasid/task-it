@@ -47,7 +47,7 @@ export const EditTaskForm = ({ task }: EditTaskFormProps) => {
     resolver: zodResolver(FormSchema)
   });
 
-  const handleSubmitTag = useCallback(
+  const handleIncludeTag = useCallback(
     (newTag: string) => {
       const tags = form.getValues('tags');
       form.setValue('tags', [...tags, newTag], { shouldDirty: true });
@@ -255,8 +255,9 @@ export const EditTaskForm = ({ task }: EditTaskFormProps) => {
         <div className="flex w-full flex-col">
           <div className="flex flex-row justify-between">
             <h1 className="font-medium text-muted-foreground">Tags</h1>
-            <CreateTagButton variant="ghost" className="h-8" onSubmitTag={handleSubmitTag} />
+            <CreateTagButton variant="ghost" className="h-8" onSubmitTag={handleIncludeTag} />
           </div>
+          {}
         </div>
       </form>
     </Form>
