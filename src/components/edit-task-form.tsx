@@ -1,3 +1,4 @@
+import { useEffect, useMemo } from 'react';
 import { priorities, READABLE_PRIORITY, TASK_PRIORITY_ICONS } from '@/constants/task-priorities';
 import { READABLE_SIZE, sizes } from '@/constants/task-sizes';
 import { READABLE_STATUS, statuses, TASK_STATUS_ICONS } from '@/constants/task-statuses';
@@ -29,17 +30,27 @@ const FormSchema = z.object({
 type FormValues = z.infer<typeof FormSchema>;
 
 export const EditTaskForm = ({ task }: EditTaskFormProps) => {
-  const defaultValues: FormValues = {
-    status: task.status,
-    priority: task?.priority ?? '',
-    size: task?.size ?? ''
-  };
+  const defaultValues = useMemo<FormValues>(() => {
+    return {
+      status: task.status,
+      priority: task?.priority ?? '',
+      size: task?.size ?? ''
+    };
+  }, [task]);
 
   const form = useForm<FormValues>({
     mode: 'onChange',
     defaultValues,
     resolver: zodResolver(FormSchema)
   });
+
+  const data = form.watch();
+
+  useEffect(() => {
+    const { dirtyFields } = form.formState;
+    console.log(dirtyFields);
+    console.log(data);
+  }, [form, data]);
 
   return (
     <Form {...form}>
@@ -83,7 +94,7 @@ export const EditTaskForm = ({ task }: EditTaskFormProps) => {
                                 value={status}
                                 key={status}
                                 onSelect={() => {
-                                  form.setValue('status', status);
+                                  form.setValue('status', status, { shouldDirty: true });
                                 }}
                               >
                                 <Check
@@ -153,7 +164,9 @@ export const EditTaskForm = ({ task }: EditTaskFormProps) => {
                                 value={priority}
                                 key={priority}
                                 onSelect={() => {
-                                  form.setValue('priority', priority === field.value ? '' : priority);
+                                  form.setValue('priority', priority === field.value ? '' : priority, {
+                                    shouldDirty: true
+                                  });
                                 }}
                               >
                                 <Check
@@ -213,7 +226,7 @@ export const EditTaskForm = ({ task }: EditTaskFormProps) => {
                             value={size}
                             key={size}
                             onSelect={() => {
-                              form.setValue('size', size === field.value ? '' : size);
+                              form.setValue('size', size === field.value ? '' : size, { shouldDirty: true });
                             }}
                           >
                             <Check className={cn('mr-2 h-4 w-4', field.value === size ? 'opacity-100' : 'opacity-0')} />
