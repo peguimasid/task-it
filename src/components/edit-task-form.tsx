@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 import { priorities, READABLE_PRIORITY, TASK_PRIORITY_ICONS } from '@/constants/task-priorities';
 import { READABLE_SIZE, sizes } from '@/constants/task-sizes';
 import { READABLE_STATUS, statuses, TASK_STATUS_ICONS } from '@/constants/task-statuses';
@@ -46,6 +46,14 @@ export const EditTaskForm = ({ task }: EditTaskFormProps) => {
     defaultValues,
     resolver: zodResolver(FormSchema)
   });
+
+  const handleSubmitTag = useCallback(
+    (newTag: string) => {
+      const tags = form.getValues('tags');
+      form.setValue('tags', [...tags, newTag], { shouldDirty: true });
+    },
+    [form]
+  );
 
   const data = form.watch();
 
@@ -247,7 +255,7 @@ export const EditTaskForm = ({ task }: EditTaskFormProps) => {
         <div className="flex w-full flex-col">
           <div className="flex flex-row justify-between">
             <h1 className="font-medium text-muted-foreground">Tags</h1>
-            <CreateTagButton variant="ghost" className="h-8" onSubmitTag={(value) => console.log(value)} />
+            <CreateTagButton variant="ghost" className="h-8" onSubmitTag={handleSubmitTag} />
           </div>
         </div>
       </form>
