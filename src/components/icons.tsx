@@ -11,6 +11,7 @@ import {
   CircleDot,
   CircleDotDashed,
   Clock,
+  Coffee,
   CreditCard,
   File,
   FileText,
@@ -24,6 +25,7 @@ import {
   Kanban,
   KanbanSquare,
   Laptop,
+  Leaf,
   Loader2,
   LucideProps,
   Maximize2,
@@ -35,7 +37,9 @@ import {
   Ruler,
   Settings,
   Siren,
+  Sprout,
   SunMedium,
+  TentTree,
   Trash,
   User,
   Weight,
@@ -84,6 +88,10 @@ export const Icons = {
   siren: Siren,
   hammer: Hammer,
   iceCream: IceCream,
+  sprout: Sprout,
+  leaf: Leaf,
+  tentTree: TentTree,
+  coffee: Coffee,
   logo: (props: LucideProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"

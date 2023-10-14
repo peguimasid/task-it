@@ -12,8 +12,8 @@ export const TASK_PRIORITY: Record<TaskPriority, TaskPriority> = {
 export const TASK_PRIORITY_ICONS: Record<TaskPriority, (typeof Icons)[keyof typeof Icons]> = {
   URGENT: Icons.flame,
   HIGH: Icons.siren,
-  MEDIUM: Icons.hammer,
-  LOW: Icons.iceCream
+  MEDIUM: Icons.flag,
+  LOW: Icons.coffee
 };
 
 export const READABLE_PRIORITY: Record<TaskPriority, string> = {
