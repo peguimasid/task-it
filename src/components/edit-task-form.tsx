@@ -1,6 +1,6 @@
 import { priorities, READABLE_PRIORITY } from '@/constants/task-priorities';
 import { READABLE_SIZE, sizes } from '@/constants/task-sizes';
-import { READABLE_STATUS, statuses } from '@/constants/task-statuses';
+import { READABLE_STATUS, statuses, TASK_STATUS_ICONS } from '@/constants/task-statuses';
 import { TaskPriority, TaskSize, TaskStatus } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Task } from '@prisma/client';
@@ -51,43 +51,67 @@ export const EditTaskForm = ({ task }: EditTaskFormProps) => {
           <FormField
             control={form.control}
             name="status"
-            render={({ field }) => (
-              <FormItem className="flex w-full flex-col sm:w-1/3">
-                <Popover>
-                  <PopoverTrigger asChild>
-                    <FormControl>
-                      <Button variant="outline" role="combobox" className="w-full justify-start gap-2">
-                        <span className="truncate text-muted-foreground">Status: </span>
-                        <p className="truncate">{READABLE_STATUS[field.value as TaskStatus]}</p>
-                        <ChevronsUpDown className="ml-auto h-4 w-4 shrink-0 opacity-50" />
-                      </Button>
-                    </FormControl>
-                  </PopoverTrigger>
-                  <PopoverContent align="end" className="w-full p-0">
-                    <Command>
-                      <CommandInput placeholder="Search status..." className="h-10" />
-                      <CommandEmpty>No status found.</CommandEmpty>
-                      <CommandGroup>
-                        {statuses.map((status) => (
-                          <CommandItem
-                            value={status}
-                            key={status}
-                            onSelect={() => {
-                              form.setValue('status', status);
-                            }}
+            render={({ field }) => {
+              const SelectedStatusIcon = TASK_STATUS_ICONS[field.value as TaskStatus];
+              return (
+                <FormItem className="flex w-full flex-col sm:w-1/3">
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <FormControl>
+                        <Button variant="outline" role="combobox" className="w-full justify-start gap-2">
+                          <span className="truncate text-muted-foreground">Status: </span>
+                          <div
+                            className={cn('flex items-center gap-2', {
+                              'text-sky-500 dark:text-sky-300': field.value === 'BACKLOG',
+                              'text-amber-500 dark:text-amber-200': field.value === 'IN_PROGRESS',
+                              'text-green-500 dark:text-green-300': field.value === 'DONE'
+                            })}
                           >
-                            <Check
-                              className={cn('mr-2 h-4 w-4', field.value === status ? 'opacity-100' : 'opacity-0')}
-                            />
-                            {READABLE_STATUS[status]}
-                          </CommandItem>
-                        ))}
-                      </CommandGroup>
-                    </Command>
-                  </PopoverContent>
-                </Popover>
-              </FormItem>
-            )}
+                            <SelectedStatusIcon className="h-4 w-4" />
+                            <p className="truncate">{READABLE_STATUS[field.value as TaskStatus]}</p>
+                          </div>
+                          <ChevronsUpDown className="ml-auto h-4 w-4 shrink-0 opacity-50" />
+                        </Button>
+                      </FormControl>
+                    </PopoverTrigger>
+                    <PopoverContent align="end" className="w-full p-0">
+                      <Command>
+                        <CommandInput placeholder="Search status..." className="h-10" />
+                        <CommandEmpty>No status found.</CommandEmpty>
+                        <CommandGroup>
+                          {statuses.map((status) => {
+                            const StatusIcon = TASK_STATUS_ICONS[status];
+                            return (
+                              <CommandItem
+                                value={status}
+                                key={status}
+                                onSelect={() => {
+                                  form.setValue('status', status);
+                                }}
+                              >
+                                <Check
+                                  className={cn('mr-2 h-4 w-4', field.value === status ? 'opacity-100' : 'opacity-0')}
+                                />
+                                <div
+                                  className={cn('flex items-center gap-2', {
+                                    'text-sky-500 dark:text-sky-300': status === 'BACKLOG',
+                                    'text-amber-500 dark:text-amber-200': status === 'IN_PROGRESS',
+                                    'text-green-500 dark:text-green-300': status === 'DONE'
+                                  })}
+                                >
+                                  <StatusIcon className="h-4 w-4" />
+                                  <p>{READABLE_STATUS[status]}</p>
+                                </div>
+                              </CommandItem>
+                            );
+                          })}
+                        </CommandGroup>
+                      </Command>
+                    </PopoverContent>
+                  </Popover>
+                </FormItem>
+              );
+            }}
           />
           <FormField
             control={form.control}
