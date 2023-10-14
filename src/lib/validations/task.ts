@@ -17,3 +17,14 @@ export const taskPostSchema = z.object({
     .min(1, { message: 'This field is required' })
     .max(500, { message: 'Title can have at most 500 characters' })
 });
+
+export const taskPutSchema = z.object({
+  id: z.string(),
+  index: z.number().optional(),
+  title: z.string().optional(),
+  description: z.any().optional(),
+  tags: z.array(z.string()).optional(),
+  status: z.string().optional(),
+  priority: z.string().optional(),
+  size: z.string().optional()
+});
