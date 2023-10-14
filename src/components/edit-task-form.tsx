@@ -11,6 +11,7 @@ import { z } from 'zod';
 
 import { cn } from '@/lib/utils';
 
+import { CreateTagButton } from './create-tag-button';
 import { Icons } from './icons';
 import { Button } from './ui/button';
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from './ui/command';
@@ -24,7 +25,8 @@ interface EditTaskFormProps {
 const FormSchema = z.object({
   status: z.string(),
   priority: z.string().optional(),
-  size: z.string().optional()
+  size: z.string().optional(),
+  tags: z.array(z.string())
 });
 
 type FormValues = z.infer<typeof FormSchema>;
@@ -34,7 +36,8 @@ export const EditTaskForm = ({ task }: EditTaskFormProps) => {
     return {
       status: task.status,
       priority: task?.priority ?? '',
-      size: task?.size ?? ''
+      size: task?.size ?? '',
+      tags: task?.tags ?? []
     };
   }, [task]);
 
@@ -240,6 +243,12 @@ export const EditTaskForm = ({ task }: EditTaskFormProps) => {
               </FormItem>
             )}
           />
+        </div>
+        <div className="flex w-full flex-col">
+          <div className="flex flex-row justify-between">
+            <h1 className="font-medium text-muted-foreground">Tags</h1>
+            <CreateTagButton variant="ghost" className="h-8" onSubmitTag={(value) => console.log(value)} />
+          </div>
         </div>
       </form>
     </Form>
