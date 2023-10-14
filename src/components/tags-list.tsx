@@ -24,10 +24,10 @@ export const TagsList = ({ priority, size, tags }: TagsListProps) => {
         <Badge
           variant="secondary"
           className={cn({
-            'bg-red-600/20 dark:bg-red-400/20': priority === 'URGENT',
-            'bg-yellow-600/20 dark:bg-yellow-400/20': priority === 'HIGH',
-            'bg-green-600/20 dark:bg-green-400/20': priority === 'MEDIUM',
-            'bg-blue-600/20 dark:bg-blue-400/20': priority === 'LOW'
+            'bg-red-400/30 dark:bg-red-400/20': priority === 'URGENT',
+            'bg-yellow-400/30 dark:bg-yellow-400/20': priority === 'HIGH',
+            'bg-green-400/30 dark:bg-green-400/20': priority === 'MEDIUM',
+            'bg-blue-400/30 dark:bg-blue-400/20': priority === 'LOW'
           })}
         >
           {PriorityIcon && (
