@@ -25,7 +25,7 @@ export const TagsList = ({ priority, size, tags }: TagsListProps) => {
           variant="secondary"
           className={cn({
             'bg-red-400/30 dark:bg-red-400/20': priority === 'URGENT',
-            'bg-yellow-400/30 dark:bg-yellow-400/20': priority === 'HIGH',
+            'bg-amber-400/30 dark:bg-amber-400/20': priority === 'HIGH',
             'bg-green-400/30 dark:bg-green-400/20': priority === 'MEDIUM',
             'bg-blue-400/30 dark:bg-blue-400/20': priority === 'LOW'
           })}
@@ -34,7 +34,7 @@ export const TagsList = ({ priority, size, tags }: TagsListProps) => {
             <PriorityIcon
               className={cn('mr-1 h-3 w-3', {
                 'text-red-600 dark:text-red-400': priority === 'URGENT',
-                'text-yellow-600 dark:text-yellow-400': priority === 'HIGH',
+                'text-amber-600 dark:text-amber-400': priority === 'HIGH',
                 'text-green-600 dark:text-green-400': priority === 'MEDIUM',
                 'text-blue-600 dark:text-blue-400': priority === 'LOW'
               })}
