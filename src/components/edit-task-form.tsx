@@ -126,7 +126,7 @@ export const EditTaskForm = ({ task }: EditTaskFormProps) => {
                             <div
                               className={cn('flex items-center gap-2 truncate', {
                                 'text-red-500 dark:text-red-400': field.value === 'URGENT',
-                                'text-yellow-500 dark:text-yellow-300': field.value === 'HIGH',
+                                'text-amber-500 dark:text-amber-300': field.value === 'HIGH',
                                 'text-green-500 dark:text-green-300': field.value === 'MEDIUM',
                                 'text-blue-500 dark:text-blue-300': field.value === 'LOW'
                               })}
@@ -162,7 +162,7 @@ export const EditTaskForm = ({ task }: EditTaskFormProps) => {
                                 <div
                                   className={cn('flex items-center gap-2', {
                                     'text-red-500 dark:text-red-400': priority === 'URGENT',
-                                    'text-yellow-500 dark:text-yellow-300': priority === 'HIGH',
+                                    'text-amber-500 dark:text-amber-300': priority === 'HIGH',
                                     'text-green-500 dark:text-green-300': priority === 'MEDIUM',
                                     'text-blue-500 dark:text-blue-300': priority === 'LOW'
                                   })}
