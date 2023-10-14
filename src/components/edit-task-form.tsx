@@ -10,6 +10,7 @@ import { z } from 'zod';
 
 import { cn } from '@/lib/utils';
 
+import { Icons } from './icons';
 import { Button } from './ui/button';
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from './ui/command';
 import { Form, FormControl, FormField, FormItem } from './ui/form';
@@ -191,7 +192,10 @@ export const EditTaskForm = ({ task }: EditTaskFormProps) => {
                       <Button variant="outline" role="combobox" className="w-full justify-start gap-2">
                         <span className="truncate text-muted-foreground">Size: </span>
                         {field.value?.length ? (
-                          <p className="truncate">{READABLE_SIZE[field.value as TaskSize]}</p>
+                          <div className="flex items-center gap-2 truncate">
+                            <Icons.ruler className="h-4 w-4" />
+                            <p className="truncate">{READABLE_SIZE[field.value as TaskSize]}</p>
+                          </div>
                         ) : (
                           <p className="truncate">Select size</p>
                         )}
