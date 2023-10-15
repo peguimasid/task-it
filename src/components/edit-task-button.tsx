@@ -29,7 +29,7 @@ export const EditTaskButton = ({ task }: EditTaskButtonProps) => {
   return (
     <Sheet open={isSheetOpen} onOpenChange={handleOpenChange}>
       <SheetTrigger asChild>
-        <Button variant="link" className="h-0 p-0 font-semibold leading-none tracking-tight">
+        <Button variant="link" className="h-min p-0 text-left font-semibold leading-4 tracking-tight">
           {task.title}
         </Button>
       </SheetTrigger>

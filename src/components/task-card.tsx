@@ -1,5 +1,6 @@
 'use client';
 
+import { TaskPriority, TaskSize } from '@/types';
 import { Draggable } from '@hello-pangea/dnd';
 import { Task } from '@prisma/client';
 
@@ -24,7 +25,7 @@ export const TaskCard = ({ task, index }: TaskCardProps) => {
           {...provided.dragHandleProps}
         >
           <EditTaskButton task={task} />
-          <TagsList priority={task.priority} size={task.size} tags={task.tags} />
+          <TagsList priority={task.priority as TaskPriority} size={task.size as TaskSize} tags={task.tags} />
           <TaskOperations task={task} />
         </Card>
       )}
