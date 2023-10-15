@@ -32,10 +32,11 @@ import {
   Minimize2,
   Moon,
   MoreVertical,
+  Pencil,
   Pizza,
   Plus,
   Ruler,
-  SendHorizonal,
+  SendHorizontal,
   Settings,
   Siren,
   Sprout,
@@ -96,7 +97,8 @@ export const Icons = {
   coffee: Coffee,
   tag: Tag,
   plus: Plus,
-  sendHorizontal: SendHorizonal,
+  sendHorizontal: SendHorizontal,
+  pencil: Pencil,
   logo: (props: LucideProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"

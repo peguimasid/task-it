@@ -3,18 +3,11 @@ import { Task } from '@prisma/client';
 import { formatDistanceToNow } from 'date-fns';
 
 import { Button } from '@/components/ui/button';
-import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger
-} from '@/components/ui/sheet';
+import { Sheet, SheetClose, SheetContent, SheetDescription, SheetHeader, SheetTrigger } from '@/components/ui/sheet';
 
 import { EditTaskForm } from './edit-task-form';
 import { Icons } from './icons';
+import { TaskSheetTitle } from './task-sheet-title';
 
 interface EditTaskButtonProps {
   task: Task;
@@ -42,12 +35,12 @@ export const EditTaskButton = ({ task }: EditTaskButtonProps) => {
       </SheetTrigger>
       <SheetContent
         data-expanded={isExpanded}
-        className="flex w-screen flex-col space-y-4 overflow-y-auto transition-[width] data-[expanded=true]:w-screen sm:w-[50vw] sm:max-w-none sm:rounded-l-xl"
+        className="flex w-screen flex-col space-y-4 overflow-y-auto overflow-x-hidden transition-[width] data-[expanded=true]:w-screen sm:w-[50vw] sm:max-w-none sm:rounded-l-xl"
       >
         <div className="container mx-auto flex h-full max-w-4xl flex-col gap-6 p-0">
-          <div className="flex w-full flex-row justify-between">
-            <SheetHeader className="space-y-1 text-left">
-              <SheetTitle>{task.title}</SheetTitle>
+          <div className="flex w-full flex-row items-start justify-between gap-6">
+            <SheetHeader className="w-full space-y-1 truncate text-left">
+              <TaskSheetTitle task={task} />
               <SheetDescription>
                 Created {formatDistanceToNow(new Date(task.createdAt), { addSuffix: true })}
               </SheetDescription>
