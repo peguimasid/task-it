@@ -271,7 +271,7 @@ export const EditTaskForm = ({ task }: EditTaskFormProps) => {
           <div className="flex flex-wrap gap-2">
             {data.tags.length ? (
               data.tags?.map((tag) => (
-                <Badge variant="secondary" className="flex items-center gap-1.5 px-2.5 text-sm">
+                <Badge key={tag} variant="secondary" className="flex items-center gap-1.5 px-2.5 text-sm">
                   <p>{tag}</p>
                   <Button variant="ghost" size="icon" className="h-3 w-3" onClick={() => handleDeleteTag(tag)}>
                     <Icons.close />
