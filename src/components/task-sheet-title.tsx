@@ -139,7 +139,7 @@ export const TaskSheetTitle = ({ task }: TaskSheetTitleProps) => {
               />
               <Icons.sendHorizontal data-loading={isLoading} className="h-4 w-4 data-[loading=true]:hidden" />
             </Button>
-            <Button type="submit" size="icon" variant="outline" className="h-9" onClick={deactivateTitleUpdate}>
+            <Button type="button" size="icon" variant="outline" className="h-9" onClick={deactivateTitleUpdate}>
               <Icons.close className="h-4 w-4" />
             </Button>
           </form>
