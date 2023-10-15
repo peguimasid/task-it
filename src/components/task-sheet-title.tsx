@@ -1,7 +1,8 @@
 'use client';
 
 import { useCallback, useMemo, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
+import { useTaskStore } from '@/store/task-store';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Project, Task } from '@prisma/client';
 import { useMutation } from '@tanstack/react-query';
@@ -15,6 +16,7 @@ import { Input } from '@/components/ui/input';
 
 import { Icons } from './icons';
 import { SheetTitle } from './ui/sheet';
+import { toast } from './ui/use-toast';
 
 const editTaskSchema = z.object({
   title: z
@@ -25,31 +27,38 @@ const editTaskSchema = z.object({
 
 type FormValues = z.infer<typeof editTaskSchema>;
 
-interface UpdateProjectResponse {
-  projectUpdated: Project;
+interface UpdateTaskProps {
+  data: FormValues;
+  projectId: Project['id'];
+  taskId: Task['id'];
+}
+
+interface UpdateTaskResponse {
+  taskUpdated: Task;
 }
 
 interface TaskSheetTitleProps {
   task: Task;
 }
 
-const updateProject = async (data: FormValues): Promise<UpdateProjectResponse> => {
-  console.log(data);
-  return { projectUpdated: { id: 'fdfd', name: 'fdfd', userId: 'fdfd', createdAt: new Date(), updatedAt: new Date() } };
-  // const response = await fetch('/api/projects', {
-  //   method: 'POST',
-  //   body: JSON.stringify(data)
-  // });
-  // const responseData = await response.json();
-  // return responseData;
+const updatedTask = async ({ data, projectId, taskId }: UpdateTaskProps): Promise<UpdateTaskResponse> => {
+  const response = await fetch(`/api/projects/${projectId}/tasks/${taskId}`, {
+    method: 'PUT',
+    body: JSON.stringify(data)
+  });
+  const responseData = await response.json();
+  return responseData;
 };
 
 export const TaskSheetTitle = ({ task }: TaskSheetTitleProps) => {
   const router = useRouter();
+  const { projectId }: { projectId: string } = useParams();
 
   const [updatingTitle, setUpdatingTitle] = useState<boolean>(false);
 
-  const defaultValues = useMemo<FormValues>(() => {
+  const onUpdateTask = useTaskStore((store) => store.onUpdateTask);
+
+  const defaultValues = useMemo(() => {
     return {
       title: task?.title
     };
@@ -63,18 +72,6 @@ export const TaskSheetTitle = ({ task }: TaskSheetTitleProps) => {
 
   const { isValid, dirtyFields, errors } = form.formState;
 
-  const onSuccess = useCallback(
-    ({ projectUpdated }: UpdateProjectResponse) => {
-      router.refresh();
-    },
-    [router]
-  );
-
-  const { isLoading, mutate } = useMutation({
-    mutationFn: updateProject,
-    onSuccess
-  });
-
   const activateTitleUpdate = useCallback(() => {
     setUpdatingTitle(true);
   }, []);
@@ -83,6 +80,30 @@ export const TaskSheetTitle = ({ task }: TaskSheetTitleProps) => {
     form.reset(defaultValues);
     setUpdatingTitle(false);
   }, [form, defaultValues]);
+
+  const onSuccess = useCallback(
+    ({ taskUpdated }: UpdateTaskResponse, variables: FormValues) => {
+      onUpdateTask(taskUpdated);
+      deactivateTitleUpdate();
+      form.reset(variables);
+      router.refresh();
+    },
+    [deactivateTitleUpdate, form, onUpdateTask, router]
+  );
+
+  const onError = useCallback(() => {
+    toast({
+      title: 'Something went wrong.',
+      description: 'Your task was not updated. Please try again.',
+      variant: 'destructive'
+    });
+  }, []);
+
+  const { isLoading, mutate } = useMutation({
+    mutationFn: (data: FormValues) => updatedTask({ data, projectId, taskId: task.id }),
+    onSuccess,
+    onError
+  });
 
   const isSubmitButtonDisabled = isEmpty(dirtyFields) || !isValid || isLoading;
 

@@ -19,7 +19,6 @@ export const taskPostSchema = z.object({
 });
 
 export const taskPutSchema = z.object({
-  id: z.string(),
   index: z.number().optional(),
   title: z.string().optional(),
   description: z.any().optional(),

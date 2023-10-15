@@ -22,11 +22,20 @@ export async function PUT(request: Request, context: z.infer<typeof routeContext
     }
 
     const json = await request.json();
-    const { id, ...updatedData } = taskPutSchema.parse(json);
+    const updatedData = taskPutSchema.parse(json);
 
     const taskUpdated = await prisma.task.update({
-      where: { id },
+      where: { id: params.taskId },
       data: updatedData
+    });
+
+    await prisma.project.update({
+      where: {
+        id: params.projectId
+      },
+      data: {
+        updatedAt: new Date()
+      }
     });
 
     return new Response(JSON.stringify({ taskUpdated }));
