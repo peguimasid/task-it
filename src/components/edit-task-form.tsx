@@ -52,6 +52,7 @@ export const EditTaskForm = ({ task }: EditTaskFormProps) => {
   const handleIncludeTag = useCallback(
     (newTag: string) => {
       const tags = form.getValues('tags');
+      if (tags.includes(newTag)) return;
       form.setValue('tags', [...tags, newTag], { shouldDirty: true });
     },
     [form]
