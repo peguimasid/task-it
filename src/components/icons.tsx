@@ -35,6 +35,7 @@ import {
   Pizza,
   Plus,
   Ruler,
+  SendHorizonal,
   Settings,
   Siren,
   Sprout,
@@ -94,6 +95,8 @@ export const Icons = {
   tentTree: TentTree,
   coffee: Coffee,
   tag: Tag,
+  plus: Plus,
+  sendHorizontal: SendHorizonal,
   logo: (props: LucideProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"

@@ -1,7 +1,6 @@
 import { useCallback, useMemo, useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { isEmpty } from 'lodash';
-import { Plus, SendHorizontal } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
@@ -10,6 +9,8 @@ import { Button, ButtonProps } from '@/components/ui/button';
 import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+
+import { Icons } from './icons';
 
 const tagSchema = z.object({
   tag: z
@@ -63,8 +64,8 @@ export const CreateTagButton = ({ className, variant, onSubmitTag, ...props }: C
     <Popover open={isPopoverOpen} onOpenChange={onOpenChange}>
       <PopoverTrigger asChild>
         <Button size="sm" className={cn('gap-2', className)} variant={variant} {...props}>
-          <Plus className="mr-1 h-4 w-4" />
           Add
+          <Icons.plus className="h-4 w-4" />
         </Button>
       </PopoverTrigger>
       <PopoverContent side="left" className="w-72 rounded-lg p-3">
@@ -89,7 +90,7 @@ export const CreateTagButton = ({ className, variant, onSubmitTag, ...props }: C
               )}
             />
             <Button type="submit" size="icon" className="h-9" disabled={isSubmitButtonDisabled}>
-              <SendHorizontal className="h-4 w-4" />
+              <Icons.sendHorizontal className="h-4 w-4" />
             </Button>
           </form>
         </Form>
