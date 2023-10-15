@@ -100,7 +100,7 @@ export const TaskSheetTitle = ({ task }: TaskSheetTitleProps) => {
   }, []);
 
   const { isLoading, mutate } = useMutation({
-    mutationFn: (data: FormValues) => updatedTask({ data, projectId, taskId: task.id }),
+    mutationFn: (data) => updatedTask({ data, projectId, taskId: task.id }),
     onSuccess,
     onError
   });
