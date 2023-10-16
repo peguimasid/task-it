@@ -4,8 +4,8 @@ import { TaskPriority, TaskSize } from '@/types';
 import { Draggable } from '@hello-pangea/dnd';
 import { Task } from '@prisma/client';
 
-import { EditTaskButton } from './edit-task-button';
 import { TagsList } from './tags-list';
+import { TaskCardTitle } from './task-card-title';
 import { TaskOperations } from './task-operations';
 import { Card } from './ui/card';
 
@@ -15,6 +15,8 @@ interface TaskCardProps {
 }
 
 export const TaskCard = ({ task, index }: TaskCardProps) => {
+  const { priority, size, tags } = task;
+
   return (
     <Draggable draggableId={task.id} index={index}>
       {(provided) => (
@@ -24,8 +26,8 @@ export const TaskCard = ({ task, index }: TaskCardProps) => {
           {...provided.draggableProps}
           {...provided.dragHandleProps}
         >
-          <EditTaskButton task={task} />
-          <TagsList priority={task.priority as TaskPriority} size={task.size as TaskSize} tags={task.tags} />
+          <TaskCardTitle task={task} />
+          <TagsList priority={priority as TaskPriority} size={size as TaskSize} tags={tags} />
           <TaskOperations task={task} />
         </Card>
       )}

@@ -4,16 +4,15 @@ import { formatDistanceToNow } from 'date-fns';
 
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetClose, SheetContent, SheetDescription, SheetHeader, SheetTrigger } from '@/components/ui/sheet';
+import { EditTaskForm } from '@/components/edit-task-form';
+import { Icons } from '@/components/icons';
+import { TaskSheetTitle } from '@/components/task-sheet-title';
 
-import { EditTaskForm } from './edit-task-form';
-import { Icons } from './icons';
-import { TaskSheetTitle } from './task-sheet-title';
-
-interface EditTaskButtonProps {
+interface TaskCardTitleProps {
   task: Task;
 }
 
-export const EditTaskButton = ({ task }: EditTaskButtonProps) => {
+export const TaskCardTitle = ({ task }: TaskCardTitleProps) => {
   const [isSheetOpen, setIsSheetOpen] = useState<boolean>(false);
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
@@ -29,7 +28,7 @@ export const EditTaskButton = ({ task }: EditTaskButtonProps) => {
   return (
     <Sheet open={isSheetOpen} onOpenChange={handleOpenChange}>
       <SheetTrigger asChild>
-        <Button variant="link" className="h-min p-0 text-left font-semibold leading-4 tracking-tight">
+        <Button variant="link" className="h-min p-0 text-left font-semibold tracking-tight">
           {task.title}
         </Button>
       </SheetTrigger>
