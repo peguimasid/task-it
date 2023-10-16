@@ -121,7 +121,7 @@ export const CreateTaskButton = ({ className, variant, status, ...props }: Creat
           <Plus className="h-4 w-4" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent side="left" className="w-80 rounded-lg">
+      <PopoverContent side="left" className="w-80 rounded-lg p-3">
         <Form {...form}>
           <form
             name="createProjectForm"
