@@ -35,7 +35,7 @@ export const EditTaskButton = ({ task }: EditTaskButtonProps) => {
       </SheetTrigger>
       <SheetContent
         data-expanded={isExpanded}
-        className="flex w-screen flex-col space-y-4 overflow-y-auto overflow-x-hidden transition-[width] data-[expanded=true]:w-screen sm:w-[50vw] sm:max-w-none sm:rounded-l-xl"
+        className="flex w-screen flex-col space-y-4 overflow-y-auto overflow-x-hidden p-8 transition-[width] data-[expanded=true]:w-screen sm:w-[50vw] sm:max-w-none sm:rounded-l-xl"
       >
         <div className="container mx-auto flex h-full max-w-4xl flex-col gap-6 p-0">
           <div className="flex w-full flex-row items-start justify-between gap-6">
