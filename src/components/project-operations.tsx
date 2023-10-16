@@ -112,8 +112,8 @@ export const ProjectOperations = ({ project }: ProjectOperationsProps) => {
             <Label htmlFor="project-name">Please type in the name of the project to confirm</Label>
             <Input id="project-name" autoComplete="off" onChange={handleInputChange} />
           </div>
-          <AlertDialogFooter className="px-4 pb-4">
-            <AlertDialogCancel className="w-1/2">Cancel</AlertDialogCancel>
+          <AlertDialogFooter className="flex flex-row items-center gap-1 px-4 pb-4">
+            <AlertDialogCancel className="mt-0 w-1/2">Cancel</AlertDialogCancel>
             <AlertDialogAction
               disabled={isDeleteButtonDisabled}
               onClick={handleClickDelete}
