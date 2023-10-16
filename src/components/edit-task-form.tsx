@@ -288,7 +288,7 @@ export const EditTaskForm = ({ task }: EditTaskFormProps) => {
                 ) : (
                   <div className="flex w-full items-center justify-center">
                     <EmptyPlaceholder className="min-h-min w-full gap-2 p-4">
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-2 text-muted-foreground">
                         <Icons.tag className="h-4 w-4" />
                         <h1 className="text-sm">No tags</h1>
                       </div>
