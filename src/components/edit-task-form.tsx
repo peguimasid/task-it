@@ -299,12 +299,10 @@ export const EditTaskForm = ({ task }: EditTaskFormProps) => {
             />
           </div>
         </div>
+        <div className="mb-[calc(30vh)] flex min-h-[300px] w-full flex-col space-y-3">
+          <h1 className="font-medium text-muted-foreground">Description</h1>
+        </div>
       </form>
     </Form>
   );
 };
-
-// <div className="flex flex-col gap-6">
-//   <div className="h-16 w-full rounded-lg border" />
-//   <div className="relative mb-[calc(30vh)] min-h-[400px] w-full rounded-lg border"></div>
-// </div>
