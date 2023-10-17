@@ -78,7 +78,7 @@ export const EditTaskForm = ({ task }: EditTaskFormProps) => {
   return (
     <Form {...form}>
       <form className="flex flex-col gap-6">
-        <div className="flex w-full flex-col gap-3 sm:flex-row">
+        <section className="flex w-full flex-col gap-3 sm:flex-row">
           <FormField
             control={form.control}
             name="status"
@@ -263,8 +263,8 @@ export const EditTaskForm = ({ task }: EditTaskFormProps) => {
               </FormItem>
             )}
           />
-        </div>
-        <div className="flex w-full flex-col space-y-3">
+        </section>
+        <section className="flex w-full flex-col space-y-3">
           <div className="flex flex-row justify-between">
             <h1 className="font-medium text-muted-foreground">Tags</h1>
             <CreateTagButton variant="ghost" className="h-8" onSubmitTag={handleIncludeTag} />
@@ -298,10 +298,10 @@ export const EditTaskForm = ({ task }: EditTaskFormProps) => {
               }
             />
           </div>
-        </div>
-        <div className="mb-[calc(30vh)] flex min-h-[300px] w-full flex-col space-y-3">
+        </section>
+        <section className="mb-[calc(30vh)] flex min-h-[300px] w-full flex-col space-y-3">
           <h1 className="font-medium text-muted-foreground">Description</h1>
-        </div>
+        </section>
       </form>
     </Form>
   );
