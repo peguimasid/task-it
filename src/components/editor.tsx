@@ -18,7 +18,7 @@ lowlight.register({ css, html, js, ts });
 export const Editor = () => {
   const editor = useEditor({
     extensions: [
-      StarterKit,
+      StarterKit.configure({ codeBlock: false }),
       CodeBlockLowlight.configure({
         lowlight
       })
@@ -31,6 +31,8 @@ export const Editor = () => {
       }
     }
   });
+
+  if (!editor) return null;
 
   return <EditorContent className="prose prose-stone max-w-full dark:prose-invert" editor={editor} />;
 };

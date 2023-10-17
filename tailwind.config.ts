@@ -70,6 +70,14 @@ module.exports = {
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out'
+      },
+      typography: {
+        DEFAULT: {
+          css: {
+            'blockquote p:first-of-type::before': false,
+            'blockquote p:first-of-type::after': false
+          }
+        }
       }
     }
   },
