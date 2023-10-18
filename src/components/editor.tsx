@@ -1,6 +1,7 @@
 'use client';
 
 import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight';
+import Placeholder from '@tiptap/extension-placeholder';
 import { BubbleMenu, EditorContent, useEditor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import css from 'highlight.js/lib/languages/css';
@@ -24,9 +25,13 @@ export const Editor = () => {
       StarterKit.configure({ codeBlock: false }),
       CodeBlockLowlight.configure({
         lowlight
+      }),
+      Placeholder.configure({
+        placeholder: 'Type here to write your description...',
+        emptyEditorClass:
+          'cursor-text before:content-[attr(data-placeholder)] before:absolute before:top-0 before:left-1 opacity-50 before-pointer-events-none'
       })
     ],
-    onUpdate: ({ editor }) => console.log(editor.getJSON()),
     content:
       '<h1>Advantages of Tailwind CSS</h1> <p>Tailwind CSS is a utility-first CSS framework that offers several advantages for web development:</p> <pre> <code class="language-javascript">function main() { \n\treturn "Hello World"\n } </code></pre> <a href="https://github.com/peguimasid">Github</a> <ul> <li> <strong>Saves Time and Effort: </strong> <span>Tailwind classes enable rapid styling, reducing the need to write custom CSS.</span> </li> <li> <strong>Scalability: </strong> <span>Easily scale your design to fit the needs of your project.</span> </li> <li> <strong>Maintainability: </strong> <span>Clear and predictable class names make code maintainable and readable.</span> </li> </ul>',
     editorProps: {
