@@ -2,7 +2,7 @@
 
 import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight';
 import Placeholder from '@tiptap/extension-placeholder';
-import { BubbleMenu, EditorContent, useEditor } from '@tiptap/react';
+import { BubbleMenu, EditorContent, FloatingMenu, useEditor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import css from 'highlight.js/lib/languages/css';
 import js from 'highlight.js/lib/languages/javascript';
@@ -12,7 +12,12 @@ import { common, createLowlight } from 'lowlight';
 
 import 'highlight.js/styles/github-dark.css';
 
+import { FloatingMenuPluginProps, FloatingMenuViewProps } from '@tiptap/extension-floating-menu';
+import { EditorState } from '@tiptap/pm/state';
+
 import { Icons } from './icons';
+import { Button } from './ui/button';
+import { ScrollArea } from './ui/scroll-area';
 import { Toggle } from './ui/toggle';
 
 const lowlight = createLowlight(common);
@@ -46,6 +51,25 @@ export const Editor = () => {
   return (
     <>
       <EditorContent className="prose prose-stone max-w-full dark:prose-invert" editor={editor} />
+      <FloatingMenu
+        tippyOptions={{ popperOptions: { placement: 'top' } }}
+        editor={editor}
+        shouldShow={({ state }) => {
+          const { $from } = state.selection;
+          const currentLineText = $from.nodeBefore?.textContent;
+          return currentLineText === '/';
+        }}
+      >
+        <ScrollArea className="flex h-72 w-72 flex-col gap-2 rounded-lg border bg-card p-1 shadow-lg shadow-black/20">
+          <Button variant="ghost" className="flex flex-row p-0">
+            <Icons.text className="rounded-md border" />
+            <div className="text-left">
+              <h1>Text</h1>
+              <p>Just start writing with plain text</p>
+            </div>
+          </Button>
+        </ScrollArea>
+      </FloatingMenu>
       <BubbleMenu
         editor={editor}
         className="flex space-x-1 overflow-hidden rounded-lg border bg-card p-1 shadow-lg shadow-black/20"
