@@ -1,7 +1,7 @@
 'use client';
 
 import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight';
-import { EditorContent, useEditor } from '@tiptap/react';
+import { BubbleMenu, EditorContent, useEditor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import css from 'highlight.js/lib/languages/css';
 import js from 'highlight.js/lib/languages/javascript';
@@ -34,5 +34,17 @@ export const Editor = () => {
 
   if (!editor) return null;
 
-  return <EditorContent className="prose prose-stone max-w-full dark:prose-invert" editor={editor} />;
+  return (
+    <>
+      <EditorContent className="prose prose-stone max-w-full dark:prose-invert" editor={editor} />
+      <BubbleMenu
+        editor={editor}
+        className="flex divide-x overflow-hidden rounded-lg border bg-card p-2 shadow-lg shadow-black/20"
+      >
+        <button type="button">Bold</button>
+        <button type="button">Bold</button>
+        <button type="button">Bold</button>
+      </BubbleMenu>
+    </>
+  );
 };
