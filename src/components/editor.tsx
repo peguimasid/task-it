@@ -42,19 +42,40 @@ export const Editor = () => {
     <>
       <EditorContent className="prose prose-stone max-w-full dark:prose-invert" editor={editor} />
       <BubbleMenu
+        // updateDelay={0}
         editor={editor}
         className="flex space-x-1 overflow-hidden rounded-lg border bg-card p-1 shadow-lg shadow-black/20"
       >
-        <Toggle size="sm" className="h-8">
+        <Toggle
+          size="sm"
+          className="h-8"
+          pressed={editor.isActive('bold')}
+          onClick={() => editor.chain().focus().toggleBold().run()}
+        >
           <Icons.bold className="h-3.5 w-3.5" />
         </Toggle>
-        <Toggle size="sm" className="h-8">
+        <Toggle
+          size="sm"
+          className="h-8"
+          pressed={editor.isActive('italic')}
+          onClick={() => editor.chain().focus().toggleItalic().run()}
+        >
           <Icons.italic className="h-3.5 w-3.5" />
         </Toggle>
-        <Toggle size="sm" className="h-8">
+        <Toggle
+          size="sm"
+          className="h-8"
+          pressed={editor.isActive('strike')}
+          onClick={() => editor.chain().focus().toggleStrike().run()}
+        >
           <Icons.strikethrough className="h-3.5 w-3.5" />
         </Toggle>
-        <Toggle size="sm" className="h-8">
+        <Toggle
+          size="sm"
+          className="h-8"
+          pressed={editor.isActive('code')}
+          onClick={() => editor.chain().focus().toggleCode().run()}
+        >
           <Icons.code className="h-3.5 w-3.5" />
         </Toggle>
       </BubbleMenu>
