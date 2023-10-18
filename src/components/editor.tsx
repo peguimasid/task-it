@@ -11,6 +11,9 @@ import { common, createLowlight } from 'lowlight';
 
 import 'highlight.js/styles/github-dark.css';
 
+import { Icons } from './icons';
+import { Toggle } from './ui/toggle';
+
 const lowlight = createLowlight(common);
 
 lowlight.register({ css, html, js, ts });
@@ -23,6 +26,7 @@ export const Editor = () => {
         lowlight
       })
     ],
+    onUpdate: ({ editor }) => console.log(editor.getJSON()),
     content:
       '<h1>Advantages of Tailwind CSS</h1> <p>Tailwind CSS is a utility-first CSS framework that offers several advantages for web development:</p> <pre> <code class="language-javascript">function main() { \n\treturn "Hello World"\n } </code></pre> <a href="https://github.com/peguimasid">Github</a> <ul> <li> <strong>Saves Time and Effort: </strong> <span>Tailwind classes enable rapid styling, reducing the need to write custom CSS.</span> </li> <li> <strong>Scalability: </strong> <span>Easily scale your design to fit the needs of your project.</span> </li> <li> <strong>Maintainability: </strong> <span>Clear and predictable class names make code maintainable and readable.</span> </li> </ul>',
     editorProps: {
@@ -39,11 +43,20 @@ export const Editor = () => {
       <EditorContent className="prose prose-stone max-w-full dark:prose-invert" editor={editor} />
       <BubbleMenu
         editor={editor}
-        className="flex divide-x overflow-hidden rounded-lg border bg-card p-2 shadow-lg shadow-black/20"
+        className="flex space-x-1 overflow-hidden rounded-lg border bg-card p-1 shadow-lg shadow-black/20"
       >
-        <button type="button">Bold</button>
-        <button type="button">Bold</button>
-        <button type="button">Bold</button>
+        <Toggle size="sm" className="h-8">
+          <Icons.bold className="h-3.5 w-3.5" />
+        </Toggle>
+        <Toggle size="sm" className="h-8">
+          <Icons.italic className="h-3.5 w-3.5" />
+        </Toggle>
+        <Toggle size="sm" className="h-8">
+          <Icons.strikethrough className="h-3.5 w-3.5" />
+        </Toggle>
+        <Toggle size="sm" className="h-8">
+          <Icons.code className="h-3.5 w-3.5" />
+        </Toggle>
       </BubbleMenu>
     </>
   );

@@ -3,6 +3,7 @@ import {
   ArchiveX,
   ArrowRight,
   Bell,
+  Bold,
   Bookmark,
   Check,
   ChevronLeft,
@@ -11,6 +12,7 @@ import {
   CircleDot,
   CircleDotDashed,
   Clock,
+  Code,
   Coffee,
   CreditCard,
   File,
@@ -22,6 +24,7 @@ import {
   History,
   IceCream,
   Image,
+  Italic,
   Kanban,
   KanbanSquare,
   Laptop,
@@ -40,6 +43,7 @@ import {
   Settings,
   Siren,
   Sprout,
+  Strikethrough,
   SunMedium,
   Tag,
   TentTree,
@@ -99,6 +103,10 @@ export const Icons = {
   plus: Plus,
   sendHorizontal: SendHorizontal,
   pencil: Pencil,
+  bold: Bold,
+  italic: Italic,
+  strikethrough: Strikethrough,
+  code: Code,
   logo: (props: LucideProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
