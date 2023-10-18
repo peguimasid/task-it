@@ -13,7 +13,6 @@ import { common, createLowlight } from 'lowlight';
 import 'highlight.js/styles/github-dark.css';
 
 import { Icons } from './icons';
-import { Button } from './ui/button';
 import { ScrollArea } from './ui/scroll-area';
 import { Toggle } from './ui/toggle';
 
@@ -31,7 +30,7 @@ export const Editor = () => {
       Placeholder.configure({
         placeholder: 'Type here to write your description...',
         emptyEditorClass:
-          'cursor-text before:content-[attr(data-placeholder)] before:absolute before:top-0 before:left-1 opacity-50 before-pointer-events-none'
+          'before:select-none before:pointer-events-none before:float-left before:h-0 before:text-muted-foreground before:content-[attr(data-placeholder)]'
       })
     ],
     content:
@@ -49,7 +48,6 @@ export const Editor = () => {
     <>
       <EditorContent className="prose prose-stone max-w-full dark:prose-invert" editor={editor} />
       <FloatingMenu
-        tippyOptions={{ popperOptions: { placement: 'top' } }}
         editor={editor}
         shouldShow={({ state }) => {
           const { $from } = state.selection;
@@ -57,14 +55,20 @@ export const Editor = () => {
           return currentLineText === '/';
         }}
       >
-        <ScrollArea className="flex h-72 w-72 flex-col gap-2 rounded-lg border bg-card p-1 shadow-lg shadow-black/20">
-          <Button variant="ghost" className="flex flex-row p-0">
-            <Icons.text className="rounded-md border" />
-            <div className="text-left">
-              <h1>Text</h1>
-              <p>Just start writing with plain text</p>
+        <ScrollArea className="flex h-72 w-72 flex-col gap-1 rounded-lg border bg-card p-1 shadow-lg shadow-black/20">
+          <span className="px-1 text-xs font-semibold text-muted-foreground">Basic blocks</span>
+          <button
+            type="button"
+            className="group flex w-full flex-row items-center gap-2 rounded p-1 hover:bg-secondary"
+          >
+            <div className="flex h-10 w-10 items-center justify-center rounded border text-muted-foreground group-hover:border-primary/10">
+              <Icons.text className="h-5 w-5" />
             </div>
-          </Button>
+            <div className="flex flex-col text-left">
+              <span className="text-sm">Text</span>
+              <span className="text-xs text-muted-foreground">Just start writing with plain text</span>
+            </div>
+          </button>
         </ScrollArea>
       </FloatingMenu>
       <BubbleMenu
