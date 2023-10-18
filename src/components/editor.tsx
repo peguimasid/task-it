@@ -12,9 +12,6 @@ import { common, createLowlight } from 'lowlight';
 
 import 'highlight.js/styles/github-dark.css';
 
-import { FloatingMenuPluginProps, FloatingMenuViewProps } from '@tiptap/extension-floating-menu';
-import { EditorState } from '@tiptap/pm/state';
-
 import { Icons } from './icons';
 import { Button } from './ui/button';
 import { ScrollArea } from './ui/scroll-area';
