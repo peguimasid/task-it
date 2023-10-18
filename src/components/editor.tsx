@@ -42,7 +42,6 @@ export const Editor = () => {
     <>
       <EditorContent className="prose prose-stone max-w-full dark:prose-invert" editor={editor} />
       <BubbleMenu
-        // updateDelay={0}
         editor={editor}
         className="flex space-x-1 overflow-hidden rounded-lg border bg-card p-1 shadow-lg shadow-black/20"
       >
