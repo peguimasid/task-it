@@ -18,7 +18,7 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 
 import { toast } from './ui/use-toast';
 
-const createProjectSchema = z.object({
+const createTaskSchema = z.object({
   title: z
     .string()
     .min(1, { message: 'This field is required' })
@@ -29,7 +29,7 @@ const defaultValues = {
   title: ''
 };
 
-type FormValues = z.infer<typeof createProjectSchema>;
+type FormValues = z.infer<typeof createTaskSchema>;
 
 interface CreateTaskButtonProps extends ButtonProps {
   status: TaskStatus;
@@ -66,7 +66,7 @@ export const CreateTaskButton = ({ className, variant, status, ...props }: Creat
   const form = useForm<FormValues>({
     mode: 'onChange',
     defaultValues,
-    resolver: zodResolver(createProjectSchema)
+    resolver: zodResolver(createTaskSchema)
   });
 
   const { isValid, dirtyFields, errors } = form.formState;
