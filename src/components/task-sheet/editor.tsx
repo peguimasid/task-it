@@ -6,8 +6,8 @@ import { BubbleMenu, EditorContent, JSONContent, useEditor } from '@tiptap/react
 import StarterKit from '@tiptap/starter-kit';
 import { common, createLowlight } from 'lowlight';
 
-import { Icons } from './icons';
-import { Toggle } from './ui/toggle';
+import { Icons } from '../icons';
+import { Toggle } from '../ui/toggle';
 
 const lowlight = createLowlight(common);
 

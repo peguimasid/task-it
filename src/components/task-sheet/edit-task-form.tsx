@@ -11,7 +11,6 @@ import { useFormContext } from 'react-hook-form';
 import { cn } from '@/lib/utils';
 
 import { TaskSheetFormValues } from '.';
-import { Editor } from '../editor';
 import { EmptyPlaceholder } from '../empty-placeholder';
 import { Icons } from '../icons';
 import { Badge } from '../ui/badge';
@@ -21,6 +20,7 @@ import { FormControl, FormField, FormItem, FormMessage } from '../ui/form';
 import { Input } from '../ui/input';
 import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
 import { CreateTagButton } from './create-tag-button';
+import { Editor } from './editor';
 
 interface EditTaskFormProps {
   task: Task;
