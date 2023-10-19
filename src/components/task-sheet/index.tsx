@@ -8,18 +8,22 @@ import { EditTaskForm } from '@/components/edit-task-form';
 import { Icons } from '@/components/icons';
 import { TaskSheetTitle } from '@/components/task-sheet-title';
 
-interface TaskCardTitleProps {
+interface TaskSheetProps {
+  isSheetOpen: boolean;
+  onSheetOpenChange: (open: boolean) => void;
   task: Task;
 }
 
-export const TaskCardTitle = ({ task }: TaskCardTitleProps) => {
-  const [isSheetOpen, setIsSheetOpen] = useState<boolean>(false);
+export const TaskSheet = ({ task, isSheetOpen, onSheetOpenChange }: TaskSheetProps) => {
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
-  const handleOpenChange = useCallback((open: boolean) => {
-    if (!open) setIsExpanded(false);
-    setIsSheetOpen(open);
-  }, []);
+  const handleOpenChange = useCallback(
+    (open: boolean) => {
+      if (!open) setIsExpanded(false);
+      onSheetOpenChange(open);
+    },
+    [onSheetOpenChange]
+  );
 
   const handleClickExpand = useCallback(() => {
     setIsExpanded((previousValue) => !previousValue);
@@ -27,11 +31,6 @@ export const TaskCardTitle = ({ task }: TaskCardTitleProps) => {
 
   return (
     <Sheet open={isSheetOpen} onOpenChange={handleOpenChange}>
-      <SheetTrigger asChild>
-        <Button variant="link" className="h-min p-0 text-left font-semibold tracking-tight">
-          {task.title}
-        </Button>
-      </SheetTrigger>
       <SheetContent
         data-expanded={isExpanded}
         className="flex w-screen flex-col space-y-4 overflow-y-auto overflow-x-hidden p-8 transition-[width] data-[expanded=true]:w-screen data-[expanded=true]:rounded-none sm:w-[50vw] sm:max-w-none sm:rounded-l-xl"
