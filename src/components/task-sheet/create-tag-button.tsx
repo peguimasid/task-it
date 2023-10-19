@@ -10,7 +10,7 @@ import { Form, FormControl, FormField, FormItem, FormMessage } from '@/component
 import { Input } from '@/components/ui/input';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 
-import { Icons } from './icons';
+import { Icons } from '../icons';
 
 const tagSchema = z.object({
   tag: z

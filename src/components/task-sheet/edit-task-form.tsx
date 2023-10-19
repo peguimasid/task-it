@@ -1,56 +1,30 @@
-import { useCallback, useEffect, useMemo } from 'react';
+import { useCallback } from 'react';
 import { priorities, READABLE_PRIORITY, TASK_PRIORITY_ICONS } from '@/constants/task-priorities';
 import { READABLE_SIZE, sizes } from '@/constants/task-sizes';
 import { READABLE_STATUS, statuses, TASK_STATUS_ICONS } from '@/constants/task-statuses';
 import { TaskPriority, TaskSize, TaskStatus } from '@/types';
-import { zodResolver } from '@hookform/resolvers/zod';
 import { Task } from '@prisma/client';
 import { Check, ChevronsUpDown } from 'lucide-react';
-import { Controller, useForm } from 'react-hook-form';
-import { z } from 'zod';
+import { Controller, useFormContext } from 'react-hook-form';
 
 import { cn } from '@/lib/utils';
 
+import { Editor } from '../editor';
+import { EmptyPlaceholder } from '../empty-placeholder';
+import { Icons } from '../icons';
+import { Badge } from '../ui/badge';
+import { Button } from '../ui/button';
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from '../ui/command';
+import { Form, FormControl, FormField, FormItem } from '../ui/form';
+import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
 import { CreateTagButton } from './create-tag-button';
-import { Editor } from './editor';
-import { EmptyPlaceholder } from './empty-placeholder';
-import { Icons } from './icons';
-import { Badge } from './ui/badge';
-import { Button } from './ui/button';
-import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from './ui/command';
-import { Form, FormControl, FormField, FormItem } from './ui/form';
-import { Popover, PopoverContent, PopoverTrigger } from './ui/popover';
 
 interface EditTaskFormProps {
   task: Task;
 }
 
-const FormSchema = z.object({
-  status: z.string(),
-  priority: z.string().optional(),
-  size: z.string().optional(),
-  tags: z.array(z.string()),
-  description: z.any().optional()
-});
-
-type FormValues = z.infer<typeof FormSchema>;
-
 export const EditTaskForm = ({ task }: EditTaskFormProps) => {
-  const defaultValues = useMemo<FormValues>(() => {
-    return {
-      status: task.status,
-      priority: task?.priority ?? '',
-      size: task?.size ?? '',
-      tags: task?.tags ?? [],
-      description: task.description ?? ''
-    };
-  }, [task]);
-
-  const form = useForm<FormValues>({
-    mode: 'onChange',
-    defaultValues,
-    resolver: zodResolver(FormSchema)
-  });
+  const form = useFormContext();
 
   const handleIncludeTag = useCallback(
     (newTag: string) => {
@@ -64,19 +38,11 @@ export const EditTaskForm = ({ task }: EditTaskFormProps) => {
   const handleDeleteTag = useCallback(
     (deletedTag: string) => {
       const tags = form.getValues('tags');
-      const tagsWithoutDeleted = tags.filter((tag) => tag !== deletedTag);
+      const tagsWithoutDeleted = tags.filter((tag: string) => tag !== deletedTag);
       form.setValue('tags', tagsWithoutDeleted, { shouldDirty: true });
     },
     [form]
   );
-
-  const data = form.watch();
-
-  useEffect(() => {
-    const { dirtyFields } = form.formState;
-    console.log(dirtyFields);
-    console.log(data);
-  }, [form, data]);
 
   return (
     <Form {...form}>
@@ -279,7 +245,7 @@ export const EditTaskForm = ({ task }: EditTaskFormProps) => {
               render={({ field }) =>
                 field.value?.length ? (
                   <>
-                    {field.value?.map((tag) => (
+                    {field.value?.map((tag: string) => (
                       <Badge key={tag} variant="secondary" className="flex items-center gap-1.5 px-2.5 text-sm">
                         <p>{tag}</p>
                         <Button variant="ghost" size="icon" className="h-3 w-3" onClick={() => handleDeleteTag(tag)}>
