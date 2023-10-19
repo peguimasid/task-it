@@ -1,10 +1,8 @@
 import { useCallback, useState } from 'react';
 import { Task } from '@prisma/client';
-import { formatDistanceToNow } from 'date-fns';
 
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetClose, SheetContent, SheetDescription, SheetHeader, SheetTitle } from '@/components/ui/sheet';
-import { EditTaskForm } from '@/components/edit-task-form';
+import { Sheet, SheetClose, SheetContent, SheetHeader } from '@/components/ui/sheet';
 import { Icons } from '@/components/icons';
 
 interface TaskSheetProps {
@@ -32,30 +30,28 @@ export const TaskSheet = ({ task, isSheetOpen, onSheetOpenChange }: TaskSheetPro
     <Sheet open={isSheetOpen} onOpenChange={handleOpenChange}>
       <SheetContent
         data-expanded={isExpanded}
-        className="flex w-screen flex-col space-y-4 overflow-y-auto overflow-x-hidden p-8 transition-[width] data-[expanded=true]:w-screen data-[expanded=true]:rounded-none sm:w-[50vw] sm:min-w-[600px] sm:max-w-none sm:rounded-l-xl"
+        className="flex w-screen flex-col gap-0 overflow-y-auto overflow-x-hidden p-0 transition-[width] data-[expanded=true]:w-screen data-[expanded=true]:rounded-none sm:w-[50vw] sm:min-w-[600px] sm:max-w-none sm:rounded-l-xl"
       >
-        <div className="container mx-auto flex h-full max-w-3xl flex-col gap-6 p-0">
-          <div className="flex w-full flex-row items-start justify-between gap-6">
-            <SheetHeader className="w-full space-y-1 truncate text-left">
-              <SheetTitle className="truncate">{task.title}</SheetTitle>
-              <SheetDescription>
-                Created {formatDistanceToNow(new Date(task.createdAt), { addSuffix: true })}
-              </SheetDescription>
-            </SheetHeader>
-            <div className="flex items-center space-x-2">
-              <Button variant="secondary" className="hidden space-x-2 sm:flex" onClick={handleClickExpand}>
-                <p>{isExpanded ? 'Collapse' : 'Expand'}</p>
-                {isExpanded ? <Icons.minimize className="h-4 w-4" /> : <Icons.maximize className="h-4 w-4" />}
+        <SheetHeader className="sticky inset-0 flex w-full flex-row items-center space-y-0 border-b bg-card px-3 py-2">
+          <Button variant="ghost" size="icon" onClick={handleClickExpand}>
+            {isExpanded ? (
+              <Icons.arrowRightToLine className="h-5 w-5" />
+            ) : (
+              <Icons.arrowLeftToLine className="h-5 w-5" />
+            )}
+          </Button>
+          <div className="ml-auto flex items-center gap-3">
+            <Button disabled className="h-9">
+              <Icons.check className="mr-2 h-5 w-5" />
+              Save changes
+            </Button>
+            <SheetClose asChild>
+              <Button size="icon" variant="ghost">
+                <Icons.close className="h-5 w-5" />
               </Button>
-              <SheetClose asChild>
-                <Button size="icon" variant="ghost">
-                  <Icons.close className="h-4 w-4" />
-                </Button>
-              </SheetClose>
-            </div>
+            </SheetClose>
           </div>
-          <EditTaskForm task={task} />
-        </div>
+        </SheetHeader>
       </SheetContent>
     </Sheet>
   );
