@@ -86,7 +86,7 @@ export const TaskSheet = ({ task, isSheetOpen, onSheetOpenChange }: TaskSheetPro
           <Form {...form}>
             <form name="editTaskForm" noValidate onSubmit={form.handleSubmit(onSubmit)}>
               <SheetHeader className="sticky inset-0 flex w-full flex-row items-center space-y-0 border-b bg-card px-3 py-2">
-                <Button variant="ghost" size="icon" autoFocus={false} onClick={handleClickExpand}>
+                <Button variant="ghost" size="icon" onClick={handleClickExpand} className="hidden sm:flex">
                   {isExpanded ? (
                     <Icons.arrowRightToLine className="h-5 w-5" />
                   ) : (
