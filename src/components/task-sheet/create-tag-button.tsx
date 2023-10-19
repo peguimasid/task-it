@@ -71,7 +71,7 @@ export const CreateTagButton = ({ className, variant, onSubmitTag, ...props }: C
       <PopoverContent side="left" className="w-72 rounded-lg p-3">
         <Form {...form}>
           <form
-            name="createProjectForm"
+            name="createTagForm"
             noValidate
             onSubmit={form.handleSubmit(onSubmit)}
             data-has-errors={!isEmpty(errors)}
