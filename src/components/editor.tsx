@@ -1,19 +1,22 @@
-'use client';
+import 'highlight.js/styles/github-dark.css';
 
 import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight';
 import Placeholder from '@tiptap/extension-placeholder';
-import { BubbleMenu, EditorContent, useEditor } from '@tiptap/react';
+import { BubbleMenu, EditorContent, JSONContent, useEditor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import { common, createLowlight } from 'lowlight';
-
-import 'highlight.js/styles/github-dark.css';
 
 import { Icons } from './icons';
 import { Toggle } from './ui/toggle';
 
 const lowlight = createLowlight(common);
 
-export const Editor = () => {
+interface EditorProps {
+  defaultValue: any;
+  onChange: (newValue: JSONContent) => void;
+}
+
+export const Editor = ({ defaultValue, onChange }: EditorProps) => {
   const editor = useEditor({
     editorProps: {
       attributes: {
@@ -31,8 +34,8 @@ export const Editor = () => {
           'before:select-none before:pointer-events-none before:float-left before:h-0 before:text-muted-foreground before:content-[attr(data-placeholder)]'
       })
     ],
-    content:
-      '<h1>Advantages of Tailwind CSS</h1> <p>Tailwind CSS is a utility-first CSS framework that offers several advantages for web development:</p> <pre> <code class="language-javascript">function main() { \n\treturn "Hello World"\n } </code></pre> <a href="https://github.com/peguimasid">Github</a> <ul> <li> <strong>Saves Time and Effort: </strong> <span>Tailwind classes enable rapid styling, reducing the need to write custom CSS.</span> </li> <li> <strong>Scalability: </strong> <span>Easily scale your design to fit the needs of your project.</span> </li> <li> <strong>Maintainability: </strong> <span>Clear and predictable class names make code maintainable and readable.</span> </li> </ul>'
+    content: defaultValue,
+    onUpdate: ({ editor }) => onChange(editor.getJSON())
   });
 
   if (!editor) return null;
@@ -40,7 +43,7 @@ export const Editor = () => {
   return (
     <>
       <EditorContent
-        className="prose prose-stone max-w-full dark:prose-invert prose-pre:bg-secondary/40"
+        className="prose prose-stone max-w-full dark:prose-invert dark:prose-pre:bg-secondary/70"
         editor={editor}
       />
       <BubbleMenu

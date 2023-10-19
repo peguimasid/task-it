@@ -29,7 +29,8 @@ const FormSchema = z.object({
   status: z.string(),
   priority: z.string().optional(),
   size: z.string().optional(),
-  tags: z.array(z.string())
+  tags: z.array(z.string()),
+  description: z.any().optional()
 });
 
 type FormValues = z.infer<typeof FormSchema>;
@@ -40,7 +41,8 @@ export const EditTaskForm = ({ task }: EditTaskFormProps) => {
       status: task.status,
       priority: task?.priority ?? '',
       size: task?.size ?? '',
-      tags: task?.tags ?? []
+      tags: task?.tags ?? [],
+      description: task.description ?? ''
     };
   }, [task]);
 
@@ -302,7 +304,11 @@ export const EditTaskForm = ({ task }: EditTaskFormProps) => {
         </section>
         <section className="mb-[calc(30vh)] min-h-[300px] w-full space-y-3">
           <h1 className="font-medium text-muted-foreground">Description</h1>
-          <Editor />
+          <Controller
+            control={form.control}
+            name="description"
+            render={({ field }) => <Editor defaultValue={field.value} onChange={field.onChange} />}
+          />
         </section>
       </form>
     </Form>
