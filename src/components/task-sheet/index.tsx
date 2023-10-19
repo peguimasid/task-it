@@ -1,4 +1,4 @@
-import { KeyboardEvent, useCallback, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Task } from '@prisma/client';
 import { isEmpty } from 'lodash';
@@ -71,10 +71,6 @@ export const TaskSheet = ({ task, isSheetOpen, onSheetOpenChange }: TaskSheetPro
     console.log(formData);
   };
 
-  const checkKeyDown = (e: KeyboardEvent<HTMLFormElement>) => {
-    if (e.key === 'Enter') e.preventDefault();
-  };
-
   const isSaveButtonDisabled = useMemo(() => {
     const { isValid, dirtyFields } = form.formState;
     return isEmpty(dirtyFields) || !isValid;
@@ -88,12 +84,7 @@ export const TaskSheet = ({ task, isSheetOpen, onSheetOpenChange }: TaskSheetPro
       >
         <FormProvider {...form}>
           <Form {...form}>
-            <form
-              name="editTaskForm"
-              noValidate
-              onSubmit={form.handleSubmit(onSubmit)}
-              onKeyDown={(e) => checkKeyDown(e)}
-            >
+            <form name="editTaskForm" noValidate onSubmit={form.handleSubmit(onSubmit)}>
               <SheetHeader className="sticky inset-0 flex w-full flex-row items-center space-y-0 border-b bg-card px-3 py-2">
                 <Button variant="ghost" size="icon" autoFocus={false} onClick={handleClickExpand}>
                   {isExpanded ? (

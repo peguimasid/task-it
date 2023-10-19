@@ -59,6 +59,9 @@ export const EditTaskForm = ({ task }: EditTaskFormProps) => {
               <FormControl>
                 <Input
                   {...field}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') e.preventDefault();
+                  }}
                   className="border-none p-0 text-3xl font-bold text-foreground outline-none focus-visible:ring-0"
                 />
               </FormControl>

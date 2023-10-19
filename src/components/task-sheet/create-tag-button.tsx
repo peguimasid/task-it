@@ -73,7 +73,11 @@ export const CreateTagButton = ({ className, variant, onSubmitTag, ...props }: C
           <form
             name="createTagForm"
             noValidate
-            onSubmit={form.handleSubmit(onSubmit)}
+            onSubmit={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              form.handleSubmit(onSubmit)();
+            }}
             data-has-errors={!isEmpty(errors)}
             className="flex items-center justify-between gap-4 data-[has-errors=true]:items-start"
           >
