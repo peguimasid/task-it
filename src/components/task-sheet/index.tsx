@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from 'react';
+import { KeyboardEvent, useCallback, useMemo, useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Task } from '@prisma/client';
 import { isEmpty } from 'lodash';
@@ -71,6 +71,10 @@ export const TaskSheet = ({ task, isSheetOpen, onSheetOpenChange }: TaskSheetPro
     console.log(formData);
   };
 
+  const checkKeyDown = (e: KeyboardEvent<HTMLFormElement>) => {
+    if (e.key === 'Enter') e.preventDefault();
+  };
+
   const isSaveButtonDisabled = useMemo(() => {
     const { isValid, dirtyFields } = form.formState;
     return isEmpty(dirtyFields) || !isValid;
@@ -78,15 +82,20 @@ export const TaskSheet = ({ task, isSheetOpen, onSheetOpenChange }: TaskSheetPro
 
   return (
     <Sheet open={isSheetOpen} onOpenChange={handleOpenChange}>
-      <FormProvider {...form}>
-        <Form {...form}>
-          <form name="editTaskForm" noValidate onSubmit={form.handleSubmit(onSubmit)}>
-            <SheetContent
-              data-expanded={isExpanded}
-              className="flex w-screen flex-col gap-0 overflow-y-auto overflow-x-hidden p-0 transition-[width] data-[expanded=true]:w-screen data-[expanded=true]:rounded-none sm:w-[50vw] sm:min-w-[600px] sm:max-w-none sm:rounded-l-xl"
+      <SheetContent
+        data-expanded={isExpanded}
+        className="flex w-screen flex-col gap-0 overflow-y-auto overflow-x-hidden p-0 transition-[width] data-[expanded=true]:w-screen data-[expanded=true]:rounded-none sm:w-[50vw] sm:min-w-[600px] sm:max-w-none sm:rounded-l-xl"
+      >
+        <FormProvider {...form}>
+          <Form {...form}>
+            <form
+              name="editTaskForm"
+              noValidate
+              onSubmit={form.handleSubmit(onSubmit)}
+              onKeyDown={(e) => checkKeyDown(e)}
             >
               <SheetHeader className="sticky inset-0 flex w-full flex-row items-center space-y-0 border-b bg-card px-3 py-2">
-                <Button variant="ghost" size="icon" onClick={handleClickExpand}>
+                <Button variant="ghost" size="icon" autoFocus={false} onClick={handleClickExpand}>
                   {isExpanded ? (
                     <Icons.arrowRightToLine className="h-5 w-5" />
                   ) : (
@@ -108,10 +117,10 @@ export const TaskSheet = ({ task, isSheetOpen, onSheetOpenChange }: TaskSheetPro
               <div className="container max-w-3xl p-8">
                 <EditTaskForm task={task} />
               </div>
-            </SheetContent>
-          </form>
-        </Form>
-      </FormProvider>
+            </form>
+          </Form>
+        </FormProvider>
+      </SheetContent>
     </Sheet>
   );
 };
