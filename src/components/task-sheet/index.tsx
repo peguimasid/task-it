@@ -3,10 +3,9 @@ import { Task } from '@prisma/client';
 import { formatDistanceToNow } from 'date-fns';
 
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetClose, SheetContent, SheetDescription, SheetHeader } from '@/components/ui/sheet';
+import { Sheet, SheetClose, SheetContent, SheetDescription, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 import { EditTaskForm } from '@/components/edit-task-form';
 import { Icons } from '@/components/icons';
-import { TaskSheetTitle } from '@/components/task-sheet-title';
 
 interface TaskSheetProps {
   isSheetOpen: boolean;
@@ -38,7 +37,7 @@ export const TaskSheet = ({ task, isSheetOpen, onSheetOpenChange }: TaskSheetPro
         <div className="container mx-auto flex h-full max-w-3xl flex-col gap-6 p-0">
           <div className="flex w-full flex-row items-start justify-between gap-6">
             <SheetHeader className="w-full space-y-1 truncate text-left">
-              <TaskSheetTitle task={task} />
+              <SheetTitle className="truncate">{task.title}</SheetTitle>
               <SheetDescription>
                 Created {formatDistanceToNow(new Date(task.createdAt), { addSuffix: true })}
               </SheetDescription>
