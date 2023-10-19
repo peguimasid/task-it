@@ -6,7 +6,7 @@ import { TaskPriority, TaskSize, TaskStatus } from '@/types';
 import { Task } from '@prisma/client';
 import { formatDistanceToNow } from 'date-fns';
 import { Check, ChevronsUpDown } from 'lucide-react';
-import { Controller, useFormContext } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 
 import { cn } from '@/lib/utils';
 
@@ -261,7 +261,7 @@ export const EditTaskForm = ({ task }: EditTaskFormProps) => {
           <CreateTagButton variant="ghost" className="h-8" onSubmitTag={handleIncludeTag} />
         </div>
         <div className="flex flex-wrap gap-2">
-          <Controller
+          <FormField
             control={form.control}
             name="tags"
             render={({ field }) =>
@@ -292,7 +292,7 @@ export const EditTaskForm = ({ task }: EditTaskFormProps) => {
       </section>
       <section className="mb-[calc(30vh)] min-h-[200px] w-full space-y-3">
         <h1 className="font-medium text-muted-foreground">Description</h1>
-        <Controller
+        <FormField
           control={form.control}
           name="description"
           render={({ field }) => <Editor defaultValue={field.value} onChange={field.onChange} />}
