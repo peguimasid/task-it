@@ -1,7 +1,9 @@
 import {
   AlertTriangle,
   ArchiveX,
+  ArrowLeftToLine,
   ArrowRight,
+  ArrowRightToLine,
   Bell,
   Bold,
   Bookmark,
@@ -115,6 +117,8 @@ export const Icons = {
   heading1: Heading1,
   heading2: Heading2,
   heading3: Heading3,
+  arrowLeftToLine: ArrowLeftToLine,
+  arrowRightToLine: ArrowRightToLine,
   logo: (props: LucideProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
