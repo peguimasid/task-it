@@ -45,11 +45,12 @@ export const Editor = () => {
       />
       <BubbleMenu
         editor={editor}
-        className="flex space-x-1 overflow-hidden rounded-lg border bg-card p-1 shadow-lg shadow-black/20"
+        updateDelay={0}
+        className="flex divide-x overflow-hidden rounded-lg border bg-card shadow-lg shadow-black/20"
       >
         <Toggle
           size="sm"
-          className="h-8"
+          className="h-8 rounded-none"
           pressed={editor.isActive('bold')}
           onClick={() => editor.chain().focus().toggleBold().run()}
         >
@@ -57,7 +58,7 @@ export const Editor = () => {
         </Toggle>
         <Toggle
           size="sm"
-          className="h-8"
+          className="h-8 rounded-none"
           pressed={editor.isActive('italic')}
           onClick={() => editor.chain().focus().toggleItalic().run()}
         >
@@ -65,7 +66,7 @@ export const Editor = () => {
         </Toggle>
         <Toggle
           size="sm"
-          className="h-8"
+          className="h-8 rounded-none"
           pressed={editor.isActive('strike')}
           onClick={() => editor.chain().focus().toggleStrike().run()}
         >
@@ -73,7 +74,7 @@ export const Editor = () => {
         </Toggle>
         <Toggle
           size="sm"
-          className="h-8"
+          className="h-8 rounded-none"
           pressed={editor.isActive('code')}
           onClick={() => editor.chain().focus().toggleCode().run()}
         >
