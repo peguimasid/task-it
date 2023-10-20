@@ -6,17 +6,18 @@ import { BubbleMenu, EditorContent, JSONContent, useEditor } from '@tiptap/react
 import StarterKit from '@tiptap/starter-kit';
 import { common, createLowlight } from 'lowlight';
 
-import { Icons } from '../icons';
-import { Toggle } from '../ui/toggle';
+import { Icons } from './icons';
+import { Toggle } from './ui/toggle';
 
 const lowlight = createLowlight(common);
 
 interface EditorProps {
   defaultValue: any;
+  placeholder?: string;
   onChange: (newValue: JSONContent) => void;
 }
 
-export const Editor = ({ defaultValue, onChange }: EditorProps) => {
+export const Editor = ({ defaultValue, onChange, placeholder }: EditorProps) => {
   const editor = useEditor({
     editorProps: {
       attributes: {
@@ -29,7 +30,7 @@ export const Editor = ({ defaultValue, onChange }: EditorProps) => {
         lowlight
       }),
       Placeholder.configure({
-        placeholder: 'Type here to write your description...',
+        placeholder: placeholder ?? 'Write something...',
         emptyEditorClass:
           'before:select-none before:pointer-events-none before:float-left before:h-0 before:text-muted-foreground before:content-[attr(data-placeholder)]'
       })

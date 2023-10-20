@@ -10,7 +10,7 @@ import { Form, FormControl, FormField, FormItem, FormMessage } from '@/component
 import { Input } from '@/components/ui/input';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 
-import { Icons } from '../icons';
+import { Icons } from './icons';
 
 const tagSchema = z.object({
   tag: z
@@ -25,11 +25,11 @@ const defaultValues = {
 
 type FormValues = z.infer<typeof tagSchema>;
 
-interface CreateTagButtonProps extends ButtonProps {
+interface NewTagButtonProps extends ButtonProps {
   onSubmitTag: (tag: string) => void;
 }
 
-export const CreateTagButton = ({ className, variant, onSubmitTag, ...props }: CreateTagButtonProps) => {
+export const NewTagButton = ({ className, variant, onSubmitTag, ...props }: NewTagButtonProps) => {
   const [isPopoverOpen, setIsPopoverOpen] = useState<boolean>(false);
 
   const form = useForm<FormValues>({
@@ -71,7 +71,7 @@ export const CreateTagButton = ({ className, variant, onSubmitTag, ...props }: C
       <PopoverContent side="left" className="w-72 rounded-lg p-3">
         <Form {...form}>
           <form
-            name="createTagForm"
+            name="newTagForm"
             noValidate
             onSubmit={(e) => {
               e.preventDefault();

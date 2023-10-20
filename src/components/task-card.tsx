@@ -20,7 +20,7 @@ export const TaskCard = ({ task, index }: TaskCardProps) => {
 
   const [isTaskSheetOpen, setIsTaskSheetOpen] = useState<boolean>(false);
 
-  const handleClickTitle = useCallback(() => {
+  const openTaskSheet = useCallback(() => {
     setIsTaskSheetOpen(true);
   }, []);
 
@@ -34,7 +34,7 @@ export const TaskCard = ({ task, index }: TaskCardProps) => {
             {...provided.draggableProps}
             {...provided.dragHandleProps}
           >
-            <CardTitle className="cursor-pointer text-sm hover:underline" onClick={handleClickTitle}>
+            <CardTitle className="cursor-pointer text-sm hover:underline" onClick={openTaskSheet}>
               {title}
             </CardTitle>
             <TagsList priority={priority as TaskPriority} size={size as TaskSize} tags={tags} />

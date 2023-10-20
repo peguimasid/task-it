@@ -10,17 +10,17 @@ import { useFormContext } from 'react-hook-form';
 
 import { cn } from '@/lib/utils';
 
-import { TaskSheetFormValues } from '.';
-import { EmptyPlaceholder } from '../empty-placeholder';
-import { Icons } from '../icons';
-import { Badge } from '../ui/badge';
-import { Button } from '../ui/button';
-import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from '../ui/command';
-import { FormControl, FormField, FormItem, FormMessage } from '../ui/form';
-import { Input } from '../ui/input';
-import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
-import { CreateTagButton } from './create-tag-button';
 import { Editor } from './editor';
+import { EmptyPlaceholder } from './empty-placeholder';
+import { Icons } from './icons';
+import { NewTagButton } from './new-tag-button';
+import { TaskSheetFormValues } from './task-sheet';
+import { Badge } from './ui/badge';
+import { Button } from './ui/button';
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from './ui/command';
+import { FormControl, FormField, FormItem, FormMessage } from './ui/form';
+import { Input } from './ui/input';
+import { Popover, PopoverContent, PopoverTrigger } from './ui/popover';
 
 interface EditTaskFormProps {
   task: Task;
@@ -261,7 +261,7 @@ export const EditTaskForm = ({ task }: EditTaskFormProps) => {
       <section className="flex w-full flex-col space-y-3">
         <div className="flex flex-row justify-between">
           <h1 className="font-medium text-muted-foreground">Tags</h1>
-          <CreateTagButton variant="ghost" className="h-8" onSubmitTag={handleIncludeTag} />
+          <NewTagButton variant="ghost" className="h-8" onSubmitTag={handleIncludeTag} />
         </div>
         <div className="flex flex-wrap gap-2">
           <FormField
@@ -298,7 +298,13 @@ export const EditTaskForm = ({ task }: EditTaskFormProps) => {
         <FormField
           control={form.control}
           name="description"
-          render={({ field }) => <Editor defaultValue={field.value} onChange={field.onChange} />}
+          render={({ field }) => (
+            <Editor
+              defaultValue={field.value}
+              onChange={field.onChange}
+              placeholder="Type here to write your description..."
+            />
+          )}
         />
       </section>
     </div>

@@ -9,8 +9,8 @@ import { Button } from '@/components/ui/button';
 import { Sheet, SheetClose, SheetContent, SheetHeader } from '@/components/ui/sheet';
 import { Icons } from '@/components/icons';
 
-import { Form } from '../ui/form';
 import { EditTaskForm } from './edit-task-form';
+import { Form } from './ui/form';
 
 const FormSchema = z.object({
   title: z
