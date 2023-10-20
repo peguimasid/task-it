@@ -76,7 +76,7 @@ export const TaskOperations = ({ task }: TaskOperationsProps) => {
 
   return (
     <>
-      <DropdownMenu modal={false}>
+      <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button
             variant="outline"

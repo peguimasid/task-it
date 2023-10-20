@@ -25,11 +25,11 @@ const defaultValues = {
 
 type FormValues = z.infer<typeof tagSchema>;
 
-interface CreateTagButtonProps extends ButtonProps {
+interface NewTagButtonProps extends ButtonProps {
   onSubmitTag: (tag: string) => void;
 }
 
-export const CreateTagButton = ({ className, variant, onSubmitTag, ...props }: CreateTagButtonProps) => {
+export const NewTagButton = ({ className, variant, onSubmitTag, ...props }: NewTagButtonProps) => {
   const [isPopoverOpen, setIsPopoverOpen] = useState<boolean>(false);
 
   const form = useForm<FormValues>({
@@ -71,9 +71,13 @@ export const CreateTagButton = ({ className, variant, onSubmitTag, ...props }: C
       <PopoverContent side="left" className="w-72 rounded-lg p-3">
         <Form {...form}>
           <form
-            name="createProjectForm"
+            name="newTagForm"
             noValidate
-            onSubmit={form.handleSubmit(onSubmit)}
+            onSubmit={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              form.handleSubmit(onSubmit)();
+            }}
             data-has-errors={!isEmpty(errors)}
             className="flex items-center justify-between gap-4 data-[has-errors=true]:items-start"
           >
