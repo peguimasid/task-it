@@ -19,9 +19,9 @@ interface TaskCardProps {
 
 export const TaskCard = ({ task, index }: TaskCardProps) => {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const { projectId }: { projectId: string } = useParams();
 
-  const searchParams = useSearchParams();
   const { title, priority, size, tags } = task;
 
   const openTaskSheet = useCallback(() => {
