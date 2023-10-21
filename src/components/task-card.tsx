@@ -1,7 +1,7 @@
 'use client';
 
 import { useCallback } from 'react';
-import { useParams, useRouter, useSearchParams } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { TaskPriority, TaskSize } from '@/types';
 import { Draggable } from '@hello-pangea/dnd';
 import { Task } from '@prisma/client';
@@ -19,8 +19,8 @@ interface TaskCardProps {
 
 export const TaskCard = ({ task, index }: TaskCardProps) => {
   const router = useRouter();
+  const pathname = usePathname();
   const searchParams = useSearchParams();
-  const { projectId }: { projectId: string } = useParams();
 
   const { title, priority, size, tags } = task;
 
@@ -29,8 +29,8 @@ export const TaskCard = ({ task, index }: TaskCardProps) => {
 
     newParams.set('view', task.id);
 
-    router.push(createUrl(`/projects/${projectId}`, newParams));
-  }, [projectId, router, searchParams, task.id]);
+    router.push(createUrl(pathname, newParams));
+  }, [pathname, router, searchParams, task.id]);
 
   return (
     <Draggable draggableId={task.id} index={index}>
