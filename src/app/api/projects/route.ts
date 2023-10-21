@@ -6,32 +6,32 @@ const sampleTasks = [
     title: 'Create your first task',
     status: 'BACKLOG',
     index: 0,
-    priority: 'Medium',
+    priority: 'MEDIUM',
     tags: ['Beginner'],
-    size: 'Small'
+    size: 'SMALL'
   },
   {
     title: 'Write your first task description',
     status: 'BACKLOG',
     index: 1,
-    priority: 'Low',
-    size: 'Large'
+    priority: 'LOW',
+    size: 'LARGE'
   },
   {
     title: 'Explore Task-it platform',
     status: 'IN_PROGRESS',
     index: 0,
-    priority: 'High',
+    priority: 'HIGH',
     tags: ['Explore'],
-    size: 'Medium'
+    size: 'MEDIUM'
   },
   {
     title: 'Bring your project to life',
     status: 'DONE',
     index: 0,
-    priority: 'Urgent',
+    priority: 'URGENT',
     tags: ['Achievement'],
-    size: 'Tiny'
+    size: 'TINY'
   }
 ];
 
