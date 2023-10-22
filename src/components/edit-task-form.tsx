@@ -14,7 +14,7 @@ import { Editor } from './editor';
 import { EmptyPlaceholder } from './empty-placeholder';
 import { Icons } from './icons';
 import { NewTagButton } from './new-tag-button';
-import { TaskSheetFormValues } from './task-sheet';
+import { TaskSheetFormValues } from './task-sheet-content';
 import { Badge } from './ui/badge';
 import { Button } from './ui/button';
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from './ui/command';
