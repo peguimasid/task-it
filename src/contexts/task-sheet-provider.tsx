@@ -44,7 +44,7 @@ export function TaskSheetProvider({ children }: PropsWithChildren) {
 
   return (
     <TaskSheetContext.Provider value={value}>
-      {task && <TaskSheet task={task} isSheetOpen={isOpen} onSheetOpenChange={closeSheet} />}
+      <TaskSheet task={task} isSheetOpen={isOpen} onSheetOpenChange={closeSheet} />
       {children}
     </TaskSheetContext.Provider>
   );
