@@ -12,7 +12,7 @@ import { Button } from '@/components/ui/button';
 import { SheetHeader } from '@/components/ui/sheet';
 import { Icons } from '@/components/icons';
 
-import { EditTaskForm } from './edit-task-form';
+import { TaskSheetForm } from './task-sheet-form';
 import { Form } from './ui/form';
 import { toast } from './ui/use-toast';
 
@@ -154,7 +154,7 @@ export const TaskSheetContent = ({
             </div>
           </SheetHeader>
           <div className="container max-w-3xl p-8">
-            <EditTaskForm task={task} />
+            <TaskSheetForm task={task} />
           </div>
         </form>
       </Form>
