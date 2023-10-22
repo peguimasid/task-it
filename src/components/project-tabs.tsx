@@ -7,6 +7,8 @@ import { createUrl } from '@/lib/utils';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { KanbanBoard } from '@/components/kanban-board';
 
+import { EmptyPlaceholder } from './empty-placeholder';
+
 type ProjectWithTasks = Project & {
   tasks: Task[];
 };
@@ -50,7 +52,13 @@ export const ProjectTabs = ({ project }: ProjectTabsProps) => {
         <KanbanBoard projectId={project.id} tasks={project.tasks} />
       </TabsContent>
       <TabsContent value="overview" className="flex-1 space-y-3">
-        <h1>Overview</h1>
+        <EmptyPlaceholder>
+          <EmptyPlaceholder.Icon name="clock" />
+          <EmptyPlaceholder.Title>Coming soon...</EmptyPlaceholder.Title>
+          <EmptyPlaceholder.Description>
+            Stay tuned. Our team is diligently working on this feature to meet your needs and expectations.
+          </EmptyPlaceholder.Description>
+        </EmptyPlaceholder>
       </TabsContent>
     </Tabs>
   );
