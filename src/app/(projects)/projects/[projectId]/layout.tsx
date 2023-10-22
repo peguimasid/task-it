@@ -2,6 +2,7 @@ import { ReactNode } from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import { TaskSheetProvider } from '@/contexts/task-sheet-provider';
 import { Project } from '@prisma/client';
 
 import { getServerAuthSession } from '@/lib/auth';
@@ -64,7 +65,9 @@ export default async function ProjectLayout({ children, params: { projectId } }:
         </div>
       </TopBar>
       <div className="grid flex-1">
-        <main className="container max-w-6xl flex-1 overflow-hidden py-5">{children}</main>
+        <TaskSheetProvider>
+          <main className="container max-w-6xl flex-1 overflow-hidden py-5">{children}</main>
+        </TaskSheetProvider>
       </div>
     </div>
   );

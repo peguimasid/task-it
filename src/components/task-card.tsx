@@ -1,12 +1,10 @@
 'use client';
 
 import { useCallback } from 'react';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useTaskSheet } from '@/contexts/task-sheet-provider';
 import { TaskPriority, TaskSize } from '@/types';
 import { Draggable } from '@hello-pangea/dnd';
 import { Task } from '@prisma/client';
-
-import { createUrl } from '@/lib/utils';
 
 import { TagsList } from './tags-list';
 import { TaskOperations } from './task-operations';
@@ -18,19 +16,12 @@ interface TaskCardProps {
 }
 
 export const TaskCard = ({ task, index }: TaskCardProps) => {
-  const router = useRouter();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-
+  const { openSheet } = useTaskSheet();
   const { title, priority, size, tags } = task;
 
   const openTaskSheet = useCallback(() => {
-    const newParams = new URLSearchParams(searchParams.toString());
-
-    newParams.set('view', task.id);
-
-    router.push(createUrl(pathname, newParams));
-  }, [pathname, router, searchParams, task.id]);
+    openSheet(task.id);
+  }, [openSheet, task.id]);
 
   return (
     <Draggable draggableId={task.id} index={index}>
