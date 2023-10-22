@@ -23,11 +23,12 @@ export const TaskSheet = ({ task, isSheetOpen, onSheetOpenChange }: TaskSheetPro
   }, []);
 
   const closeSheet = useCallback(() => {
+    setIsExpanded(false);
     onSheetOpenChange(false);
   }, [onSheetOpenChange]);
 
   return (
-    <Sheet open={isSheetOpen} onOpenChange={onSheetOpenChange}>
+    <Sheet open={isSheetOpen} onOpenChange={closeSheet}>
       <SheetContent
         data-expanded={isExpanded}
         className="flex w-screen flex-col gap-0 overflow-y-auto overflow-x-hidden p-0 transition-[width] data-[expanded=true]:w-screen data-[expanded=true]:rounded-none sm:w-[50vw] sm:min-w-[600px] sm:max-w-none sm:rounded-l-xl"
