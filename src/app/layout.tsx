@@ -4,13 +4,13 @@ import { ReactNode } from 'react';
 import { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import localFont from 'next/font/local';
+import { NextAuthProvider } from '@/contexts/next-auth-provider';
+import { ReactQueryProvider } from '@/contexts/react-query-provider';
+import { ThemeProvider } from '@/contexts/theme-provider';
 
 import { siteConfig } from '@/config/site';
 import { cn } from '@/lib/utils';
 import { Toaster } from '@/components/ui/toaster';
-import { NextAuthProvider } from '@/components/next-auth-provider';
-import { ReactQueryProvider } from '@/components/react-query-provider';
-import { ThemeProvider } from '@/components/theme-provider';
 
 const fontSans = Inter({
   subsets: ['latin'],
