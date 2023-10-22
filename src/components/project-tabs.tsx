@@ -3,6 +3,7 @@
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { Project, Task } from '@prisma/client';
 
+import { createUrl } from '@/lib/utils';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { KanbanBoard } from '@/components/kanban-board';
 
@@ -22,9 +23,9 @@ export const ProjectTabs = ({ project }: ProjectTabsProps) => {
   const tab = searchParams.get('tab') ?? 'tasks';
 
   const onTabChange = (value: string) => {
-    const params = new URLSearchParams(searchParams);
-    params.set('tab', value);
-    router.replace(`${pathname}?${params}`);
+    const newParams = new URLSearchParams(searchParams);
+    newParams.set('tab', value);
+    router.replace(createUrl(pathname, newParams));
   };
 
   return (

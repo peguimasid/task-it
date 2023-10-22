@@ -14,7 +14,7 @@ import { Editor } from './editor';
 import { EmptyPlaceholder } from './empty-placeholder';
 import { Icons } from './icons';
 import { NewTagButton } from './new-tag-button';
-import { TaskSheetFormValues } from './task-sheet';
+import { TaskSheetFormValues } from './task-sheet-content';
 import { Badge } from './ui/badge';
 import { Button } from './ui/button';
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from './ui/command';
@@ -22,11 +22,11 @@ import { FormControl, FormField, FormItem, FormMessage } from './ui/form';
 import { Input } from './ui/input';
 import { Popover, PopoverContent, PopoverTrigger } from './ui/popover';
 
-interface EditTaskFormProps {
+interface TaskSheetFormProps {
   task: Task;
 }
 
-export const EditTaskForm = ({ task }: EditTaskFormProps) => {
+export const TaskSheetForm = ({ task }: TaskSheetFormProps) => {
   const form = useFormContext<TaskSheetFormValues>();
 
   const handleIncludeTag = useCallback(
@@ -62,7 +62,7 @@ export const EditTaskForm = ({ task }: EditTaskFormProps) => {
                   onKeyDown={(e) => {
                     if (e.key === 'Enter') e.preventDefault();
                   }}
-                  className="border-none p-0 text-3xl font-bold text-foreground outline-none focus-visible:ring-0"
+                  className="truncate border-none p-0 text-3xl font-bold text-foreground outline-none focus-visible:ring-0"
                 />
               </FormControl>
             </FormItem>
