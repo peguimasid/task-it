@@ -6,7 +6,7 @@
     "db-up": "docker-compose -f ./docker-compose.yaml up -d",
     "db-down": "docker-compose -f ./docker-compose.yaml down",
     "dev": "prisma generate && next dev",
-    "build": "prisma generate && prisma db push && prisma db seed && next build",
+    "build": "prisma generate && prisma db push && next build",
     "start": "next start",
     "lint": "next lint",
     "prepare": "husky install"
