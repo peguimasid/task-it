@@ -12,7 +12,6 @@ export const AuthProviderButtons = () => {
     google: false,
     github: false,
     discord: false,
-    facebook: false,
     auth0: false,
     '42-school': false
   });
@@ -50,13 +49,6 @@ export const AuthProviderButtons = () => {
             <Icons.spinner className="h-5 w-5 animate-spin" />
           ) : (
             <Icons.discord className="h-5 w-5" />
-          )}
-        </Button>
-        <Button disabled={disabled} className="gap-2" variant="secondary" size="icon" onClick={() => login('facebook')}>
-          {isLoading.facebook ? (
-            <Icons.spinner className="h-5 w-5 animate-spin" />
-          ) : (
-            <Icons.facebook className="h-5 w-5" />
           )}
         </Button>
         <Button

@@ -4,7 +4,6 @@ import { Adapter } from 'next-auth/adapters';
 import FortyTwoSchoolProvider from 'next-auth/providers/42-school';
 import Auth0Provider from 'next-auth/providers/auth0';
 import DiscordProvider from 'next-auth/providers/discord';
-import FacebookProvider from 'next-auth/providers/facebook';
 import GithubProvider from 'next-auth/providers/github';
 import GoogleProvider from 'next-auth/providers/google';
 
@@ -36,11 +35,6 @@ export const authOptions: NextAuthOptions = {
     GoogleProvider({
       clientId: env.GOOGLE_CLIENT_ID,
       clientSecret: env.GOOGLE_CLIENT_SECRET,
-      allowDangerousEmailAccountLinking: true
-    }),
-    FacebookProvider({
-      clientId: env.FACEBOOK_CLIENT_ID,
-      clientSecret: env.FACEBOOK_CLIENT_SECRET,
       allowDangerousEmailAccountLinking: true
     }),
     DiscordProvider({
