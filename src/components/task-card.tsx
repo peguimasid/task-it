@@ -33,7 +33,7 @@ export const TaskCard = ({ task, index }: TaskCardProps) => {
           {...provided.draggableProps}
           {...provided.dragHandleProps}
         >
-          <CardTitle className="text-sm">{title}s</CardTitle>
+          <CardTitle className="text-sm">{title}</CardTitle>
           <TagsList priority={priority as TaskPriority} size={size as TaskSize} tags={tags} />
           <TaskOperations task={task} />
         </Card>
