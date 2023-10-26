@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback } from 'react';
+import { MouseEventHandler, useCallback } from 'react';
 import { useTaskSheet } from '@/contexts/task-sheet-provider';
 import { TaskPriority, TaskSize } from '@/types';
 import { Draggable } from '@hello-pangea/dnd';
@@ -28,13 +28,12 @@ export const TaskCard = ({ task, index }: TaskCardProps) => {
       {(provided) => (
         <Card
           className="group relative mb-3 min-h-[6rem] space-y-2 border-none p-3"
+          onClick={openTaskSheet}
           ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
         >
-          <CardTitle className="cursor-pointer text-sm hover:underline" onClick={openTaskSheet}>
-            {title}
-          </CardTitle>
+          <CardTitle className="text-sm">{title}s</CardTitle>
           <TagsList priority={priority as TaskPriority} size={size as TaskSize} tags={tags} />
           <TaskOperations task={task} />
         </Card>
