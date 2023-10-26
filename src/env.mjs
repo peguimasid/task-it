@@ -18,7 +18,13 @@ export const env = createEnv({
     AUTH0_DOMAIN: z.string().min(1),
     FORTY_TWO_CLIENT_ID: z.string().min(1),
     FORTY_TWO_CLIENT_SECRET: z.string().min(1),
-    DATABASE_URL: z.string().min(1)
+    DATABASE_URL: z.string().min(1),
+    DATABASE_PRISMA_URL: z.string().min(1),
+    DATABASE_URL_NON_POOLING: z.string().min(1),
+    DATABASE_HOST: z.string().min(1),
+    DATABASE_USER: z.string().min(1),
+    DATABASE_PASSWORD: z.string().min(1),
+    DATABASE_DATABASE: z.string().min(1)
   },
   client: {
     NEXT_PUBLIC_APP_URL: z.string().min(1)
@@ -39,7 +45,13 @@ export const env = createEnv({
     AUTH0_DOMAIN: process.env.AUTH0_DOMAIN,
     FORTY_TWO_CLIENT_ID: process.env.FORTY_TWO_CLIENT_ID,
     FORTY_TWO_CLIENT_SECRET: process.env.FORTY_TWO_CLIENT_SECRET,
+    NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
     DATABASE_URL: process.env.DATABASE_URL,
-    NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL
+    DATABASE_PRISMA_URL: process.env.DATABASE_PRISMA_URL,
+    DATABASE_URL_NON_POOLING: process.env.DATABASE_URL_NON_POOLING,
+    DATABASE_HOST: process.env.DATABASE_HOST,
+    DATABASE_USER: process.env.DATABASE_USER,
+    DATABASE_PASSWORD: process.env.DATABASE_PASSWORD,
+    DATABASE_DATABASE: process.env.DATABASE_DATABASE
   }
 });
