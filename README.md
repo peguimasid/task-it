@@ -8,7 +8,7 @@ I invite you to join me on this exciting journey and contribute your suggestions
 
 ### Progress so far:
 
-https://github.com/peguimasid/task-it/assets/54289589/32031c7d-dcab-4389-8c7a-61cd8d4d7ea6
+https://github.com/peguimasid/task-it/assets/54289589/82c95e77-3ad7-4440-b8c2-fb974aed2c73
 
 > Project page design was created by my talented brother, Pedro Masid, the best Product Designer i know.
 > You can check more of his work on [Dribbble](https://dribbble.com/pmasid)
