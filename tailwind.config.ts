@@ -72,12 +72,12 @@ module.exports = {
         'accordion-up': 'accordion-up 0.2s ease-out'
       },
       typography: {
-        DEFAULT: {
+        'no-quote': {
           css: {
-            'blockquote p:first-of-type::before': false,
-            'blockquote p:first-of-type::after': false,
-            'code::before': false,
-            'code::after': false
+            'blockquote p:first-of-type::before': { content: 'none' },
+            'blockquote p:first-of-type::after': { content: 'none' },
+            'code::before': { content: 'none' },
+            'code::after': { content: 'none' }
           }
         }
       }

@@ -44,7 +44,7 @@ export const Editor = ({ defaultValue, onChange, placeholder }: EditorProps) => 
   return (
     <>
       <EditorContent
-        className="prose prose-sm prose-stone max-w-full dark:prose-invert md:prose-base dark:prose-pre:bg-secondary/70"
+        className="prose prose-sm prose-stone prose-no-quote max-w-full dark:prose-invert md:prose-base dark:prose-pre:bg-secondary/70"
         editor={editor}
       />
       <BubbleMenu
