@@ -31,7 +31,7 @@ export const TaskSheet = ({ task, isSheetOpen, onSheetOpenChange }: TaskSheetPro
     <Sheet open={isSheetOpen} onOpenChange={closeSheet}>
       <SheetContent
         data-expanded={isExpanded}
-        className="flex w-screen flex-col gap-0 overflow-y-auto overflow-x-hidden p-0 transition-[width] data-[expanded=true]:w-screen data-[expanded=true]:rounded-none sm:w-[50vw] sm:min-w-[600px] sm:max-w-none sm:rounded-l-xl"
+        className="flex w-screen flex-col gap-0 overflow-y-auto overflow-x-hidden p-0 transition-[width] data-[expanded=true]:w-screen data-[expanded=true]:rounded-none sm:w-[clamp(600px,50vw,768px)] sm:max-w-none sm:rounded-l-xl"
       >
         {task && (
           <TaskSheetContent
