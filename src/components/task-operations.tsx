@@ -91,6 +91,7 @@ export const TaskOperations = ({ task }: TaskOperationsProps) => {
             className="cursor-pointer text-destructive focus:text-destructive"
             onSelect={openAlertDialog}
           >
+            <Icons.trash className="mr-2 h-4 w-4" />
             Delete
           </DropdownMenuItem>
         </DropdownMenuContent>
