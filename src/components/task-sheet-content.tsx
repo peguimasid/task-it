@@ -19,6 +19,7 @@ import { Editor } from './editor';
 import { EmptyPlaceholder } from './empty-placeholder';
 import { Icons } from './icons';
 import { NewTagButton } from './new-tag-button';
+import { TaskOperations } from './task-operations';
 import { Badge } from './ui/badge';
 import { Button } from './ui/button';
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from './ui/command';
@@ -173,13 +174,14 @@ export const TaskSheetContent = ({
               <Icons.arrowLeftToLine className="h-5 w-5" />
             )}
           </Button>
-          <div className="ml-auto flex items-center gap-3">
+          <div className="ml-auto flex items-center gap-2">
             <Button type="submit" disabled={isSaveButtonDisabled} className="h-9">
               {isLoading ? <Icons.spinner className="mr-2 h-5 w-5" /> : <Icons.check className="mr-2 h-5 w-5" />}
               Save changes
             </Button>
-            <Button type="button" size="icon" variant="ghost" onClick={handleClickClose}>
-              <Icons.close className="h-5 w-5" />
+            <TaskOperations task={task} />
+            <Button type="button" size="icon" variant="ghost" onClick={handleClickClose} className="h-9 w-9">
+              <Icons.close className="h-4 w-4" />
             </Button>
           </div>
         </SheetHeader>
