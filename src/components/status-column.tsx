@@ -1,8 +1,9 @@
 import { useMemo } from 'react';
-import { READABLE_STATUS, TASK_STATUS_ICONS } from '@/constants/task-statuses';
 import { TaskStatus } from '@/types';
 import { Droppable } from '@hello-pangea/dnd';
 import { Task } from '@prisma/client';
+
+import { READABLE_STATUS, TASK_STATUS_ICONS } from '@/constants/task-statuses';
 
 import { CreateTaskButton } from './create-task-button';
 import { TaskStack } from './task-stack';

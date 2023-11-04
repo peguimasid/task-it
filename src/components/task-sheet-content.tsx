@@ -1,9 +1,5 @@
 import { useCallback, useMemo } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import { priorities, READABLE_PRIORITY, TASK_PRIORITY_ICONS } from '@/constants/task-priorities';
-import { READABLE_SIZE, sizes } from '@/constants/task-sizes';
-import { READABLE_STATUS, statuses, TASK_STATUS_ICONS } from '@/constants/task-statuses';
-import { useTaskStore } from '@/store/task-store';
 import { TaskPriority, TaskSize, TaskStatus } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Project, Task } from '@prisma/client';
@@ -13,20 +9,24 @@ import { isEmpty } from 'lodash';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
+import { priorities, READABLE_PRIORITY, TASK_PRIORITY_ICONS } from '@/constants/task-priorities';
+import { READABLE_SIZE, sizes } from '@/constants/task-sizes';
+import { READABLE_STATUS, statuses, TASK_STATUS_ICONS } from '@/constants/task-statuses';
+import { useTaskStore } from '@/store/task-store';
 import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui/button';
-import { SheetHeader } from '@/components/ui/sheet';
-import { Icons } from '@/components/icons';
 
 import { Editor } from './editor';
 import { EmptyPlaceholder } from './empty-placeholder';
+import { Icons } from './icons';
 import { NewTagButton } from './new-tag-button';
 import { Badge } from './ui/badge';
+import { Button } from './ui/button';
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from './ui/command';
 import { Form, FormControl, FormField, FormItem, FormMessage } from './ui/form';
 import { Input } from './ui/input';
 import { Popover, PopoverContent, PopoverTrigger } from './ui/popover';
 import { Separator } from './ui/separator';
+import { SheetHeader } from './ui/sheet';
 import { toast } from './ui/use-toast';
 
 const updateTaskSchema = z.object({

@@ -2,10 +2,11 @@
 
 import { useCallback, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import { useTaskStore } from '@/store/task-store';
 import { Project, Task } from '@prisma/client';
 import { useMutation } from '@tanstack/react-query';
 import { MoreHorizontal } from 'lucide-react';
+
+import { useTaskStore } from '@/store/task-store';
 
 import { Icons } from './icons';
 import {

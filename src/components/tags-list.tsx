@@ -1,9 +1,9 @@
 'use client';
 
-import { READABLE_PRIORITY, TASK_PRIORITY_ICONS } from '@/constants/task-priorities';
-import { READABLE_SIZE } from '@/constants/task-sizes';
 import { TaskPriority, TaskSize } from '@/types';
 
+import { READABLE_PRIORITY, TASK_PRIORITY_ICONS } from '@/constants/task-priorities';
+import { READABLE_SIZE } from '@/constants/task-sizes';
 import { cn } from '@/lib/utils';
 
 import { Icons } from './icons';

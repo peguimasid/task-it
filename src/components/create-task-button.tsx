@@ -1,6 +1,5 @@
 import { useCallback, useMemo, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import { useTaskStore } from '@/store/task-store';
 import { TaskStatus } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Project, Task } from '@prisma/client';
@@ -10,12 +9,13 @@ import { Loader2, Plus, SendHorizontal } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
+import { useTaskStore } from '@/store/task-store';
 import { cn } from '@/lib/utils';
-import { Button, ButtonProps } from '@/components/ui/button';
-import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 
+import { Button, ButtonProps } from './ui/button';
+import { Form, FormControl, FormField, FormItem, FormMessage } from './ui/form';
+import { Input } from './ui/input';
+import { Popover, PopoverContent, PopoverTrigger } from './ui/popover';
 import { toast } from './ui/use-toast';
 
 const createTaskSchema = z.object({
