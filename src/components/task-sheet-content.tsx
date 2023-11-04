@@ -30,7 +30,7 @@ import { Popover, PopoverContent, PopoverTrigger } from './ui/popover';
 import { Separator } from './ui/separator';
 import { toast } from './ui/use-toast';
 
-const FormSchema = z.object({
+const updateTaskSchema = z.object({
   title: z
     .string()
     .min(1, { message: 'Empty titles are not allowed' })
@@ -42,7 +42,7 @@ const FormSchema = z.object({
   description: z.any().optional()
 });
 
-export type TaskSheetFormValues = z.infer<typeof FormSchema>;
+type FormValues = z.infer<typeof updateTaskSchema>;
 
 interface TaskSheetContentProps {
   task: Task;
@@ -53,7 +53,7 @@ interface TaskSheetContentProps {
 }
 
 interface UpdateTaskProps {
-  data: TaskSheetFormValues;
+  data: FormValues;
   projectId: Project['id'];
   taskId: Task['id'];
 }
@@ -83,7 +83,7 @@ export const TaskSheetContent = ({
 
   const onUpdateTask = useTaskStore((store) => store.onUpdateTask);
 
-  const defaultValues = useMemo<TaskSheetFormValues>(() => {
+  const defaultValues = useMemo<FormValues>(() => {
     return {
       title: task.title ?? '',
       status: task.status,
@@ -94,10 +94,10 @@ export const TaskSheetContent = ({
     };
   }, [task]);
 
-  const form = useForm<TaskSheetFormValues>({
+  const form = useForm<FormValues>({
     mode: 'onChange',
     defaultValues,
-    resolver: zodResolver(FormSchema)
+    resolver: zodResolver(updateTaskSchema)
   });
 
   const handleClickClose = useCallback(() => {
@@ -107,7 +107,7 @@ export const TaskSheetContent = ({
   }, [defaultValues, form, minimizeContent, onClose]);
 
   const onSuccess = useCallback(
-    ({ taskUpdated }: UpdateTaskResponse, variables: TaskSheetFormValues) => {
+    ({ taskUpdated }: UpdateTaskResponse, variables: FormValues) => {
       onUpdateTask(taskUpdated);
       form.reset(variables);
       router.refresh();
@@ -130,7 +130,7 @@ export const TaskSheetContent = ({
   });
 
   const onSubmit = useCallback(
-    (formData: TaskSheetFormValues) => {
+    (formData: FormValues) => {
       mutate(formData);
     },
     [mutate]
