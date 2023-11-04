@@ -27,16 +27,14 @@ export const TaskCard = ({ task, index }: TaskCardProps) => {
     <Draggable draggableId={task.id} index={index}>
       {(provided) => (
         <Card
-          className="group relative mb-3 min-h-[6rem] space-y-2 border-none p-3"
+          className="mb-3 min-h-[6rem] space-y-2 border-none p-3"
           ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
+          onClick={openTaskSheet}
         >
-          <CardTitle className="cursor-pointer text-sm hover:underline" onClick={openTaskSheet}>
-            {title}
-          </CardTitle>
+          <CardTitle className="text-sm">{title}</CardTitle>
           <TagsList priority={priority as TaskPriority} size={size as TaskSize} tags={tags} />
-          <TaskOperations task={task} />
         </Card>
       )}
     </Draggable>
