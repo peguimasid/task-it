@@ -7,7 +7,9 @@ import { Draggable } from '@hello-pangea/dnd';
 import { Task } from '@prisma/client';
 
 import { TagsList } from './tags-list';
+import { TaskContextMenuContent } from './task-context-menu-content';
 import { Card, CardTitle } from './ui/card';
+import { ContextMenu, ContextMenuTrigger } from './ui/context-menu';
 
 interface TaskCardProps {
   task: Task;
@@ -25,16 +27,21 @@ export const TaskCard = ({ task, index }: TaskCardProps) => {
   return (
     <Draggable draggableId={task.id} index={index}>
       {(provided) => (
-        <Card
-          className="mb-3 min-h-[6rem] !cursor-pointer space-y-2 border-none p-3"
-          ref={provided.innerRef}
-          {...provided.draggableProps}
-          {...provided.dragHandleProps}
-          onClick={openTaskSheet}
-        >
-          <CardTitle className="text-sm">{title}</CardTitle>
-          <TagsList priority={priority as TaskPriority} size={size as TaskSize} tags={tags} />
-        </Card>
+        <ContextMenu>
+          <ContextMenuTrigger>
+            <Card
+              className="mb-3 min-h-[6rem] !cursor-pointer space-y-2 border-none p-3"
+              ref={provided.innerRef}
+              {...provided.draggableProps}
+              {...provided.dragHandleProps}
+              onClick={openTaskSheet}
+            >
+              <CardTitle className="text-sm">{title}</CardTitle>
+              <TagsList priority={priority as TaskPriority} size={size as TaskSize} tags={tags} />
+            </Card>
+          </ContextMenuTrigger>
+          <TaskContextMenuContent task={task} />
+        </ContextMenu>
       )}
     </Draggable>
   );
