@@ -1,10 +1,11 @@
 'use client';
 
 import { createContext, PropsWithChildren, useCallback, useContext, useMemo, useState } from 'react';
-import { useTaskStore } from '@/store/task-store';
 import { Task } from '@prisma/client';
 
-import { TaskSheet } from '@/components/task-sheet';
+import { useTaskStore } from '@/store/task-store';
+import { Sheet, SheetContent } from '@/components/ui/sheet';
+import { TaskSheetContent } from '@/components/task-sheet-content';
 
 interface TaskSheetContextProps {
   isOpen: boolean;
@@ -19,7 +20,17 @@ export function TaskSheetProvider({ children }: PropsWithChildren) {
   const tasks = useTaskStore((store) => store.tasks);
 
   const [taskId, setTaskId] = useState<string | null>(null);
+  const [isExpanded, setIsExpanded] = useState<boolean>(false);
+
   const isOpen = !!taskId;
+
+  const expandContent = useCallback(() => {
+    setIsExpanded(true);
+  }, []);
+
+  const minimizeContent = useCallback(() => {
+    setIsExpanded(false);
+  }, []);
 
   const openSheet = useCallback(
     (taskId: string) => {
@@ -29,9 +40,10 @@ export function TaskSheetProvider({ children }: PropsWithChildren) {
     [tasks]
   );
 
-  const closeSheet = () => {
+  const closeSheet = useCallback(() => {
+    setIsExpanded(false);
     setTaskId(null);
-  };
+  }, []);
 
   const task = useMemo<Task | null>(() => {
     if (!taskId) return null;
@@ -40,11 +52,26 @@ export function TaskSheetProvider({ children }: PropsWithChildren) {
 
   const value = useMemo(() => {
     return { isOpen, taskId, openSheet, closeSheet };
-  }, [isOpen, openSheet, taskId]);
+  }, [closeSheet, isOpen, openSheet, taskId]);
 
   return (
     <TaskSheetContext.Provider value={value}>
-      <TaskSheet task={task} isSheetOpen={isOpen} onSheetOpenChange={closeSheet} />
+      <Sheet open={isOpen} onOpenChange={closeSheet}>
+        <SheetContent
+          data-expanded={isExpanded}
+          className="flex w-screen flex-col gap-0 overflow-y-auto overflow-x-hidden p-0 transition-[width] data-[expanded=true]:w-screen data-[expanded=true]:rounded-none sm:w-[clamp(600px,50vw,768px)] sm:max-w-none sm:rounded-l-xl"
+        >
+          {task && (
+            <TaskSheetContent
+              task={task}
+              onClose={closeSheet}
+              isExpanded={isExpanded}
+              expandContent={expandContent}
+              minimizeContent={minimizeContent}
+            />
+          )}
+        </SheetContent>
+      </Sheet>
       {children}
     </TaskSheetContext.Provider>
   );

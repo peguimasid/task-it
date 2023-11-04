@@ -2,6 +2,7 @@
 
 import { useCallback, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
+import { useTaskSheet } from '@/contexts/task-sheet-provider';
 import { Project, Task } from '@prisma/client';
 import { useMutation } from '@tanstack/react-query';
 import { MoreHorizontal } from 'lucide-react';
@@ -40,8 +41,9 @@ const deleteTask = async ({ projectId, taskId }: DeleteTaskProps): Promise<void>
 
 export const TaskOperations = ({ task }: TaskOperationsProps) => {
   const router = useRouter();
-
   const { projectId }: { projectId: string } = useParams();
+
+  const { closeSheet } = useTaskSheet();
 
   const onDeleteTask = useTaskStore((store) => store.onDeleteTask);
 
@@ -53,8 +55,9 @@ export const TaskOperations = ({ task }: TaskOperationsProps) => {
 
   const onSuccess = useCallback(() => {
     onDeleteTask(task.id);
+    closeSheet();
     router.refresh();
-  }, [router, onDeleteTask, task]);
+  }, [onDeleteTask, task.id, closeSheet, router]);
 
   const onError = useCallback(() => {
     toast({
@@ -79,11 +82,7 @@ export const TaskOperations = ({ task }: TaskOperationsProps) => {
     <>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button
-            variant="outline"
-            size="icon"
-            className="absolute right-0 top-0 m-3 h-6 w-6 opacity-0 transition group-hover:opacity-100 data-[state=open]:opacity-100"
-          >
+          <Button variant="outline" size="icon" className="h-9 w-9">
             <MoreHorizontal className="h-4 w-4" />
           </Button>
         </DropdownMenuTrigger>
