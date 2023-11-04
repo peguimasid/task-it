@@ -21,6 +21,7 @@ import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from '
 import { FormControl, FormField, FormItem, FormMessage } from './ui/form';
 import { Input } from './ui/input';
 import { Popover, PopoverContent, PopoverTrigger } from './ui/popover';
+import { Separator } from './ui/separator';
 
 interface TaskSheetFormProps {
   task: Task;
@@ -295,6 +296,7 @@ export const TaskSheetForm = ({ task }: TaskSheetFormProps) => {
       </section>
       <section className="mb-[calc(30vh)] min-h-[200px] w-full space-y-3">
         <h1 className="font-medium text-muted-foreground">Description</h1>
+        <Separator />
         <FormField
           control={form.control}
           name="description"
