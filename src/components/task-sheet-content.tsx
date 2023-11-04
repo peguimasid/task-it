@@ -10,7 +10,6 @@ import { Project, Task } from '@prisma/client';
 import { useMutation } from '@tanstack/react-query';
 import { formatDistanceToNow } from 'date-fns';
 import { isEmpty } from 'lodash';
-import { Check, ChevronsUpDown } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
@@ -232,7 +231,7 @@ export const TaskSheetContent = ({
                                 <SelectedStatusIcon className="h-4 w-4" />
                                 <p className="truncate">{READABLE_STATUS[field.value as TaskStatus]}</p>
                               </div>
-                              <ChevronsUpDown className="ml-auto h-4 w-4 shrink-0 opacity-50" />
+                              <Icons.chevronsUpDown className="ml-auto h-4 w-4 shrink-0 opacity-50" />
                             </Button>
                           </FormControl>
                         </PopoverTrigger>
@@ -251,7 +250,7 @@ export const TaskSheetContent = ({
                                       form.setValue('status', status, { shouldDirty: true });
                                     }}
                                   >
-                                    <Check
+                                    <Icons.check
                                       className={cn(
                                         'mr-2 h-4 w-4',
                                         field.value === status ? 'opacity-100' : 'opacity-0'
@@ -305,7 +304,7 @@ export const TaskSheetContent = ({
                               ) : (
                                 <p className="truncate">Select priority</p>
                               )}
-                              <ChevronsUpDown className="ml-auto h-4 w-4 shrink-0 opacity-50" />
+                              <Icons.chevronsUpDown className="ml-auto h-4 w-4 shrink-0 opacity-50" />
                             </Button>
                           </FormControl>
                         </PopoverTrigger>
@@ -326,7 +325,7 @@ export const TaskSheetContent = ({
                                       });
                                     }}
                                   >
-                                    <Check
+                                    <Icons.check
                                       className={cn(
                                         'mr-2 h-4 w-4',
                                         field.value === priority ? 'opacity-100' : 'opacity-0'
@@ -372,7 +371,7 @@ export const TaskSheetContent = ({
                             ) : (
                               <p className="truncate">Select size</p>
                             )}
-                            <ChevronsUpDown className="ml-auto h-4 w-4 shrink-0 opacity-50" />
+                            <Icons.chevronsUpDown className="ml-auto h-4 w-4 shrink-0 opacity-50" />
                           </Button>
                         </FormControl>
                       </PopoverTrigger>
@@ -389,7 +388,7 @@ export const TaskSheetContent = ({
                                   form.setValue('size', size === field.value ? '' : size, { shouldDirty: true });
                                 }}
                               >
-                                <Check
+                                <Icons.check
                                   className={cn('mr-2 h-4 w-4', field.value === size ? 'opacity-100' : 'opacity-0')}
                                 />
                                 {READABLE_SIZE[size]}
