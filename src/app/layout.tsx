@@ -11,6 +11,7 @@ import { ThemeProvider } from '@/contexts/theme-provider';
 import { siteConfig } from '@/config/site';
 import { cn } from '@/lib/utils';
 import { Toaster } from '@/components/ui/toaster';
+import { Analytics } from '@/components/analytics';
 
 const fontSans = Inter({
   subsets: ['latin'],
@@ -47,8 +48,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <NextAuthProvider>
             <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
               {children}
+              <Analytics />
+              <Toaster />
             </ThemeProvider>
-            <Toaster />
           </NextAuthProvider>
         </ReactQueryProvider>
       </body>
