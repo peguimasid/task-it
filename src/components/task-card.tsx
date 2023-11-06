@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback } from 'react';
+import { KeyboardEvent, useCallback } from 'react';
 import { useTaskSheet } from '@/contexts/task-sheet-provider';
 import { TaskPriority, TaskSize } from '@/types';
 import { Draggable } from '@hello-pangea/dnd';
@@ -24,6 +24,16 @@ export const TaskCard = ({ task, index }: TaskCardProps) => {
     openSheet(task.id);
   }, [openSheet, task.id]);
 
+  const handleKeyDown = useCallback(
+    (event: KeyboardEvent<HTMLDivElement>) => {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        openTaskSheet();
+      }
+    },
+    [openTaskSheet]
+  );
+
   return (
     <Draggable draggableId={task.id} index={index}>
       {(provided) => (
@@ -31,10 +41,13 @@ export const TaskCard = ({ task, index }: TaskCardProps) => {
           <ContextMenuTrigger>
             <Card
               className="mb-3 min-h-[6rem] !cursor-pointer space-y-2 border-none p-3"
+              role="button"
+              tabIndex={0}
+              onKeyDown={handleKeyDown}
+              onClick={openTaskSheet}
               ref={provided.innerRef}
               {...provided.draggableProps}
               {...provided.dragHandleProps}
-              onClick={openTaskSheet}
             >
               <CardTitle className="text-sm">{title}</CardTitle>
               <TagsList priority={priority as TaskPriority} size={size as TaskSize} tags={tags} />
