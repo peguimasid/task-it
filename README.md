@@ -2,7 +2,7 @@
 
 ## Simplify Project Management and Task Collaboration
 
-I've created Task-it as a side project to address a common pain point I face as a freelancer - managing project tasks for multiple clients. Task-it also provides me with an opportunity to work with exciting new technologies like Next.js 13, NextAuth, Tailwind CSS, Trpc, and Prisma DB. With Task-it, my goal is to develop a comprehensive full-stack application that brings together all the essential features in a single, user-friendly platform.
+I've created Task-it as a side project to address a common pain point I face as a freelancer - managing project tasks for multiple clients. Task-it also provides me with an opportunity to work with exciting new technologies like Next.js 13, NextAuth, Tailwind CSS, and Prisma DB. With Task-it, my goal is to develop a comprehensive full-stack application that brings together all the essential features in a single, user-friendly platform.
 
 I invite you to join me on this exciting journey and contribute your suggestions and improvements along the way. 😎
 
