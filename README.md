@@ -66,11 +66,8 @@ This version marks the next step in enhancing Task-It's usability and preparing 
 While the centerpiece of this update is the editor inside the task sheet, we've also got some other tasks. Here's what's on the roadmap, ordered by priority:
 
 - [ ] **Confirm Exit Dialog**: We're adding a confirmation dialog when you try to close a sheet with unsaved changes.
-
 - [ ] **Links Support**: Soon, you'll be able to embed hyperlinks directly within the task editor.
-
 - [ ] **To-Do Lists**: We're introducing the ability to create and manage to-do lists inside the task editor.
-
 - [ ] **Drag and Drop**: You'll be able to effortlessly move and rearrange items within the editor using drag-and-drop.
 
 > We're evaluating the feasibility of [this](https://github.com/peguimasid/task-it/issues/14) requested feature: **File Uploads**. The ability to upload and store files such as code snippets, images, and even spreadsheets directly within the editor. We'll keep you updated on our progress.
