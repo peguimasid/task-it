@@ -3,6 +3,7 @@ import { useParams, useRouter } from 'next/navigation';
 import { useTaskSheet } from '@/contexts/task-sheet-provider';
 import { Project, Task } from '@prisma/client';
 import { useMutation } from '@tanstack/react-query';
+import { toast } from 'sonner';
 
 import { useTaskStore } from '@/store/task-store';
 
@@ -19,7 +20,6 @@ import {
 } from './ui/alert-dialog';
 import { Button } from './ui/button';
 import { ContextMenuContent, ContextMenuItem } from './ui/context-menu';
-import { toast } from './ui/use-toast';
 
 interface TaskContextMenuContentProps {
   task: Task;
@@ -60,10 +60,8 @@ export const TaskContextMenuContent = ({ task }: TaskContextMenuContentProps) =>
   }, [onDeleteTask, task.id, router]);
 
   const onError = useCallback(() => {
-    toast({
-      title: 'Something went wrong.',
-      description: 'Your task was not deleted. Please try again.',
-      variant: 'destructive'
+    toast.error('Something went wrong.', {
+      description: 'Your task was not deleted. Please try again.'
     });
   }, []);
 

@@ -7,6 +7,7 @@ import { useMutation } from '@tanstack/react-query';
 import { formatDistanceToNow } from 'date-fns';
 import { isEmpty } from 'lodash';
 import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
 import { z } from 'zod';
 
 import { priorities, READABLE_PRIORITY, TASK_PRIORITY_ICONS } from '@/constants/task-priorities';
@@ -28,7 +29,6 @@ import { Input } from './ui/input';
 import { Popover, PopoverContent, PopoverTrigger } from './ui/popover';
 import { Separator } from './ui/separator';
 import { SheetHeader } from './ui/sheet';
-import { toast } from './ui/use-toast';
 
 const updateTaskSchema = z.object({
   title: z
@@ -116,10 +116,8 @@ export const TaskSheetContent = ({
   );
 
   const onError = useCallback(() => {
-    toast({
-      title: 'Something went wrong.',
-      description: 'Your task was not updated. Please try again.',
-      variant: 'destructive'
+    toast('Something went wrong.', {
+      description: 'Your task was not updated. Please try again.'
     });
   }, []);
 

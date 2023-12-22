@@ -6,6 +6,7 @@ import { useTaskSheet } from '@/contexts/task-sheet-provider';
 import { Project, Task } from '@prisma/client';
 import { useMutation } from '@tanstack/react-query';
 import { MoreHorizontal } from 'lucide-react';
+import { toast } from 'sonner';
 
 import { useTaskStore } from '@/store/task-store';
 
@@ -22,7 +23,6 @@ import {
 } from './ui/alert-dialog';
 import { Button } from './ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from './ui/dropdown-menu';
-import { toast } from './ui/use-toast';
 
 interface TaskOperationsProps {
   task: Pick<Task, 'id'>;
@@ -60,10 +60,8 @@ export const TaskOperations = ({ task }: TaskOperationsProps) => {
   }, [onDeleteTask, task.id, closeSheet, router]);
 
   const onError = useCallback(() => {
-    toast({
-      title: 'Something went wrong.',
-      description: 'Your task was not deleted. Please try again.',
-      variant: 'destructive'
+    toast.error('Something went wrong.', {
+      description: 'Your task was not deleted. Please try again.'
     });
   }, []);
 

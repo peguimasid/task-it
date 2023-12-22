@@ -4,6 +4,7 @@ import { ChangeEvent, useCallback, useMemo, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Project } from '@prisma/client';
 import { useMutation } from '@tanstack/react-query';
+import { toast } from 'sonner';
 
 import { Icons } from './icons';
 import {
@@ -19,7 +20,6 @@ import { Button } from './ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from './ui/dropdown-menu';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
-import { toast } from './ui/use-toast';
 
 interface ProjectOperationsProps {
   project: Pick<Project, 'id' | 'name'>;
@@ -52,10 +52,8 @@ export const ProjectOperations = ({ project }: ProjectOperationsProps) => {
   }, [router]);
 
   const onError = useCallback(() => {
-    toast({
-      title: 'Something went wrong.',
-      description: 'Your project was not deleted. Please try again.',
-      variant: 'destructive'
+    toast.error('Something went wrong.', {
+      description: 'Your project was not deleted. Please try again.'
     });
   }, []);
 
