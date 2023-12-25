@@ -62,36 +62,13 @@ const TaskSheetContext = createContext<TaskSheetContextProps>({} as TaskSheetCon
 
 export function TaskSheetProvider({ children }: PropsWithChildren) {
   const router = useRouter();
-  const { projectId }: { projectId: string } = useParams();
-
+  const { projectId } = useParams<{ projectId: string }>();
   const tasks = useTaskStore((store) => store.tasks);
   const onUpdateTask = useTaskStore((store) => store.onUpdateTask);
 
   const [taskId, setTaskId] = useState<string | null>(null);
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
-
   const isOpen = !!taskId;
-
-  const expandContent = useCallback(() => {
-    setIsExpanded(true);
-  }, []);
-
-  const minimizeContent = useCallback(() => {
-    setIsExpanded(false);
-  }, []);
-
-  const openSheet = useCallback(
-    (taskId: string) => {
-      if (!tasks) return;
-      setTaskId(taskId);
-    },
-    [tasks]
-  );
-
-  const closeSheet = useCallback(() => {
-    setIsExpanded(false);
-    setTaskId(null);
-  }, []);
 
   const task = useMemo<Task | null>(() => {
     if (!taskId) return null;
@@ -115,11 +92,11 @@ export function TaskSheetProvider({ children }: PropsWithChildren) {
     resolver: zodResolver(updateTaskSchema)
   });
 
-  const handleClickClose = useCallback(() => {
-    minimizeContent();
-    form.reset(defaultValues);
-    closeSheet();
-  }, [defaultValues, form, minimizeContent, closeSheet]);
+  const expandContent = useCallback(() => setIsExpanded(true), []);
+  const minimizeContent = useCallback(() => setIsExpanded(false), []);
+  const toggleExpand = useCallback(() => {
+    isExpanded ? minimizeContent() : expandContent();
+  }, [expandContent, isExpanded, minimizeContent]);
 
   const onSuccess = useCallback(
     ({ taskUpdated }: UpdateTaskResponse, variables: FormValues) => {
@@ -142,16 +119,22 @@ export function TaskSheetProvider({ children }: PropsWithChildren) {
     onError
   });
 
-  const onSubmit = useCallback(
-    (formData: FormValues) => {
-      mutate(formData);
+  const onSubmit = useCallback((formData: FormValues) => mutate(formData), [mutate]);
+
+  const openSheet = useCallback(
+    (taskId: string) => {
+      if (!tasks) return;
+      setTaskId(taskId);
     },
-    [mutate]
+    [tasks]
   );
 
-  const toggleExpand = useCallback(() => {
-    isExpanded ? minimizeContent() : expandContent();
-  }, [expandContent, isExpanded, minimizeContent]);
+  const closeSheet = useCallback(() => {
+    minimizeContent();
+    form.reset(defaultValues);
+    setIsExpanded(false);
+    setTaskId(null);
+  }, [defaultValues, form, minimizeContent]);
 
   const isSaveButtonDisabled = useMemo(() => {
     const { isValid, dirtyFields } = form.formState;
@@ -180,23 +163,19 @@ export function TaskSheetProvider({ children }: PropsWithChildren) {
                 <SheetHeader className="sticky inset-0 z-10 flex w-full flex-row items-center space-y-0 border-b bg-card/70 px-3 py-2 backdrop-blur-sm">
                   <Button type="button" variant="ghost" size="icon" onClick={toggleExpand} className="hidden sm:flex">
                     {isExpanded ? (
-                      <Icons.arrowRightToLine className="h-5 w-5" />
+                      <Icons.arrowRightToLine className="size-5" />
                     ) : (
-                      <Icons.arrowLeftToLine className="h-5 w-5" />
+                      <Icons.arrowLeftToLine className="size-5" />
                     )}
                   </Button>
                   <div className="ml-auto flex items-center gap-2">
                     <Button type="submit" disabled={isSaveButtonDisabled} className="h-9">
-                      {isLoading ? (
-                        <Icons.spinner className="mr-2 h-5 w-5" />
-                      ) : (
-                        <Icons.check className="mr-2 h-5 w-5" />
-                      )}
+                      {isLoading ? <Icons.spinner className="size-5 mr-2" /> : <Icons.check className="size-5 mr-2" />}
                       Save changes
                     </Button>
                     <TaskOperations task={task} />
-                    <Button type="button" size="icon" variant="ghost" onClick={handleClickClose} className="h-9 w-9">
-                      <Icons.close className="h-4 w-4" />
+                    <Button type="button" size="icon" variant="ghost" onClick={closeSheet} className="size-9">
+                      <Icons.close className="size-4" />
                     </Button>
                   </div>
                 </SheetHeader>
