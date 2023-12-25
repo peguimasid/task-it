@@ -7,6 +7,7 @@ import { useMutation } from '@tanstack/react-query';
 import { isEmpty } from 'lodash';
 import { Loader2, Plus, SendHorizontal } from 'lucide-react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
 import { z } from 'zod';
 
 import { useTaskStore } from '@/store/task-store';
@@ -16,7 +17,6 @@ import { Button, ButtonProps } from './ui/button';
 import { Form, FormControl, FormField, FormItem, FormMessage } from './ui/form';
 import { Input } from './ui/input';
 import { Popover, PopoverContent, PopoverTrigger } from './ui/popover';
-import { toast } from './ui/use-toast';
 
 const createTaskSchema = z.object({
   title: z
@@ -82,10 +82,8 @@ export const CreateTaskButton = ({ className, variant, status, ...props }: Creat
   );
 
   const onError = useCallback(() => {
-    toast({
-      title: "Task couldn't be created",
-      description: 'Please try again later.',
-      variant: 'destructive'
+    toast.error("Task couldn't be created", {
+      description: 'Please try again later.'
     });
   }, []);
 

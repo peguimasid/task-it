@@ -7,6 +7,7 @@ import { Project as PrismaProject } from '@prisma/client';
 import { useMutation } from '@tanstack/react-query';
 import { isEmpty } from 'lodash';
 import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
 import { z } from 'zod';
 
 import { cn } from '@/lib/utils';
@@ -23,7 +24,6 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Input } from '@/components/ui/input';
 
 import { Icons } from './icons';
-import { toast } from './ui/use-toast';
 
 const projectSchema = z.object({
   name: z.string().min(1, { message: 'Name is required' }).max(30, { message: 'Name can have at most 30 characters' })
@@ -65,10 +65,7 @@ export const ProjectSettingsButton = ({ project, className, variant, ...props }:
 
   const onSuccess = useCallback(
     (_: unknown, variables: FormValues) => {
-      toast({
-        title: 'Success',
-        description: 'You project has been updated'
-      });
+      toast.success('Your project has been updated.');
       router.refresh();
       form.reset(variables);
       setIsDialogOpen(false);
@@ -77,10 +74,8 @@ export const ProjectSettingsButton = ({ project, className, variant, ...props }:
   );
 
   const onError = useCallback(() => {
-    toast({
-      title: 'Something went wrong.',
-      description: 'Your project was not updated. Please try again.',
-      variant: 'destructive'
+    toast.error('Something went wrong.', {
+      description: 'Your project was not updated. Please try again.'
     });
   }, []);
 

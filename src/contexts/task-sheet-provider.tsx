@@ -7,13 +7,13 @@ import { Project, Task } from '@prisma/client';
 import { useMutation } from '@tanstack/react-query';
 import { isEmpty } from 'lodash';
 import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
 import { z } from 'zod';
 
 import { useTaskStore } from '@/store/task-store';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 import { Sheet, SheetContent, SheetHeader } from '@/components/ui/sheet';
-import { toast } from '@/components/ui/use-toast';
 import { Icons } from '@/components/icons';
 import { TaskOperations } from '@/components/task-operations';
 import { TaskSheetContent } from '@/components/task-sheet-content';
@@ -131,10 +131,8 @@ export function TaskSheetProvider({ children }: PropsWithChildren) {
   );
 
   const onError = useCallback(() => {
-    toast({
-      title: 'Something went wrong.',
-      description: 'Your task was not updated. Please try again.',
-      variant: 'destructive'
+    toast.error('Something went wrong.', {
+      description: 'Your task was not updated. Please try again.'
     });
   }, []);
 
